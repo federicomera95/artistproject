@@ -1,126 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/dist/app.css" />
-    <title>Artist app</title>
-  </head>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="/dist/app.css" />
+        <title>Artist app</title>
+    </head>
 
-  <body>
-    <section class="flex flex-col text-center">
-      <h1 class="p-16 bg-gradient-to-r from-[#1F2937] to-[#395376] text-6xl text-[#FFFFFF] font-bold">
-        Colors
-      </h1>
-      <div class="flex flex-wrap gap-24 p-8 justify-start">
-        <div class="text-center">
-          <div class="bg-primary-base w-64 h-64"></div>
-          <p class="p-4 text-xl text-[#1F2937] font-semibold">Primary Base</p>
-        </div>
-        <div class="text-center">
-          <div class="bg-primary-hover w-64 h-64"></div>
-          <p class="p-4 text-xl text-[#1F2937] font-semibold">Primary Hover</p>
-        </div>
-        <div class="text-center">
-          <div class="bg-primary-disabled w-64 h-64"></div>
-          <p class="p-4 text-xl text-[#1F2937] font-semibold">
-            Primary Disabled
-          </p>
-        </div>
-        <div class="text-center">
-          <div class="bg-primary-background w-64 h-64"></div>
-          <p class="p-4 text-xl text-[#1F2937] font-semibold">
-            Primary Background
-          </p>
-        </div>
-        <div class="text-center">
-          <div class="bg-dark-grey-base w-64 h-64"></div>
-          <p class="p-4 text-xl text-[#1F2937] font-semibold">Dark Grey Base</p>
-        </div>
-        <div class="text-center">
-          <div class="bg-dark-grey-placeholder w-64 h-64"></div>
-          <p class="p-4 text-xl text-[#1F2937] font-semibold">
-            Dark Grey Placeholder
-          </p>
-        </div>
-        <div class="text-center">
-          <div class="bg-dark-grey-disabled w-64 h-64"></div>
-          <p class="p-4 text-xl text-[#1F2937] font-semibold">
-            Dark Grey Disabled
-          </p>
-        </div>
-        <div class="text-center">
-          <div class="bg-error w-64 h-64"></div>
-          <p class="p-4 text-xl text-[#1F2937] font-semibold">Error</p>
-        </div>
-        <div class="text-center">
-          <div class="bg-success w-64 h-64"></div>
-          <p class="p-4 text-xl text-[#1F2937] font-semibold">Success</p>
-        </div>
-        <div class="text-center">
-          <div class="bg-warning w-64 h-64"></div>
-          <p class="p-4 text-xl text-[#1F2937] font-semibold">Warning</p>
-        </div>
-      </div>
-    </section>
-    <section class="flex flex-col text-center">
-      <h1 class="p-16 bg-gradient-to-r from-[#1F2937] to-[#395376] text-6xl text-[#FFFFFF] font-bold">
-        Buttons
-      </h1>
-      <div class="flex flex-col text-center">
-        <h2 class="p-8 text-3xl text-[#1F2937] font-semibold">Normal</h2>
-        <div class="grid grid-cols-5 gap-4">
-          <div></div>
-          <div>
-            <h3 class="p-4 text-2xl text-[#1F2937] font-medium">Active</h3>
-          </div>
-          <div>
-            <h3 class="p-4 text-2xl text-[#1F2937] font-medium">Hover</h3>
-          </div>
-          <div>
-            <h3 class="p-4 text-2xl text-[#1F2937] font-medium">Focus</h3>
-          </div>
-          <div>
-            <h3 class="p-4 text-2xl text-[#1F2937] font-medium">Disabled</h3>
-          </div>
-          <div class="text-left">
-            <h3 class="p-4 text-2xl text-[#1F2937] font-medium">Primary Medium</h3>
-          </div>
-          <div class="flex justify-center items-center"><button
-              class="button-class bg-primary-base rounded-lg gap-2">Button</button></div>
-          <div class="flex justify-center items-center"><button
-              class="font-medium text-base text-[#ffffff] px-3 py-4">Button</button></div>
-          <div class="flex justify-center items-center"><button
-              class="font-medium text-base text-[#ffffff] px-3 py-4">Button</button></div>
-          <div class="flex justify-center items-center"><button
-              class="font-medium text-base text-[#ffffff] px-3 py-4">Button</button></div>
-          <div class="text-left">
-            <h3 class="p-4 text-2xl text-[#1F2937] font-medium">Secondary Medium</h3>
-          </div>
-          <div class="flex justify-center items-center"><button
-              class="font-medium text-base text-[#ffffff] px-3 py-4">Button</button></div>
-          <div class="flex justify-center items-center"><button
-              class="font-medium text-base text-[#ffffff] px-3 py-4">Button</button></div>
-          <div class="flex justify-center items-center"><button
-              class="font-medium text-base text-[#ffffff] px-3 py-4">Button</button></div>
-          <div class="flex justify-center items-center"><button
-              class="font-medium text-base text-[#ffffff] px-3 py-4">Button</button></div>
-          <div class="text-left">
-            <h3 class="p-4 text-2xl text-[#1F2937] font-medium">Tertiary Medium</h3>
-          </div>
-          <div class="flex justify-center items-center"><button
-              class="font-medium text-base text-[#ffffff] px-3 py-4">Button</button></div>
-          <div class="flex justify-center items-center"><button
-              class="font-medium text-base text-[#ffffff] px-3 py-4">Button</button></div>
-          <div class="flex justify-center items-center"><button
-              class="font-medium text-base text-[#ffffff] px-3 py-4">Button</button></div>
-          <div class="flex justify-center items-center"><button
-              class="font-medium text-base text-[#ffffff] px-3 py-4">Button</button></div>
-        </div>
-      </div>
-    </section>
-  </body>
+    <body>
+        <section class="flex flex-col text-center">
+            <h1
+                class="p-16 bg-gradient-to-r from-[#1F2937] to-[#395376] text-6xl text-[#FFFFFF] font-bold">
+                Colors
+            </h1>
+            <div class="flex flex-wrap gap-24 p-8 justify-start">
+                <div class="text-center">
+                    <div class="bg-primary-base w-64 h-64"></div>
+                    <p class="p-4 text-xl text-[#1F2937] font-semibold">Primary Base</p>
+                </div>
+                <div class="text-center">
+                    <div class="bg-primary-hover w-64 h-64"></div>
+                    <p class="p-4 text-xl text-[#1F2937] font-semibold">Primary Hover</p>
+                </div>
+                <div class="text-center">
+                    <div class="bg-primary-disabled w-64 h-64"></div>
+                    <p class="p-4 text-xl text-[#1F2937] font-semibold">
+                        Primary Disabled
+                    </p>
+                </div>
+                <div class="text-center">
+                    <div class="bg-primary-background w-64 h-64"></div>
+                    <p class="p-4 text-xl text-[#1F2937] font-semibold">
+                        Primary Background
+                    </p>
+                </div>
+                <div class="text-center">
+                    <div class="bg-dark-grey-base w-64 h-64"></div>
+                    <p class="p-4 text-xl text-[#1F2937] font-semibold">Dark Grey Base</p>
+                </div>
+                <div class="text-center">
+                    <div class="bg-dark-grey-placeholder w-64 h-64"></div>
+                    <p class="p-4 text-xl text-[#1F2937] font-semibold">
+                        Dark Grey Placeholder
+                    </p>
+                </div>
+                <div class="text-center">
+                    <div class="bg-dark-grey-disabled w-64 h-64"></div>
+                    <p class="p-4 text-xl text-[#1F2937] font-semibold">
+                        Dark Grey Disabled
+                    </p>
+                </div>
+                <div class="text-center">
+                    <div class="bg-error w-64 h-64"></div>
+                    <p class="p-4 text-xl text-[#1F2937] font-semibold">Error</p>
+                </div>
+                <div class="text-center">
+                    <div class="bg-success w-64 h-64"></div>
+                    <p class="p-4 text-xl text-[#1F2937] font-semibold">Success</p>
+                </div>
+                <div class="text-center">
+                    <div class="bg-warning w-64 h-64"></div>
+                    <p class="p-4 text-xl text-[#1F2937] font-semibold">Warning</p>
+                </div>
+            </div>
+        </section>
+        <section class="flex flex-col text-center">
+            <h1
+                class="p-16 bg-gradient-to-r from-[#1F2937] to-[#395376] text-6xl text-[#FFFFFF] font-bold">
+                Buttons
+            </h1>
+            <div class="flex flex-col text-center">
+                <h2 class="p-8 text-3xl text-[#1F2937] font-semibold">Normal</h2>
+                <div class="grid grid-cols-5 gap-4">
+                    <div></div>
+                    <div>
+                        <h3 class="p-4 text-2xl text-[#1F2937] font-medium">Active</h3>
+                    </div>
+                    <div>
+                        <h3 class="p-4 text-2xl text-[#1F2937] font-medium">Hover</h3>
+                    </div>
+                    <div>
+                        <h3 class="p-4 text-2xl text-[#1F2937] font-medium">Focus</h3>
+                    </div>
+                    <div>
+                        <h3 class="p-4 text-2xl text-[#1F2937] font-medium">Disabled</h3>
+                    </div>
+                    <div class="text-left">
+                        <h3 class="p-4 text-2xl text-[#1F2937] font-medium">Primary Medium</h3>
+                    </div>
+                    <div class="flex justify-center items-center"><button
+                            class="button-class bg-primary-base rounded-lg gap-2">Button</button>
+                    </div>
+                    <div class="flex justify-center items-center"><button
+                            class="font-medium text-base text-[#ffffff] px-3 py-4">Button</button>
+                    </div>
+                    <div class="flex justify-center items-center"><button
+                            class="font-medium text-base text-[#ffffff] px-3 py-4">Button</button>
+                    </div>
+                    <div class="flex justify-center items-center"><button
+                            class="font-medium text-base text-[#ffffff] px-3 py-4">Button</button>
+                    </div>
+                    <div class="text-left">
+                        <h3 class="p-4 text-2xl text-[#1F2937] font-medium">Secondary Medium</h3>
+                    </div>
+                    <div class="flex justify-center items-center"><button
+                            class="font-medium text-base text-[#ffffff] px-3 py-4">Button</button>
+                    </div>
+                    <div class="flex justify-center items-center"><button
+                            class="font-medium text-base text-[#ffffff] px-3 py-4">Button</button>
+                    </div>
+                    <div class="flex justify-center items-center"><button
+                            class="font-medium text-base text-[#ffffff] px-3 py-4">Button</button>
+                    </div>
+                    <div class="flex justify-center items-center"><button
+                            class="font-medium text-base text-[#ffffff] px-3 py-4">Button</button>
+                    </div>
+                    <div class="text-left">
+                        <h3 class="p-4 text-2xl text-[#1F2937] font-medium">Tertiary Medium</h3>
+                    </div>
+                    <div class="flex justify-center items-center"><button
+                            class="font-medium text-base text-[#ffffff] px-3 py-4">Button</button>
+                    </div>
+                    <div class="flex justify-center items-center"><button
+                            class="font-medium text-base text-[#ffffff] px-3 py-4">Button</button>
+                    </div>
+                    <div class="flex justify-center items-center"><button
+                            class="font-medium text-base text-[#ffffff] px-3 py-4">Button</button>
+                    </div>
+                    <div class="flex justify-center items-center"><button
+                            class="font-medium text-base text-[#ffffff] px-3 py-4">Button</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="w-24 h-24 bg-error border-custom"></section>
+    </body>
 
 </html>

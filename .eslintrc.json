@@ -1,0 +1,23 @@
+{
+    "env": {
+        "commonjs": true,
+        "es2021": true,
+        "node": true
+    },
+    "parserOptions": {
+        "ecmaVersion": "latest"
+    },
+    "rules": {
+        "semi": "warn",
+        "quotes": ["warn", "single"],
+        "no-const-assign": "error",
+        "no-unused-vars": ["warn", { "args": "none" }],
+        "eqeqeq": "warn",
+        "no-var": "error",
+        "no-use-before-define": "warn",
+        "no-sparse-arrays": "warn",
+        "no-undef": "warn",
+        "no-extra-semi": "warn",
+        "prefer-const": ["warn", { "destructuring": "all" }]
+    }
+}

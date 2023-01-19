@@ -525,8 +525,16 @@ video {
   height: 16rem;
 }
 
+.h-24 {
+  height: 6rem;
+}
+
 .w-64 {
   width: 16rem;
+}
+
+.w-24 {
+  width: 6rem;
 }
 
 .grid-cols-5 {
