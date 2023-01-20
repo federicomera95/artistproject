@@ -609,6 +609,10 @@ html {
   width: 1.5rem;
 }
 
+.resize-none {
+  resize: none;
+}
+
 .grid-cols-5 {
   grid-template-columns: repeat(5, minmax(0, 1fr));
 }
