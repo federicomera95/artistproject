@@ -14,7 +14,19 @@ module.exports = {
 			success: '#22c55e',
 			warning: '#f59e0b'
 		},
-		extend: {}
+		extend: {
+			'boxShadow': {
+				'3xl' : '0px 0px 0px 4px rgba(147, 51, 234, 0.3)',
+				'hov' : '0px 4px 8px rgba(147, 51, 234, 0.3)',
+				'sph' : 'inset 0 0 0 2px #a855f7',
+				'sb' : 'inset 0 0 0 2px #9333ea',
+				'si' : 'inset 0 0 0 2px #9ca3af',
+				'sp' : 'inset 0 0 0 2px #4b5563',
+				'sih' : '0 4px 8px rgba(147, 51, 234, 0.3)',
+				'se' : 'inset 0 0 0 2px #e11d48',
+				'sd' : 'inset 0 0 0 2px #9ca3af'
+			}
+		}
 	},
 	plugins: []
 };
