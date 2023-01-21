@@ -9,4 +9,16 @@
     }
 }
 
+@layer components {
+
+    .checkbox:checked + label::after {
+        @apply relative top-[2px] left-[1px] content-['\2714'] text-[white];
+    }
+
+    .radio-checked::after {
+        @apply inline-block content-[''] h-4 w-4 rounded-[50%] bg-[white];
+    }
+
+}
+
 /*transition: all .2s;*/
