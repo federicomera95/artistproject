@@ -1,0 +1,58 @@
+@tailwind components;
+
+
+@layer components {
+    
+    .btn-md{
+        @apply 
+            font-medium 
+            text-base
+            p-ms
+            rounded-lg
+    }
+
+    .btn-sm {
+        @apply btn-md;
+        @apply text-sm rounded;
+    }
+
+    .btn-lg {
+        @apply btn-md;
+        @apply text-lg p-lg;
+    }
+
+    .btn-primary {
+        @apply 
+            bg-primary-base
+            text-[white] 
+            enabled:hover:bg-primary-hover enabled:hover:shadow-hover enabled:hover:shadow-primary-base 
+            focus:shadow-focus focus:shadow-primary-base/30
+            disabled:bg-primary-disabled
+            transition-all;
+    }
+
+    .btn-secondary {
+        @apply 
+            bg-[white] 
+            text-dark-grey-base
+            ring-inset
+            ring-2
+            ring-primary-base
+            enabled:hover:bg-primary-background enabled:hover:shadow-hover enabled:hover:shadow-primary-base/30 
+            focus:shadow-focus focus:shadow-primary-base/30
+            disabled:bg-white disabled:shadow-none disabled:ring-primary-disabled disabled:text-dark-grey-disabled
+            transition-all;
+    }
+
+    .btn-tertiary {
+        @apply 
+            bg-[white] 
+            text-primary-base
+            enabled:hover:bg-primary-background
+            focus:shadow-focus focus:shadow-primary-base/30
+            disabled:text-primary-disabled
+    }
+
+    
+    
+}
