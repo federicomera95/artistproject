@@ -9,7 +9,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
     <React.StrictMode>
-        <ButtonComponent text='Button' size='large' style='primary' disabled={false} />
-        <ButtonComponent text='Button' size='large' style='primary' disabled={true} />
+        <ButtonComponent text='Button' size='large' style='primary' isDisabled={false} />
+        <ButtonComponent text='Button' size='large' style='primary' isDisabled={true} />
     </React.StrictMode>
 );
