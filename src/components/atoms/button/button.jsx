@@ -1,9 +1,9 @@
 import './button.css';
 import { SIZE, STYLE } from '../../../constants/button';
 
-export function ButtonComponent({ text, size, style, isDisabled }) {
+export function ButtonComponent({ id, type='button', text, size, style, isDisabled }) {
     return (
-        <button className={`${SIZE[size]} ${STYLE[style]}`} disabled={isDisabled} type='button'>
+        <button id={id} className={`${SIZE[size]} ${STYLE[style]}`} disabled={isDisabled} type={type}>
             {text}
         </button>
     );
