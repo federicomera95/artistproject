@@ -1,5 +1,0 @@
-{
-  "scripts": {
-    "tailwind": "npx tailwindcss -i ./app/styles/app.css -o ./dist/app.css --watch"
-  }
-}
