@@ -3,7 +3,8 @@
 @layer components {
     .radio-container {
         @apply flex items-center gap-[0.5em] m-6
-        [&>input]:absolute [&>input]:opacity-0
+        [&>input]:absolute [&>input]:appearance-none
+        [&>input]:flex [&>input]:justify-center [&>input]:items-center
         [&>label]:flex [&>label]:items-center [&>label]:gap-[0.5em];
     }
 
@@ -23,15 +24,21 @@
     .radio-container > input:checked + label::before {
         @apply bg-primary-base border-none;
     }
-}
 
-.check-container > input:disabled + label {
-    @apply text-dark-grey-disabled;
-}
-.check-container > input:checked:disabled + label::before {
-    @apply bg-primary-disabled;
-}
+    .radio-container > input:checked::before {
+        @apply content-[''] inline-block bg-white
+        w-[0.5em] h-[0.5em] rounded-[50%] relative left-[0.25em];
+    }
 
-.check-container > input:hover:disabled + label::before {
-    @apply border-dark-grey-disabled;
+    .radio-container > input:disabled + label {
+        @apply text-dark-grey-disabled;
+    }
+
+    .radio-container > input:checked:disabled + label::before {
+        @apply bg-primary-disabled;
+    }
+
+    .radio-container > input:hover:disabled + label::before {
+        @apply border-dark-grey-disabled;
+    }
 }
