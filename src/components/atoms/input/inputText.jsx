@@ -1,20 +1,29 @@
 import './inputText.css';
 
+import { useState } from 'react';
 
-export default function InputTextComponent({ id, type='text', label, icon = {}, required, disabled, msgError }) {
+export default function InputTextComponent({ objInputText, disabled, required, icon = {} }) {
+
+    const {pos, src} = icon;
+    const {id, type='text', label, msgError=''} = objInputText;
+    const [value, setValue] = useState('');
+
+    function handleChange(e) {
+        setValue(e.target.value);
+    }
+
     if(!id) throw new Error('There parameter "id" is required');
 
-    const {i, src} = icon;
-
     return (
-        <div className='input-text-container'>
+        <div className='input-field-group'>
             <label htmlFor={id} disabled={disabled}>{label}</label>
-            <div>
-                {(!!icon === true && i === 'lf') && <i className={`${src} ${i}`}></i>}
-                <input className={ msgError ? 'error' : ''} type={type} id={id} disabled={disabled} required={required} placeholder={`Inserire ${label}`}/>
-                {(!!icon === true && i === 'rt') && <i className={`${src} ${i}`}></i>}
+            <div className='input-text-group'>
+                {(!!icon && pos === 'lf') && <i className={`${src} ${pos}`}></i>}
+                <input className={ `${msgError ? 'error' : ''} ${value && 'filled'}`} type={type} id={id} disabled={disabled} required={required} onChange={handleChange}/>
+                {(!!icon && pos === 'rt') && <i className={`${src} ${pos}`}></i>}
+                <label className={ `${value && 'filled'} ${!!icon && pos}`} disabled={disabled}>{`Inserire ${label}`}</label>
             </div>
-                { !!msgError === true && <p>{msgError}</p> }
+            { !!msgError && <p>{msgError}</p> }
         </div>
     );
 }
