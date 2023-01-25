@@ -2,7 +2,7 @@
 
 @layer components {
     .check-container {
-        @apply flex items-center m-10
+        @apply flex items-center
             [&>input]:absolute [&>input]:opacity-0
             [&>label]:flex [&>label]:items-center [&>label]:gap-[0.5em];
     }
