@@ -21,7 +21,8 @@ module.exports = {
             },
             padding: {
                 ms: '10px 16px',
-                lg: '10px 24px'
+                lg: '10px 24px',
+                input: '10px 16px'
             },
             boxShadow: {
                 hover: '0 4px 8px',
