@@ -26,7 +26,7 @@ module.exports = {
             },
             boxShadow: {
                 hover: '0 4px 8px',
-                focus: '0 0 0 4px'
+                focus: '0 0 0 2px'
             }
         }
     }

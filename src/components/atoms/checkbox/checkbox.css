@@ -2,7 +2,7 @@
 
 @layer components {
     .check-container {
-        @apply flex items-center m-10
+        @apply flex items-center
             [&>input]:absolute [&>input]:opacity-0
             [&>label]:flex [&>label]:items-center [&>label]:gap-[0.5em];
     }
@@ -13,7 +13,7 @@
     }
 
     .check-container > input:focus + label::before {
-        @apply shadow-[0_0_0_2px] shadow-primary-disabled border-primary-hover;
+        @apply shadow-focus shadow-primary-disabled border-primary-hover;
     }
 
     .check-container > input:hover + label::before {

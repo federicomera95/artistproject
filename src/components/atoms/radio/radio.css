@@ -1,0 +1,44 @@
+@tailwind components;
+
+@layer components {
+    .radio-container {
+        @apply flex items-center gap-[0.5em] m-6
+        [&>input]:absolute [&>input]:appearance-none
+        [&>input]:flex [&>input]:justify-center [&>input]:items-center
+        [&>label]:flex [&>label]:items-center [&>label]:gap-[0.5em];
+    }
+
+    .radio-container > label::before {
+        @apply content-[''] w-[1em] h-[1em] border-[0.1em] rounded-[50%]
+      border-dark-grey-disabled;
+    }
+
+    .radio-container > input:hover + label::before {
+        @apply border-primary-hover;
+    }
+
+    .radio-container > input:focus + label::before {
+        @apply shadow-focus shadow-primary-disabled border-primary-hover;
+    }
+
+    .radio-container > input:checked + label::before {
+        @apply bg-primary-base border-none;
+    }
+
+    .radio-container > input:checked::before {
+        @apply content-[''] inline-block bg-white
+        w-[0.5em] h-[0.5em] rounded-[50%] relative left-[0.25em];
+    }
+
+    .radio-container > input:disabled + label {
+        @apply text-dark-grey-disabled;
+    }
+
+    .radio-container > input:checked:disabled + label::before {
+        @apply bg-primary-disabled;
+    }
+
+    .radio-container > input:hover:disabled + label::before {
+        @apply border-dark-grey-disabled;
+    }
+}
