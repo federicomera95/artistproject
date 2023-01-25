@@ -13,7 +13,7 @@
     }
 
     .check-container > input:focus + label::before {
-        @apply shadow-[0_0_0_2px] shadow-primary-disabled border-primary-hover;
+        @apply shadow-focus shadow-primary-disabled border-primary-hover;
     }
 
     .check-container > input:hover + label::before {
