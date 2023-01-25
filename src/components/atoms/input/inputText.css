@@ -1,51 +1,68 @@
 @tailwind components;
 
 @layer components {
-    .input-text-container {
+    .input-field-group {
         @apply flex flex-col justify-start text-dark-grey-base p-3 gap-2;
     }
 
-    .input-text-container > label {
-        @apply text-sm font-medium capitalize;
+    .input-field-group > label {
+        @apply text-sm font-medium capitalize pointer-events-none;
     }
 
-    .input-text-container > label[disabled] {
+    .input-field-group > label[disabled] {
         @apply text-dark-grey-disabled;
     }
 
-    .input-text-container > div {
-        @apply relative;
+    .input-field-group > div.input-text-group {
+        @apply flex relative;
     }
 
-    .input-text-container > div > input {
+    .input-field-group > div > input {
         @apply
+            [&.filled]:ring-dark-grey-placeholder
             w-[100%]
             text-base p-input ring-inset ring-2
             ring-dark-grey-disabled border-none rounded-lg
-            placeholder:text-dark-grey-placeholder
             enabled:hover:ring-primary-hover enabled:hover:outline-none
             focus:shadow-hover focus:shadow-primary-base/30 focus:ring-primary-hover focus:outline-none
-            disabled:ring-dark-grey-disabled disabled:text-dark-grey-disabled disabled:placeholder:text-dark-grey-disabled;
+            disabled:ring-dark-grey-disabled disabled:text-dark-grey-disabled;
     }
 
-    .input-text-container > p {
+    .input-field-group > div > label {
+        @apply absolute top-[50%] translate-y-[-50%] p-input 
+        pointer-events-none text-dark-grey-placeholder text-base;
+    }
+
+    .input-field-group > div > label[disabled] {
+        @apply text-dark-grey-disabled;
+    }
+
+    .input-field-group > div > label.filled {
+        @apply hidden transition-all duration-[200ms];
+    }
+
+    .input-field-group > p {
         @apply text-error text-xs font-normal
     }
 
-    .input-text-container > div > .error {
+    .input-field-group > div > .error {
         @apply ring-error;
     }
 
-    .input-text-container > div > i {
+    .input-field-group > div > i {
         @apply absolute max-w-[24px] max-h-[24px] top-[50%] translate-y-[-50%];
     }
 
-    .input-text-container > div > i.lf {
-       @apply left-[1em]
+    .input-field-group > div > i.lf {
+       @apply left-[1em] object-cover w-[100%] h-[100%]
         [&+input]:pl-[3em];
     }
 
-    .input-text-container > div > i.rt {
+    .input-field-group > div > label.lf {
+        @apply pl-[3em];
+    }
+
+    .input-field-group > div > i.rt {
         @apply right-[1em];
-     }
+     } 
 }
