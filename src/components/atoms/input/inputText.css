@@ -2,20 +2,11 @@
 
 @layer components {
     .input-text-container {
-        @apply
-            flex
-            flex-col
-            justify-start
-            text-dark-grey-base
-            p-3
-            gap-[8px];
+        @apply flex flex-col justify-start text-dark-grey-base p-3 gap-2;
     }
 
     .input-text-container > label {
-        @apply
-            text-sm
-            font-medium
-            capitalize;
+        @apply text-sm font-medium capitalize;
     }
 
     .input-text-container > label[disabled] {
@@ -46,12 +37,7 @@
     }
 
     .input-text-container > div > i {
-        @apply 
-            absolute
-            max-w-[24px]
-            max-h-[24px]
-            top-[50%] 
-            translate-y-[-50%];
+        @apply absolute max-w-[24px] max-h-[24px] top-[50%] translate-y-[-50%];
     }
 
     .input-text-container > div > i.lf {
