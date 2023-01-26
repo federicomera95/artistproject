@@ -30,7 +30,8 @@
 
     .input-field-group > div > label {
         @apply absolute top-[50%] translate-y-[-50%] p-input w-[calc(100%-40px)]
-        pointer-events-none text-dark-grey-placeholder text-base whitespace-nowrap overflow-hidden text-ellipsis;
+        pointer-events-none text-dark-grey-placeholder text-base whitespace-nowrap 
+        overflow-hidden text-ellipsis [&first-letter]:uppercase;
     }
 
     .input-field-group > div > label[disabled] {
@@ -46,7 +47,7 @@
     }
 
     .input-field-group > div > .error {
-        @apply ring-error;
+        @apply ring-error enabled:hover:ring-error focus:ring-error focus:shadow-error/30;
     }
 
     .input-field-group > div > i {
