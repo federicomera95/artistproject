@@ -29,8 +29,8 @@
     }
 
     .input-field-group > div > label {
-        @apply absolute top-[50%] translate-y-[-50%] p-input 
-        pointer-events-none text-dark-grey-placeholder text-base;
+        @apply absolute top-[50%] translate-y-[-50%] p-input w-[calc(100%-40px)]
+        pointer-events-none text-dark-grey-placeholder text-base whitespace-nowrap overflow-hidden text-ellipsis;
     }
 
     .input-field-group > div > label[disabled] {
