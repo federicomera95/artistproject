@@ -53,16 +53,16 @@
         @apply absolute max-w-[24px] max-h-[24px] top-[50%] translate-y-[-50%];
     }
 
-    .input-field-group > div > i.lf {
+    .input-field-group > div > i.left {
        @apply left-[1em] object-cover w-[100%] h-[100%]
         [&+input]:pl-[3em];
     }
 
-    .input-field-group > div > label.lf {
+    .input-field-group > div > label.left {
         @apply pl-[3em];
     }
 
-    .input-field-group > div > i.rt {
+    .input-field-group > div > i.right {
         @apply right-[1em];
      } 
 }
