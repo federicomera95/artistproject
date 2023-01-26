@@ -8,9 +8,7 @@ export default function InputTextComponent({ objInputText, disabled, required, i
     const {id, type='text', label, msgError=''} = objInputText;
     const [value, setValue] = useState('');
 
-    function handleChange(e) {
-        setValue(e.target.value);
-    }
+    const handleChange = (e) => setValue(e.target.value);
 
     if(!id) throw new Error('There parameter "id" is required');
 
