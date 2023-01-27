@@ -19,7 +19,7 @@ export default function InputTextComponent({ objInputText, disabled, required, i
                 {(!!icon && pos === 'left') && <i className={`${src} ${pos}`}></i>}
                 <input 
                     title={placeholder} 
-                    className={ `${msgError ? 'error' : ''} ${value && 'filled'}`} 
+                    className={ `${msgError && !value ? 'error' : ''} ${value && 'filled'}`} 
                     type={type} id={id}
                     defaultValue={value} 
                     disabled={disabled} 
@@ -28,7 +28,7 @@ export default function InputTextComponent({ objInputText, disabled, required, i
                 {(!!icon && pos === 'right') && <i className={`${src} ${pos}`}></i>}
                 <label className={ `${value && 'filled'} ${!!icon && pos}`} disabled={disabled}>{placeholder}</label>
             </div>
-            { !!msgError && <p>{msgError}</p> }
+            { (!!msgError && !value) && <p>{msgError}</p> }
         </div>
     );
 }
