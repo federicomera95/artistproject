@@ -9,12 +9,12 @@
     }
 
     .toggle-field-group input {
-        @apply w-[3.25em] h-[2em] z-10;
+        @apply w-[3.25em] h-[2em] z-10 cursor-pointer;
     }
 
     .toggle-field-group > span {
         @apply w-[3.25em] h-[2em] rounded-[2.5em] 
-        cursor-pointer transition-[.4s] ring-2 ring-inset ring-dark-grey-disabled;
+        transition-[.4s] ring-2 ring-inset ring-dark-grey-disabled;
     }
 
     .toggle-field-group > span::before {
