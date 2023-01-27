@@ -2,9 +2,10 @@
 
 @layer components {
     .radio-container {
-        @apply flex items-center gap-[0.5em] m-6
+        @apply flex items-center gap-[0.5em]
         [&>input]:absolute [&>input]:appearance-none
         [&>input]:flex [&>input]:justify-center [&>input]:items-center
+        focus:[&>input]:outline-none
         [&>label]:flex [&>label]:items-center [&>label]:gap-[0.5em];
     }
 
