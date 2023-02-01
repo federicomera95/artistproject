@@ -1,0 +1,15 @@
+@tailwind components;
+
+@layer components {
+    .card-profile {
+        @apply flex flex-col items-center gap-2;
+    }
+
+    .card-profile > img {
+        @apply h-[90px] w-[90px] rounded-[50%];
+    }
+
+    .card-profile > p {
+        @apply text-xs;
+    }
+}

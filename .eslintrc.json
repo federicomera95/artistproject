@@ -29,7 +29,6 @@
     "plugins": ["react", "react-hooks"],
     "rules": {
         "semi": "warn",
-        "quotes": ["warn", "single"],
         "no-const-assign": "error",
         "no-unused-vars": ["warn", { "args": "none" }],
         "eqeqeq": "warn",
