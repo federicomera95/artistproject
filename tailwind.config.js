@@ -10,7 +10,7 @@ module.exports = {
                 'primary-base': '#9333ea',
                 'primary-hover': '#a855f7',
                 'primary-disabled': '#d8b4fe',
-                'primary-background': '#f3e8ff',
+                'primary-background': '#F3e8FF',
                 'dark-grey-base': '#1f2937',
                 'dark-grey-placeholder': '#4b5563',
                 'dark-grey-disabled': '#9ca3af',
