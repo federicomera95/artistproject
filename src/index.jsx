@@ -1,5 +1,4 @@
 import ReactDOM from 'react-dom/client';
-import PhotoCard from './components/molecules/photo-card/photo-card';
 
 import './global.css';
 
