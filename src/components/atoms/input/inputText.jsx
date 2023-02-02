@@ -10,7 +10,7 @@ export default function InputTextComponent({ objInputText, disabled, required, i
 
     const handleChange = (e) => setValue(e.target.value);
 
-    if(!id) throw new Error('There parameter "id" is required');
+    if(!id) throw new Error('The parameter "id" is required');
 
     return (
         <div className='input-field-group'>

@@ -2,7 +2,7 @@ import './genre-card.css';
 
 const GenreCardComponent = ({text})=> {
 
-    if(!text) throw new Error('Error, text is required!');
+    if(!text) throw new Error('Text is required!');
 
     return (
         <div className='genre-card'>
