@@ -2,7 +2,7 @@
 
 @layer components {
     .slider-wrapper {
-        @apply w-[335px] mt-20 ml-20;
+        @apply w-[335px];
     }
 
     .slider {
@@ -25,6 +25,6 @@
 
     .range-input > input::-webkit-slider-thumb {
         -webkit-appearance: none;
-        @apply h-5 w-5 rounded-[50%] bg-primary-base pointer-events-auto;
+        @apply h-5 w-5 rounded-[50%] bg-primary-base pointer-events-auto cursor-pointer;
     }
 }
