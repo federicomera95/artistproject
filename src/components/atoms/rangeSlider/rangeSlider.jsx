@@ -5,9 +5,9 @@ import { useState } from 'react';
 const RangeSliderComponent = ({
     label,
     id,
-    defaultValues = [15, 60],
-    minValue = 0,
-    maxValue = 100,
+    defaultValues = [15, 70],
+    minValue = 15,
+    maxValue = 70,
     minDistance = 1,
     disabled
 }) => {
@@ -23,16 +23,27 @@ const RangeSliderComponent = ({
     const [values, setValues] = useState({ min: defaultValues[0], max: defaultValues[1] });
 
     const handleChange = ({ target }) => {
-        if (values.max - values.min <= minDistance) {
-            setValues({
-                ...values,
-                [target.id]:
-                    target.id === 'min' ? values.max - minDistance : values.min + minDistance
-            });
+        if (values.max - values.min <= minDistance ) {
+            if(target.id === 'min'){
+                if(target.value < values.max && target.value < values.min){
+                    setValues({...values,[target.id]: target.value});
+                }else{
+                    setValues({...values,[target.id]: values.max - minDistance});
+                }
+            }
+            if(target.id === 'max'){
+                if(target.value > values.max && target.value > values.min){
+                    setValues({...values,[target.id]: target.value});
+                }else{
+                    setValues({...values,[target.id]: values.min + minDistance});
+                }
+            }
+            //&& (target.value < values.max && target.value > values.min)
+            // setValues({...values,
+            //     [target.id]:target.id === 'min' ? Number(values.max - minDistance) : Number(values.min + minDistance)
+            // });
         } else {
-            setValues({
-                ...values,
-                [target.id]: Number(target.value)
+            setValues({...values,[target.id]: Number(target.value)
             });
         }
     };
@@ -43,8 +54,8 @@ const RangeSliderComponent = ({
                 <div
                     className='track'
                     style={{
-                        left: `${(values.min / maxValue) * 100}%`,
-                        right: `${100 - (values.max / maxValue) * 100}%`
+                        left: `${((values.min - minValue) / 100) * 100}%`, // 0 -> 100
+                        right: `${100 - (values.max / maxValue) * 100}%` // 
                     }}
                 ></div>
             </div>
