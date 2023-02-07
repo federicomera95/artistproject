@@ -105,6 +105,9 @@ const RangeSliderComponent = ({
 
     return (
         <div className='slider-wrapper'>
+            <label className='text-sm font-semibold text-dark-grey-base relative bottom-6'>
+                {label}
+            </label>
             <div className='flex relative font-semibold text-sm text-primary-base'>
                 <p className='absolute bottom-2' style={{ left: `${getLeft()}%` }}>
                     {min}
