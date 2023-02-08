@@ -16,7 +16,7 @@ export default function InputTextComponent({ objInputText, disabled, required, i
         <div className='input-field-group'>
             <label htmlFor={id} disabled={disabled}>{label}</label>
             <div className='input-text-group'>
-                {(!!icon && pos === 'left') && <i className={`${src} ${pos}`}></i>}
+                {(!!icon && pos === 'left') && <img src={src} className={`${pos}`} />}
                 <input 
                     title={placeholder} 
                     className={ `${msgError && !value ? 'error' : ''} ${value && 'filled'}`} 
@@ -25,7 +25,7 @@ export default function InputTextComponent({ objInputText, disabled, required, i
                     disabled={disabled} 
                     required={required} 
                     onChange={handleChange}/>
-                {(!!icon && pos === 'right') && <i className={`${src} ${pos}`}></i>}
+                {(!!icon && pos === 'right') && <img src={src} className={`${pos}`}/>}
                 <label className={ `${value && 'filled'} ${!!icon && pos}`} disabled={disabled}>{placeholder}</label>
             </div>
             { (!!msgError && !value) && <p>{msgError}</p> }

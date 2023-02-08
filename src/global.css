@@ -11,4 +11,8 @@
         @apply font-custom;
     }
 
+    #root {
+        @apply px-5;
+    }
+
 }
