@@ -25,7 +25,6 @@ const iconPwd = {
     src: '/icons/eye.svg'
 };
 
-
 const Register = () => {
     return (
         <div className='flex flex-col '>
@@ -33,12 +32,20 @@ const Register = () => {
                 Artist<span className='text-primary-base'>All</span>
             </div>
             <div className='flex flex-col gap-[24px] '>
-                <InputTextComponent objInputText={objArtName}/>
-                <InputTextComponent objInputText={objEmail} required />
-                <InputTextComponent objInputText={objPassword} required icon={iconPwd}/>
-                <ButtonComponent id='login-sub' text='Crea il tuo account' style='primary' size='medium' type='submit'/>
-                <ButtonComponent text='Indietro' size='medium' style='secondary'/>
-                <ButtonComponent text="Accedi" size="medium" style="tertiary" />
+                <div className='flex flex-col gap-[16px]'>
+                    <InputTextComponent objInputText={objArtName} />
+                    <InputTextComponent objInputText={objEmail} required />
+                    <InputTextComponent objInputText={objPassword} required icon={iconPwd} />
+                </div>
+                    <ButtonComponent
+                        id='login-sub'
+                        text='Crea il tuo account'
+                        style='primary'
+                        size='medium'
+                        type='submit'
+                    />
+                    <ButtonComponent text='Indietro' size='medium' style='secondary' />
+                    <ButtonComponent text='Accedi' size='medium' style='tertiary' />
             </div>
         </div>
     );
