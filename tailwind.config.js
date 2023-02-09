@@ -26,7 +26,8 @@ module.exports = {
             },
             boxShadow: {
                 hover: '0 4px 8px',
-                focus: '0 0 0 2px'
+                focus: '0 0 0 2px',
+                navbar: '0 -4px 8px 0 rgba(31, 41, 55, 0.16)'
             }
         }
     }
