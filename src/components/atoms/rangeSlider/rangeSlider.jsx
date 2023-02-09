@@ -2,26 +2,15 @@ import './rangeSlider.css';
 
 import { useState } from 'react';
 
-const RangeSliderComponent = ({
-    label,
-    id,
-    defaultValues = [26, 48],
-    minValue = 18,
-    maxValue = 65,
-    minDistance = 1,
-    disabled
-}) => {
-    if (!label || !id) throw new Error(`Props 'label' and 'id' are required`);
-
-    if (minValue >= maxValue) throw new Error(`Prop 'minValue' must be less than 'maxValue'`);
-
-    if (defaultValues.some((val) => val < minValue || val > maxValue))
-        throw new Error(
-            `Prop 'defaultValues' must contain 2 numbers between 'minValue' and 'maxValue'`
-        );
+const RangeSliderComponent = ({ id, defaultValues = [25, 45], disabled }) => {
+    if (!id) throw new Error(`Props 'label' and 'id' are required`);
 
     const [min, setMin] = useState(defaultValues[0]);
     const [max, setMax] = useState(defaultValues[1]);
+
+    const minValue = 18;
+    const maxValue = 65;
+    const minDistance = 1;
 
     const handleChange = ({ target }) => {
         if (max - min <= minDistance) {
@@ -47,66 +36,21 @@ const RangeSliderComponent = ({
     const getLeft = () => {
         const base = ((min - minValue) * 100) / maxValue;
         const expr = ((minValue / 10) * 100) / maxValue;
-        let fixed = base;
 
-        if (base <= 10) {
-            fixed += expr * 1;
-        } else if (base > 10 && base <= 20) {
-            fixed += expr * 2.2;
-        } else if (base > 20 && base <= 30) {
-            fixed += expr * 3.4;
-        } else if (base > 30 && base <= 40) {
-            fixed += expr * 4.6;
-        } else if (base > 40 && base <= 50) {
-            fixed += expr * 5.8;
-        } else if (base > 50 && base <= 60) {
-            fixed += expr * 7;
-        } else if (base > 60 && base <= 70) {
-            fixed += expr * 8.2;
-        } else if (base > 70 && base <= 80) {
-            fixed += expr * 9.4;
-        } else if (base > 80 && base <= 90) {
-            fixed += expr * 10.6;
-        } else if (base > 90 && base <= 100) {
-            fixed += expr * 11.8;
-        }
-        return fixed;
+        return base + expr * (base / 9);
     };
 
     const getRight = () => {
         const base = 100 - (max * 100) / maxValue;
         const expr = (100 * maxValue) / (100 * minValue);
-        let fixed = base;
 
-        if (base <= 10) {
-            fixed += expr * 1;
-        } else if (base > 10 && base <= 20) {
-            fixed += expr * 2;
-        } else if (base > 20 && base <= 30) {
-            fixed += expr * 3;
-        } else if (base > 30 && base <= 40) {
-            fixed += expr * 4;
-        } else if (base > 40 && base <= 50) {
-            fixed += expr * 5;
-        } else if (base > 50 && base <= 60) {
-            fixed += expr * 6;
-        } else if (base > 60 && base <= 70) {
-            fixed += expr * 7;
-        } else if (base > 70 && base <= 80) {
-            fixed += expr * 8;
-        } else if (base > 80 && base <= 90) {
-            fixed += expr * 9;
-        } else if (base > 90 && base <= 100) {
-            fixed += expr * 10;
-        }
-
-        return fixed;
+        return base + expr * (base / 12);
     };
 
     return (
         <div className='slider-wrapper'>
-            <label className='text-sm font-semibold text-dark-grey-base relative bottom-6'>
-                {label}
+            <label className='text-sm font-semibold text-dark-grey-base relative bottom-7'>
+                Età
             </label>
             <div className='flex relative font-semibold text-sm text-primary-base'>
                 <p className='absolute bottom-2' style={{ left: `${getLeft()}%` }}>

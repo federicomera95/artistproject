@@ -2,7 +2,7 @@
 
 @layer components {
     .slider-wrapper {
-        @apply w-[335px];
+        @apply w-[335px] mt-10 ml-5;
     }
 
     .slider {
