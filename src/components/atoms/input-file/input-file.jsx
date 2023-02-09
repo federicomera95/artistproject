@@ -1,23 +1,20 @@
 import { useState } from 'react';
 
-import './input-file.css';
-
-
 const InputFileComponent = ({id, label, error='', required, text })=> {
     if(!id) throw new Error('The id is required!');
 
     const [value,setValue] = useState(null);
 
-    const handleChange = ()=> {};
+    const handleChange = ({files})=> setValue(files[0]);
 
     return (
-        <div className='input-file-field-group'>
-            <label htmlFor={id}>{label}</label>
-            <div className='input-file-content'>
-                <input id={id} type='file' onChange={handleChange} required={required}/>
-                <img src='/assets/icons/upload.svg' />
+        <div className='w-[100%] flex flex-col gap-[8px] text-[14px]'>
+            <label className='relative first-letter:uppercase text-dark-grey-base font-medium' htmlFor={id}>{label}</label>
+            <div className='flex items-center justify-center border-[2px] border-dashed border-dark-grey-disabled'>
+                <input className='pointer-events h-[139px] opacity-0 z-[1]' id={id} type='file' onChange={({target})=>handleChange(target)} required={required}/>
+                {value?.name ? <p className='text-dark-grey-base absolute'>{value.name}</p> : <img className='absolute' src='/icons/upload.svg' />}
             </div>
-            <p>{text}</p>
+            <p className='text-dark-grey-placeholder'>{text}</p>
         </div>
     );
 };
