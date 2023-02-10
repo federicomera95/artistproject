@@ -19,7 +19,7 @@ const iconPwd = {
 };
 
 
-const LoginPage = () => {
+const Login = () => {
 
 
     return (
@@ -40,4 +40,4 @@ const LoginPage = () => {
     );
 };
 
-export default LoginPage;
+export default Login;
