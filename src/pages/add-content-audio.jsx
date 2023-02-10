@@ -18,7 +18,7 @@ const AddContentAudio = () => {
                     <InputTextComponent objInputText={{ id: 'title', label: 'titolo', placeholder: 'Inserisci un titolo'}}/>
                             {/* inserire textarea*/}
                     <InputFileComponent id='file_audio' label='seleziona file' text='Massimo 2MB, .mp3'/>
-                    <InputFileComponent id='file_thumbnail_audio' label='seleziona immagine di copertina' text='Massimo 2MB, .jpg,.png'/>
+                    <InputFileComponent id='file_thumbnail_audio' label='seleziona immagine di copertina' text='Massimo 2MB, .jpg, .png'/>
                     <div className='flex flex-col'>
                         <p className='text-dark-grey-base font-normal'>Genere</p>
                         <div className='inline-flex gap-[8px]'>
