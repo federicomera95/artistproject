@@ -17,7 +17,9 @@ module.exports = {
                 error: '#e11d48',
                 success: '#22c55e',
                 warning: '#f59e0b',
-                white: '#ffffff'
+                white: '#ffffff',
+                'profile-gradient-from': 'rgb(147,51,234)',
+                'profile-gradient-to': 'rgb(73,8,132)'
             },
             padding: {
                 ms: '10px 16px',
@@ -27,7 +29,9 @@ module.exports = {
             boxShadow: {
                 hover: '0 4px 8px',
                 focus: '0 0 0 2px',
-                navbar: '0 -4px 8px 0 rgba(31, 41, 55, 0.16)'
+                navbar: '0 -4px 8px 0 rgba(31, 41, 55, 0.16)',
+                'profile-nav': 'inset 0px -1px 0px #9CA3AF',
+                'profile-nav-current': 'inset 0px -2px 0px #9333EA'
             }
         }
     }
