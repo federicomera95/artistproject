@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 
-export default function ChipComponent(props) {
+export default function ChipComponent({text}) {
   const [active, setActive] = useState(false);
   const handleClick = () => {
     setActive(!active);
@@ -17,7 +17,7 @@ export default function ChipComponent(props) {
             : "px-4 py-2 rounded-full text-purple-500 bg-violet-100 font-semibold text-sm flex align-center w-max cursor-pointer active:bg-gray-300 transition duration-300 ease"
         }
       >
-        {props.text}
+        {text}
       </span>
     </div>
   );
