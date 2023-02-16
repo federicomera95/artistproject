@@ -1,4 +1,4 @@
-import { ButtonComponent } from '../components/atoms/button/button';
+import ButtonComponent from '../components/atoms/button/button';
 import { useState } from 'react';
 
 const navigation = [

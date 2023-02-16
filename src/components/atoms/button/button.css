@@ -5,6 +5,7 @@
     
     .btn-md{
         @apply 
+            border-none
             font-medium 
             text-base
             p-ms
