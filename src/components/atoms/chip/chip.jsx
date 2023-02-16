@@ -8,10 +8,10 @@ export default function ChipComponent(props) {
   };
 
   return (
-    <div class="flex flex-wrap justify-center">
+    <div className="flex flex-wrap justify-center">
       <span
         onClick={handleClick}
-        class={
+        className={
           active
             ? "px-4 py-2 rounded-full text-neutral-50 bg-purple-500 font-semibold text-sm flex align-center w-max cursor-pointer active:bg-gray-300 transition duration-300 ease"
             : "px-4 py-2 rounded-full text-purple-500 bg-violet-100 font-semibold text-sm flex align-center w-max cursor-pointer active:bg-gray-300 transition duration-300 ease"
