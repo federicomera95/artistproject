@@ -1,6 +1,6 @@
 import './radio.css';
 
-export default function RadioComponent({ id, text, checked, disabled }) {
+const Radio = ({ id, text, checked, disabled }) => {
     if (!id) throw new Error('The parameter "id" is required');
 
     return (
@@ -9,4 +9,6 @@ export default function RadioComponent({ id, text, checked, disabled }) {
             <label htmlFor={id}>{text}</label>
         </div>
     );
-}
+};
+
+export default Radio;

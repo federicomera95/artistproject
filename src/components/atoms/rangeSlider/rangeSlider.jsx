@@ -2,7 +2,7 @@ import './rangeSlider.css';
 
 import { useState } from 'react';
 
-const RangeSliderComponent = ({ id, defaultValues = [25, 45], disabled }) => {
+const RangeSlider = ({ id, defaultValues = [25, 45] }) => {
     if (!id) throw new Error(`Props 'label' and 'id' are required`);
 
     const [min, setMin] = useState(defaultValues[0]);
@@ -93,4 +93,4 @@ const RangeSliderComponent = ({ id, defaultValues = [25, 45], disabled }) => {
     );
 };
 
-export default RangeSliderComponent;
+export default RangeSlider;

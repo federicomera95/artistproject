@@ -1,6 +1,6 @@
 import './checkbox.css';
 
-export default function CheckboxComponent({ id, text, checked, disabled }) {
+const Checkbox = ({ id, text, checked, disabled }) => {
     if (!id) throw new Error('The parameter "id" is required');
 
     return (
@@ -9,4 +9,5 @@ export default function CheckboxComponent({ id, text, checked, disabled }) {
             <label htmlFor={id}>{text}</label>
         </div>
     );
-}
+};
+export default Checkbox;

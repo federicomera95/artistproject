@@ -1,4 +1,4 @@
-import ButtonComponent from '../components/atoms/button/button';
+import Button from '../components/atoms/button/Button';
 import { useState } from 'react';
 
 const navigation = [
@@ -51,7 +51,7 @@ const Profile = () => {
                         Velit officia consequat duis enim velit mollit. Exercitation veniam
                         consequat sunt nostrud amet.
                     </p>
-                    <ButtonComponent text='Modifica i tuoi link' style='secondary' size='large' />
+                    <Button text='Modifica i tuoi link' style='secondary' size='large' />
                 </div>
                 <div className='w-screen relative right-5 flex justify-between text-center shadow-profile-nav'>
                     {navigation.map((nav) => (

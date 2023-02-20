@@ -1,8 +1,0 @@
-@tailwind components;
-
-@layer components {
-    .genre-card {
-        @apply flex items-center justify-center h-[90px]
-        capitalize text-white font-medium text-sm rounded-lg bg-gradient-to-br from-primary-base to-[#3C0072];
-    }
-}

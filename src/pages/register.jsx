@@ -1,5 +1,5 @@
-import ButtonComponent from '../components/atoms/button/button';
-import InputTextComponent from '../components/atoms/input/inputText';
+import Button from '../components/atoms/button/Button';
+import InputText from '../components/atoms/input/InputText';
 
 const objEmail = {
     id: `email`,
@@ -33,19 +33,19 @@ const Register = () => {
             </div>
             <div className='flex flex-col gap-[24px] '>
                 <div className='flex flex-col gap-[16px]'>
-                    <InputTextComponent objInputText={objArtName} />
-                    <InputTextComponent objInputText={objEmail} required />
-                    <InputTextComponent objInputText={objPassword} required icon={iconPwd} />
+                    <InputText objInputText={objArtName} />
+                    <InputText objInputText={objEmail} required />
+                    <InputText objInputText={objPassword} required icon={iconPwd} />
                 </div>
-                    <ButtonComponent
-                        id='login-sub'
-                        text='Crea il tuo account'
-                        style='primary'
-                        size='medium'
-                        type='submit'
-                    />
-                    <ButtonComponent text='Indietro' size='medium' style='secondary' />
-                    <ButtonComponent text='Accedi' size='medium' style='tertiary' />
+                <Button
+                    id='login-sub'
+                    text='Crea il tuo account'
+                    style='primary'
+                    size='medium'
+                    type='submit'
+                />
+                <Button text='Indietro' size='medium' style='secondary' />
+                <Button text='Accedi' size='medium' style='tertiary' />
             </div>
         </div>
     );
