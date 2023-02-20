@@ -1,0 +1,11 @@
+@tailwind components;
+
+@layer components{
+    textarea:disabled + label{
+        @apply text-dark-grey-disabled border-dark-grey-disabled hover:border-dark-grey-disabled
+    }
+    .error{
+        @apply border-solid border-2 border-error
+    }
+
+}
