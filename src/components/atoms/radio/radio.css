@@ -1,14 +1,6 @@
 @tailwind components;
 
 @layer components {
-    .radio-container {
-        @apply flex items-center gap-[0.5em]
-        [&>input]:absolute [&>input]:appearance-none
-        [&>input]:flex [&>input]:justify-center [&>input]:items-center
-        focus:[&>input]:outline-none
-        [&>label]:flex [&>label]:items-center [&>label]:gap-[0.5em];
-    }
-
     .radio-container > label::before {
         @apply content-[''] w-[1em] h-[1em] border-[0.1em] rounded-[50%]
       border-dark-grey-disabled;

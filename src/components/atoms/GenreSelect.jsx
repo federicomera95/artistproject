@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const OtherSelect = ({ choices = ['Choice 1', 'Choice 2', 'Choice 3'] }) => {
+const GenreSelect = ({ choices = ['Choice 1', 'Choice 2', 'Choice 3'] }) => {
     const [clicked, setClicked] = useState([true, false, false]);
 
     const handleClick = ({ target }) => {
@@ -31,4 +31,4 @@ const OtherSelect = ({ choices = ['Choice 1', 'Choice 2', 'Choice 3'] }) => {
     );
 };
 
-export default OtherSelect;
+export default GenreSelect;
