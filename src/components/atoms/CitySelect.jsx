@@ -1,7 +1,5 @@
 const options = ['Seleziona dalla lista', 'Torino', 'Milano', 'Roma', 'Napoli', 'Palermo'];
 
-import './test.css';
-
 const selectId = 'city-select';
 
 const CitySelect = () => {
