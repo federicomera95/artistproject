@@ -1,5 +1,3 @@
-import './genre-card.css';
-
 const GenreCard = ({ text }) => {
     if (!text) throw new Error('Text is required!');
 
