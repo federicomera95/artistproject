@@ -1,4 +1,4 @@
-export const PhotoCard = ({artName, photoTitle, profileImg, image}) => {
+ const PhotoCard = ({artName, photoTitle, profileImg, image}) => {
     return (
             <div className='flex flex-col gap-1'>
                 <div className='flex items-center gap-1'>
@@ -13,3 +13,4 @@ export const PhotoCard = ({artName, photoTitle, profileImg, image}) => {
     );
 };
 
+export default PhotoCard;
