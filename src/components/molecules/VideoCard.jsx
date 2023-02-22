@@ -4,7 +4,7 @@ const VideoCard = ({ avatar, name, video, title }) => {
     const [isPlaying, setIsPlaying] = useState(false);
     const videoRef = useRef(null);
 
-    const togglePlayPause = (ev) => {
+    const togglePlayPause = () => {
         if (!video) return;
 
         setIsPlaying(!isPlaying);
@@ -21,7 +21,11 @@ const VideoCard = ({ avatar, name, video, title }) => {
                 </div>
                 <div className='relative w-[150px] h-[84px] rounded-lg border-[1px] border-primary-background bg-black'>
                     {!!video && (
-                        <video ref={videoRef} className='w-full h-full rounded-lg'>
+                        <video
+                            ref={videoRef}
+                            className='w-full h-full rounded-lg'
+                            onEnded={() => setIsPlaying(false)}
+                        >
                             <source src={video} type='video/mp4' />
                         </video>
                     )}
