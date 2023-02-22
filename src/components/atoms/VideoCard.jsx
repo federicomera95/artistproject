@@ -1,17 +1,15 @@
-const VideoCard = ({artName, videoTitle}) => {
+const VideoCard = ({artName, videoTitle, profileImg, video}) => {
     return(
-        <div className='flex gap-4 overflow-x-scroll'>
-            <div className='flex - flex-col gap-1'>
-                <div className='flex flex-row items-center gap-1'>
-                    <div className='w-[20px] h-[20px] rounded-[50%] bg-slate-400'></div>
+            <div className='flex flex-col gap-1'>
+                <div className='flex items-center gap-1'>
+                    <img className='w-[20px] h-[20px] rounded-[50%]' src={profileImg} />
                     <p className='text-[10px]'>{artName}</p>
                 </div>
                 <div className='flex gap-4'>
-                    <div className='w-[150px] shrink-0 h-[84px] bg-slate-400 gap-1 rounded-lg '></div>
+                    <img className='w-[150px] h-[84px] rounded-lg' src={video} />
                 </div>
                 <p className='text-[12px] mt-[4px]'>{videoTitle}</p>
             </div>
-        </div>
     );
 };
 
