@@ -1,5 +1,3 @@
-import './button.css';
-
 export const SIZE = {
     small: 'border-none font-medium p-ms rounded w-[100%] text-sm',
     medium: 'border-none font-medium text-base p-ms rounded-lg w-[100%]',
@@ -14,9 +12,15 @@ export const STYLE = {
     tertiary: `bg-[white] text-primary-base enabled:hover:bg-primary-background focus:shadow-focus focus:shadow-primary-base/30 disabled:text-primary-disabled`
 };
 
-const Button = ({ id, type = 'button', text, size, style, disabled }) => {
+const Button = ({ id, type = 'button', text, size, style, disabled, callback }) => {
     return (
-        <button id={id} className={`${SIZE[size]} ${STYLE[style]}`} disabled={disabled} type={type}>
+        <button
+            id={id}
+            className={`${SIZE[size]} ${STYLE[style]}`}
+            disabled={disabled}
+            type={type}
+            onClick={callback}
+        >
             {text}
         </button>
     );

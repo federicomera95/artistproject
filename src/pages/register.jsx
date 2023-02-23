@@ -1,5 +1,7 @@
-import Button from '../components/atoms/button/Button';
-import InputText from '../components/atoms/input/InputText';
+import { useNavigate } from 'react-router-dom';
+
+import Button from '../components/atoms/Button';
+import InputText from '../components/atoms/InputText';
 
 const objEmail = {
     id: `email`,
@@ -26,6 +28,8 @@ const iconPwd = {
 };
 
 const Register = () => {
+    const navigate = useNavigate();
+
     return (
         <div className='flex flex-col '>
             <div className='text-4xl text-center font-bold p-10'>
@@ -45,7 +49,12 @@ const Register = () => {
                     type='submit'
                 />
                 <Button text='Indietro' size='medium' style='secondary' />
-                <Button text='Accedi' size='medium' style='tertiary' />
+                <Button
+                    text='Accedi'
+                    size='medium'
+                    style='tertiary'
+                    callback={() => navigate('/login')}
+                />
             </div>
         </div>
     );

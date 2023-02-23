@@ -9,4 +9,8 @@
     html {
         @apply font-custom;
     }
+
+    #root {
+        @apply p-5;
+    }
 }

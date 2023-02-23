@@ -1,0 +1,28 @@
+import { Routes, Route } from 'react-router-dom';
+import EditProfile from './pages/EditProfile';
+import Explore from './pages/Explore';
+import Home from './pages/Home';
+import Links from './pages/Links';
+
+import Login from './pages/Login';
+import Profile from './pages/Profile';
+import Register from './pages/Register';
+import Search from './pages/Search';
+
+const App = () => {
+    return (
+        <Routes>
+            <Route path='/login' element={<Login />} />
+            <Route path='/register' element={<Register />} />
+            <Route path='/home' element={<Home />} />
+            <Route path='search' element={<Search />} />
+            <Route path='explore' element={<Explore />} />
+            <Route path='/profile'>
+                <Route index element={<Profile />} />
+                <Route path='edit' element={<EditProfile />} />
+                <Route path='links' element={<Links />} />
+            </Route>
+        </Routes>
+    );
+};
+export default App;
