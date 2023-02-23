@@ -5,7 +5,7 @@ const Navbar = () => {
 
     return (
         <nav>
-            <div className='w-full h-20 fixed bottom-0 left-0 flex justify-center gap-10 py-[14px] shadow-navbar'>
+            <div className='w-full h-20 fixed bottom-0 left-0 flex justify-center gap-10 py-[14px] shadow-navbar bg-white'>
                 <div onClick={() => navigate('/home')} className='flex flex-col items-center gap-2'>
                     <img src={`/icons/home.svg`}></img>
                     <p className='font-medium text-base text-dark-grey-base'>Home</p>

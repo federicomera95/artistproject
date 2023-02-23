@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import Button from '../components/atoms/Button';
-import Navbar from '../components/molecules/Navbar';
 
 const navigation = [
     {
@@ -104,7 +103,7 @@ const Profile = () => {
                     </div>
                 </div>
             </div>
-            <Navbar />
+           
         </>
     );
 };
