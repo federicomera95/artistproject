@@ -1,4 +1,4 @@
-import { Routes, Route, Outlet, useRoutes, useLocation } from 'react-router-dom';
+import { Routes, Route, Outlet, useLocation } from 'react-router-dom';
 import EditProfile from './pages/EditProfile';
 import Explore from './pages/Explore';
 import Home from './pages/Home';
@@ -11,19 +11,17 @@ import Search from './pages/Search';
 import Navbar from './components/molecules/Navbar';
 
 const Root = () => {
-
     const { pathname } = useLocation();
 
-    const matchNav = ['/links','/edit','/add-audio'];
-   
+    const matchNav = ['/links', '/edit', '/add-audio'];
+
     return (
         <div>
             <Outlet />
-            {(!matchNav.some((path) => pathname.includes(path)) && pathname !== '/') && <Navbar />} 
+            {!matchNav.some((path) => pathname.includes(path)) && pathname !== '/' && <Navbar />}
         </div>
     );
 };
-
 
 const App = () => {
     return (
