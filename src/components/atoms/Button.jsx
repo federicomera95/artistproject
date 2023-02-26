@@ -12,7 +12,15 @@ export const STYLE = {
     tertiary: `bg-[white] text-primary-base enabled:hover:bg-primary-background focus:shadow-focus focus:shadow-primary-base/30 disabled:text-primary-disabled`
 };
 
-const Button = ({ id, type = 'button', text, size, style, disabled, callback }) => {
+const Button = ({
+    id,
+    type = 'button',
+    text,
+    size = 'medium',
+    style = 'primary',
+    disabled,
+    callback
+}) => {
     return (
         <button
             id={id}

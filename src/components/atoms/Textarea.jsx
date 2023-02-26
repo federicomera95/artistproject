@@ -4,20 +4,18 @@ const Textarea = ({ id, label, error, placeholder, disabled, type }) => {
     const [err, setError] = useState(false);
     const [value, setValue] = useState('');
 
+    if (!id) throw new Error(`Prop 'id' is required`);
+
     useEffect(() => {
-        if (value.length < 5) {
-            setError(true);
-        } else {
-            setError(false);
-        }
+        setError(false);
     }, [value]);
 
     return (
         <div className='flex flex-col-reverse gap-2'>
             <div className='flex flex-col gap-2'>
                 <textarea
-                    onChange={(e) => setValue(e.target.value)}
                     id={id}
+                    onChange={(e) => setValue(e.target.value)}
                     placeholder={placeholder}
                     value={value}
                     type={type}
@@ -32,7 +30,10 @@ const Textarea = ({ id, label, error, placeholder, disabled, type }) => {
                 ></textarea>
                 {err && !disabled && <p className='text-xs text-error'>{error}</p>}
             </div>
-            <label className='text-sm font-medium peer-disabled:text-dark-grey-disabled'>
+            <label
+                htmlFor={id}
+                className='text-sm font-medium peer-disabled:text-dark-grey-disabled'
+            >
                 {label}
             </label>
         </div>
