@@ -1,6 +1,6 @@
+import { useNavigate } from 'react-router-dom';
 import InputText from '../components/atoms/InputText';
 import Button from '../components/atoms/Button';
-import { Link } from 'react-router-dom';
 
 const Links = () => {
     const objInstagram = {
@@ -56,20 +56,18 @@ const Links = () => {
         label: 'Telefono',
         placeholder: 'Inserisci un numero di telefono'
     };
-
+    
+    const navigate = useNavigate();
+    
     return (
         <>
             <div>
-                <div className='flex flex-col'>
-                    <div className='ml-auto'>
-                        <Link to='/profile'>
-                            <Button text='X' size='large' />
-                        </Link>
-                    </div>
-                    <div>
-                        <h1 className='text-3xl mt-1 pb-10 mb-5'>
-                            <strong>Aggiungi i tuoi link</strong>
+                <div className='flex flex-col gap-8'>
+                    <div className='flex justify-between mb-10'>
+                        <h1 className='text-3xl font-medium text-dark-grey-base'>
+                            Aggiungi i tuoi link
                         </h1>
+                        <img src='/icons/cross.svg' onClick={() => navigate('/profile')} />
                     </div>
                 </div>
             </div>
