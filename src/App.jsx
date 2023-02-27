@@ -1,4 +1,4 @@
-import { Routes, Route, Outlet, useLocation } from 'react-router-dom';
+import { Routes, Route, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import EditProfile from './pages/EditProfile';
 import Explore from './pages/Explore';
 import Home from './pages/Home';
@@ -9,11 +9,19 @@ import Profile from './pages/Profile';
 import Register from './pages/Register';
 import Search from './pages/Search';
 import Navbar from './components/molecules/Navbar';
+import { useEffect } from 'react';
 
 const Root = () => {
     const { pathname } = useLocation();
+    const navigate = useNavigate();
 
     const matchNav = ['/links', '/edit', '/add-audio'];
+
+    useEffect(() => {
+        if (pathname === '/') {
+            navigate('/login');
+        }
+    }, [pathname]);
 
     return (
         <div>
