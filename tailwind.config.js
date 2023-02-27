@@ -32,8 +32,6 @@ module.exports = {
                 focus: '0 0 0 2px',
                 snack: '0 4px 16px',
                 navbar: '0 -4px 8px 0 rgba(31, 41, 55, 0.16)',
-                'profile-nav': 'inset 0px -1px 0px #9CA3AF',
-                'profile-nav-current': 'inset 0px -2px 0px #9333EA',
                 'play-pause': '0px 4px 8px rgba(147, 51, 234, 0.3)'
             }
         }
