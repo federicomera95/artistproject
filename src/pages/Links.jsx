@@ -66,7 +66,7 @@ const Links = () => {
                 <img src='/icons/cross.svg' onClick={() => navigate('/profile')} />
             </div>
 
-            <div className='mt-16'>
+            <div className='mt-16 mb-24'>
                 <form className='flex flex-col gap-[24px]'>
                     <div className='flex flex-col gap-[16px]'>
                         <InputText objInputText={objInstagram} />
