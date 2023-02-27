@@ -15,12 +15,12 @@ const EditProfile = () => {
 
     return (
         <div>
-            <div className='flex flex-col gap-8'>
-                <div className='flex justify-between'>
+            <div className='flex flex-col gap-8 mb-28'>
+                <div className='w-full z-10 fixed top-0 left-0 px-5 py-5 flex justify-between bg-white'>
                     <h1 className='text-xl font-medium text-dark-grey-base'>Modifica profilo</h1>
                     <img src='/icons/cross.svg' onClick={() => navigate('/profile')} />
                 </div>
-                <div className='flex flex-col gap-6'>
+                <div className='flex flex-col gap-6 mt-16'>
                     <InputText
                         objInputText={{
                             id: 'edit-profile-username',
@@ -40,7 +40,7 @@ const EditProfile = () => {
                     <CitySelect />
                 </div>
             </div>
-            <div className='w-full fixed bottom-0 left-0 px-5 py-[18px] shadow-navbar'>
+            <div className='w-full fixed bottom-0 left-0 z-10 px-5 py-[18px] shadow-navbar bg-white'>
                 <Button id='save-profile' text='Salva' callback={handleSaveProfile} />
             </div>
         </div>
