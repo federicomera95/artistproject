@@ -16,7 +16,7 @@ const VideoCard = ({ avatar, name, video, title }) => {
         <div className='flex flex-col gap-2 '>
             <div className='flex flex-col gap-1'>
                 <div className='flex items-center gap-1'>
-                    <img className='w-5 h-5' src={avatar} />
+                    <img className='w-5 h-5' src={avatar ? avatar : '/logo-default.svg'} />
                     <p className='text-[10px] font-normal text-dark-grey-base'>{name}</p>
                 </div>
                 <div className='relative w-[150px] h-[84px] rounded-lg border-[1px] border-primary-background bg-black'>

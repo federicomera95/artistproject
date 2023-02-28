@@ -2,10 +2,70 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import Button from '../components/atoms/Button';
+import AudioCard from '../components/molecules/AudioCard';
+import PhotoCard from '../components/molecules/PhotoCard';
+import VideoCard from '../components/molecules/VideoCard';
 
 const navigation = ['Tutti', 'Foto', 'Audio', 'Video'];
 
-const content = [1, 2, 3, 4, 5];
+const contents = [
+    {
+        type: 'foto',
+        username: 'Matteo',
+        title: 'Foto bellissima',
+        avatar: '',
+        image: ''
+    },
+    {
+        type: 'audio',
+        username: 'Matteo',
+        title: 'Audio bellissimo',
+        thumbnail: '',
+        audio: ''
+    },
+    {
+        type: 'audio',
+        username: 'Matteo',
+        title: 'Audio bruttissimo',
+        thumbnail: '',
+        audio: ''
+    },
+    {
+        type: 'foto',
+        username: 'Matteo',
+        title: 'Foto brutta',
+        avatar: '',
+        image: ''
+    },
+    {
+        type: 'video',
+        name: 'Matteo',
+        title: 'Video bellissimo',
+        avatar: '',
+        video: ''
+    },
+    {
+        type: 'foto',
+        username: 'Giuseppe',
+        title: 'Anche oggi viva la legalità',
+        avatar: '',
+        image: ''
+    },
+    {
+        type: 'video',
+        name: 'Matteo',
+        title: 'Video bellissimo',
+        avatar: '',
+        video: ''
+    },
+    {
+        type: 'video',
+        name: 'Matteo',
+        title: 'Video bellissimo',
+        avatar: '',
+        video: ''
+    }
+];
 
 const Profile = () => {
     const [currentPage, setCurrentPage] = useState('tutti');
@@ -16,6 +76,23 @@ const Profile = () => {
         if (currentPage === target.id) return;
 
         setCurrentPage(target.id);
+    };
+
+    const getContent = (type) => {
+        switch (type) {
+            case 'tutti':
+                return contents;
+
+            case 'foto':
+                return contents.filter((c) => c.type === 'foto');
+            case 'audio':
+                return contents.filter((c) => c.type === 'audio');
+
+            case 'video':
+                return contents.filter((c) => c.type === 'video');
+            default:
+                throw new Error(`Invalid content type 'type'`);
+        }
     };
 
     const handleLogout = () => {
@@ -70,18 +147,48 @@ const Profile = () => {
                     ))}
                 </div>
             </div>
-            <div className='flex flex-col gap-6'>
+            <div className='flex flex-col gap-6 pb-20'>
                 <p className='font-medium text-dark-grey-placeholder'>
-                    <span className='font-bold text-dark-grey-base'>{content.length}</span>{' '}
-                    contenuti totali
+                    <span className='font-bold text-dark-grey-base'>
+                        {getContent(currentPage).length}
+                    </span>{' '}
+                    Contenuti {currentPage === 'tutti' ? 'totali' : currentPage}
                 </p>
                 <div className='flex flex-col gap-4'>
-                    {content.map((id) => (
-                        <div
-                            key={id}
-                            className='h-[144px] rounded-[17px] bg-dark-grey-disabled'
-                        ></div>
-                    ))}
+                    {getContent(currentPage).map((content, i) => {
+                        switch (content.type) {
+                            case 'foto':
+                                return (
+                                    <PhotoCard
+                                        key={i}
+                                        avatar={content.avatar}
+                                        image={content.image}
+                                        title={content.title}
+                                        username={content.username}
+                                    />
+                                );
+                            case 'audio':
+                                return (
+                                    <AudioCard
+                                        key={i}
+                                        username={content.username}
+                                        title={content.title}
+                                        thumbnail={content.thumbnail}
+                                        audio={content.audio}
+                                    />
+                                );
+                            case 'video':
+                                return (
+                                    <VideoCard
+                                        key={i}
+                                        name={content.name}
+                                        title={content.title}
+                                        avatar={content.avatar}
+                                        video={content.video}
+                                    />
+                                );
+                        }
+                    })}
                 </div>
             </div>
         </div>
