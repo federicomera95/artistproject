@@ -1,4 +1,5 @@
 import { useLocation, useNavigate } from 'react-router-dom';
+import { Explore, Home, Profile, Search } from '../../assets/icons';
 
 const Navbar = () => {
     const navigate = useNavigate();
@@ -8,7 +9,7 @@ const Navbar = () => {
         <nav>
             <div className='w-full h-20 fixed bottom-0 left-0 flex justify-center gap-10 py-[14px] shadow-navbar bg-white'>
                 <div onClick={() => navigate('/home')} className='flex flex-col items-center gap-2'>
-                    <img src={`/icons/home.svg`}></img>
+                    {(pathname === '/home' && <Home />) || <Home dark />}
                     <p
                         className={`font-medium ${
                             pathname === '/home'
@@ -23,7 +24,7 @@ const Navbar = () => {
                     onClick={() => navigate('/search')}
                     className='flex flex-col items-center gap-2'
                 >
-                    <img src='/icons/search.svg'></img>
+                    {(pathname === '/search' && <Search />) || <Search dark />}
                     <p
                         className={`font-medium ${
                             pathname === '/search'
@@ -38,7 +39,7 @@ const Navbar = () => {
                     onClick={() => navigate('/explore')}
                     className='flex flex-col items-center gap-2'
                 >
-                    <img src='/icons/explore.svg'></img>
+                    {(pathname === '/explore' && <Explore />) || <Explore dark />}
                     <p
                         className={`font-medium ${
                             pathname === '/explore'
@@ -53,7 +54,7 @@ const Navbar = () => {
                     onClick={() => navigate('/profile')}
                     className='flex flex-col items-center gap-2'
                 >
-                    <img src='/icons/profile.svg'></img>
+                    {(pathname === '/profile' && <Profile />) || <Profile dark />}
                     <p
                         className={`font-medium ${
                             pathname === '/profile'

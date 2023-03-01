@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import { Cross } from '../assets/icons';
 
 import Button from '../components/atoms/Button';
 import ButtonFile from '../components/atoms/ButtonFile';
@@ -18,7 +19,9 @@ const EditProfile = () => {
             <div className='flex flex-col gap-8 mb-28'>
                 <div className='w-full z-10 fixed top-0 left-0 px-5 py-5 flex items-center justify-between bg-white'>
                     <h1 className='text-xl font-medium text-dark-grey-base'>Modifica profilo</h1>
-                    <img src='/icons/cross.svg' onClick={() => navigate('/profile')} />
+                    <div onClick={() => navigate('/profile')}>
+                        <Cross />
+                    </div>
                 </div>
                 <div className='flex flex-col gap-6 mt-16'>
                     <InputText

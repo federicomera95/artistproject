@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react';
+import { ToggleVideo } from '../../assets/icons';
 
 const VideoCard = ({ avatar, name, video, title }) => {
     const [isPlaying, setIsPlaying] = useState(false);
@@ -37,7 +38,9 @@ const VideoCard = ({ avatar, name, video, title }) => {
                             className='h-6 w-6 shadow-play-pause rounded-[50%] bg-white flex items-center justify-center cursor-pointer'
                             style={{ opacity: !!video && isPlaying ? '0' : '1' }}
                         >
-                            <img className='h-3 w-3' src='/icons/play-pause.svg' />
+                            <div className='h-3 w-3'>
+                                <ToggleVideo />
+                            </div>
                         </div>
                     </div>
                 </div>

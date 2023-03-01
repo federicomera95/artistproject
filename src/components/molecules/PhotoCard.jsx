@@ -12,7 +12,7 @@ const PhotoCard = ({ username, title, avatar, image }) => {
                 <div className='flex gap-4'>
                     <img
                         className='w-[150px] h-[150px] rounded-lg'
-                        src={image ? image : '/logo-default.svg'}
+                        src={image ? image : '/photo-default.svg'}
                     />
                 </div>
             </div>

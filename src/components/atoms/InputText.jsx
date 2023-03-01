@@ -1,7 +1,7 @@
 import { useState } from 'react';
+import { Eye } from '../../assets/icons';
 
-const InputText = ({ objInputText, disabled, required, icon = {} }) => {
-    const { pos, src } = icon;
+const InputText = ({ objInputText, disabled, required, icon, iconPos = 'right' }) => {
     const { id, type = 'text', label, placeholder, msgError = '', val } = objInputText;
     const [value, setValue] = useState(val);
 
@@ -19,12 +19,13 @@ const InputText = ({ objInputText, disabled, required, icon = {} }) => {
                 {label}
             </label>
             <div className='input-text-group flex relative'>
-                {!!icon && pos === 'left' && (
-                    <img
-                        src={src}
-                        className={`left-[1em] object-cover w-[100%] h-[100%] [&+input]:pl-[3em]
-                        absolute max-w-[24px] max-h-[24px] top-[50%] translate-y-[-50%]`}
-                    />
+                {!!icon && iconPos === 'left' && (
+                    <div
+                        className='left-[1em] object-cover w-[100%] h-[100%] [&+input]:pl-[3em]
+                        absolute max-w-[24px] max-h-[24px] top-[50%] translate-y-[-50%]'
+                    >
+                        <Eye />
+                    </div>
                 )}
                 <input
                     title={placeholder}
@@ -44,15 +45,14 @@ const InputText = ({ objInputText, disabled, required, icon = {} }) => {
                     required={required}
                     onChange={handleChange}
                 />
-                {!!icon && pos === 'right' && (
-                    <img
-                        src={src}
-                        className={`right-[1em] absolute max-w-[24px] max-h-[24px] top-[50%] translate-y-[-50%]`}
-                    />
+                {!!icon && iconPos === 'right' && (
+                    <div className='right-[1em] absolute max-w-[24px] max-h-[24px] top-[50%] translate-y-[-50%]'>
+                        <Eye />
+                    </div>
                 )}
                 <label
                     className={`${value ? 'hidden transition-all duration-[200ms]' : ''} ${
-                        pos === 'left' ? 'pl-[3em]' : ''
+                        iconPos === 'left' ? 'pl-[3em]' : ''
                     } absolute top-[50%] translate-y-[-50%] p-input w-[calc(100%-40px)] pointer-events-none text-dark-grey-placeholder text-base whitespace-nowrap 
                     overflow-hidden text-ellipsis [&first-letter]:uppercase disabled:text-dark-grey-disabled`}
                     disabled={disabled}

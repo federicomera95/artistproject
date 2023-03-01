@@ -1,8 +1,9 @@
-import InputFile from '../components/atoms/input/InputFile';
-import InputText from '../components/atoms/input/InputText';
-import Button from '../components/atoms/button/Button';
-import Chip from '../components/atoms/chip/Chip';
-import TextArea from '../components/atoms/textarea/textarea';
+import InputFile from '../components/atoms/InputFile';
+import InputText from '../components/atoms/InputText';
+import Button from '../components/atoms/Button';
+import Chip from '../components/atoms/Chip';
+import TextArea from '../components/atoms/Textarea';
+import { Cross } from '../assets/icons';
 
 const genres = [
     { name: 'Pop', active: false },
@@ -33,8 +34,8 @@ const AddAudio = () => {
                     <p className='text-dark-grey-base font-medium text-xl tracking-wide'>
                         Aggiungi audio
                     </p>
-                    <a>
-                        <img className='w-7 h-7' src='/icons/cross.svg' />
+                    <a className='w-7 h-7'>
+                        <Cross />
                     </a>
                 </div>
             </div>
@@ -47,7 +48,11 @@ const AddAudio = () => {
                             placeholder: 'Inserisci un titolo'
                         }}
                     />
-                    <TextArea id='description' label='Descrizione' placeholder='Inserire descrizione' />
+                    <TextArea
+                        id='description'
+                        label='Descrizione'
+                        placeholder='Inserire descrizione'
+                    />
                     <InputFile id='file_audio' label='seleziona file' text='Massimo 2MB, .mp3' />
                     <InputFile
                         id='file_thumbnail_audio'

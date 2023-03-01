@@ -12,12 +12,8 @@ const objEmail = {
 const objPwd = {
     id: 'password',
     label: 'password',
+    type: 'password',
     placeholder: 'Inserisci la tua password'
-};
-
-const iconPwd = {
-    pos: 'right',
-    src: '/icons/eye.svg'
 };
 
 const Login = () => {
@@ -36,7 +32,7 @@ const Login = () => {
                 <form className='flex flex-col gap-[24px]'>
                     <div className='flex flex-col gap-[16px]'>
                         <InputText objInputText={objEmail} required />
-                        <InputText objInputText={objPwd} required icon={iconPwd} />
+                        <InputText objInputText={objPwd} required icon />
                     </div>
                     <p className='text-dark-grey-base text-base'>
                         <strong>Password dimenticata?</strong>

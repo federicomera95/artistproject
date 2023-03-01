@@ -22,11 +22,6 @@ const objPassword = {
     placeholder: `Inserisci la tua password`
 };
 
-const iconPwd = {
-    pos: 'right',
-    src: '/icons/eye.svg'
-};
-
 const Register = () => {
     const navigate = useNavigate();
 
@@ -39,7 +34,7 @@ const Register = () => {
                 <div className='flex flex-col gap-[16px]'>
                     <InputText objInputText={objArtName} />
                     <InputText objInputText={objEmail} required />
-                    <InputText objInputText={objPassword} required icon={iconPwd} />
+                    <InputText objInputText={objPassword} required icon />
                 </div>
                 <Button
                     id='login-sub'

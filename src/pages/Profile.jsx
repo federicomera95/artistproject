@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Edit, Logout } from '../assets/icons';
 
 import Button from '../components/atoms/Button';
 import AudioCard from '../components/molecules/AudioCard';
@@ -107,16 +108,16 @@ const Profile = () => {
                         className='bg-gradient-to-br from-profile-gradient-from to-profile-gradient-to to h-[208px] w-screen rounded-b-[20px]
                         relative right-5 flex justify-between items-start pt-12 px-5'
                     >
-                        <img className='w-6' src='/icons/logout.svg' onClick={handleLogout} />
+                        <div className='w-6' onClick={handleLogout}>
+                            <Logout />
+                        </div>
                         <div className='flex flex-col items-center gap-4'>
                             <img src='/logo-default.svg' />
                             <p className='text-white'>{`Nome d'arte`}</p>
                         </div>
-                        <img
-                            className='w-6'
-                            src='/icons/edit.svg'
-                            onClick={() => navigate('/profile/edit')}
-                        />
+                        <div className='w-6' onClick={() => navigate('/profile/edit')}>
+                            <Edit />
+                        </div>
                     </div>
                     <p className='text-sm font-normal'>
                         Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.

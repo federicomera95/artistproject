@@ -1,3 +1,5 @@
+import { ArrowDown } from '../../assets/icons';
+
 const options = ['Seleziona dalla lista', 'Torino', 'Milano', 'Roma', 'Napoli', 'Palermo'];
 
 const selectId = 'city-select';
@@ -18,7 +20,9 @@ const CitySelect = () => {
                         <option key={options.indexOf(opt)}>{opt}</option>
                     ))}
                 </select>
-                <img className='absolute right-[10px]' src='/icons/arrow-down.svg' />
+                <div className='absolute right-[10px]'>
+                    <ArrowDown />
+                </div>
             </div>
         </div>
     );

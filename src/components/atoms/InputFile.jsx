@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Upload } from '../../assets/icons';
 
 const InputFile = ({ id, label, error = '', required, text }) => {
     if (!id) throw new Error('The id is required!');
@@ -38,7 +39,11 @@ const InputFile = ({ id, label, error = '', required, text }) => {
                     onChange={({ target }) => handleChange(target)}
                     required={required}
                 />
-                {!preview && <img className='absolute' src='/icons/upload.svg' />}
+                {!preview && (
+                    <div className='absolute'>
+                        <Upload />
+                    </div>
+                )}
             </div>
             <p className='text-dark-grey-placeholder'>{text}</p>
         </div>

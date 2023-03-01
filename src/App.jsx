@@ -10,6 +10,7 @@ import Register from './pages/Register';
 import Search from './pages/Search';
 import Navbar from './components/molecules/Navbar';
 import { useEffect } from 'react';
+import AddAudio from './pages/AddAudio';
 
 const Root = () => {
     const { pathname } = useLocation();
@@ -21,7 +22,7 @@ const Root = () => {
         if (pathname === '/') {
             navigate('/login');
         }
-    }, [pathname]);
+    }, [pathname, navigate]);
 
     return (
         <div>
@@ -44,6 +45,7 @@ const App = () => {
                     <Route index element={<Profile />} />
                     <Route path='edit' element={<EditProfile />} />
                     <Route path='links' element={<Links />} />
+                    <Route path='add-audio' element={<AddAudio />} />
                 </Route>
             </Route>
         </Routes>

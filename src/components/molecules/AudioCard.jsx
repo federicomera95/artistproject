@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react';
+import { ToggleAudio } from '../../assets/icons';
 
 const AudioCard = ({ title, username, audio, thumbnail }) => {
     const [isPlaying, setIsPlaying] = useState(false);
@@ -27,7 +28,9 @@ const AudioCard = ({ title, username, audio, thumbnail }) => {
                         className='h-6 w-6 shadow-play-pause rounded-[50%] bg-white flex items-center justify-center cursor-pointer'
                         style={{ opacity: !!audio && isPlaying ? '0' : '1' }}
                     >
-                        <img className='h-3 w-3' src='/icons/play-pause-audio.svg' />
+                        <div className='h-3 w-3'>
+                            <ToggleAudio />
+                        </div>
                     </div>
                 </div>
             </div>

@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import InputText from '../components/atoms/InputText';
 import Button from '../components/atoms/Button';
+import { Cross } from '../assets/icons';
 
 const objInstagram = {
     id: 'instagram',
@@ -63,7 +64,9 @@ const Links = () => {
         <div>
             <div className='w-full fixed top-0 left-0 z-10 px-5 py-5 flex items-center justify-between bg-white'>
                 <h1 className='text-xl font-medium text-dark-grey-base'>Aggiungi i tuoi link</h1>
-                <img src='/icons/cross.svg' onClick={() => navigate('/profile')} />
+                <div onClick={() => navigate('/profile')}>
+                    <Cross />
+                </div>
             </div>
 
             <div className='mt-16 mb-24'>
