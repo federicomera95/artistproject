@@ -48,15 +48,13 @@ const RangeSlider = ({ id, defaultValues = [25, 45] }) => {
     };
 
     return (
-        <div className='slider-wrapper'>
-            <label className='text-sm font-semibold text-dark-grey-base relative bottom-7'>
-                Età
-            </label>
+        <div className='flex flex-col gap-6'>
+            <label className='text-sm font-semibold text-dark-grey-base relative top-2'>Età</label>
             <div className='flex relative font-semibold text-sm text-primary-base'>
-                <p className='absolute bottom-2' style={{ left: `${getLeft()}%` }}>
+                <p className='absolute' style={{ left: `${getLeft()}%` }}>
                     {min}
                 </p>
-                <p className='absolute bottom-2' style={{ right: `${getRight()}%` }}>
+                <p className='absolute' style={{ right: `${getRight()}%` }}>
                     {max}
                 </p>
             </div>

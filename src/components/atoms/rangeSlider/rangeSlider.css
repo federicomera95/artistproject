@@ -1,16 +1,12 @@
 @tailwind components;
 
 @layer components {
-    .slider-wrapper {
-        @apply w-[335px] mt-10 ml-5;
-    }
-
     .slider {
         @apply h-2 relative bg-primary-disabled rounded-[30px];
     }
 
     .slider > .track {
-        @apply h-full absolute left-1/4 right-1/4 bg-primary-base  rounded-[30px];
+        @apply h-full absolute bg-primary-base  rounded-[30px];
     }
 
     .range-input {
@@ -20,7 +16,7 @@
     .range-input > input {
         -webkit-appearance: none;
         background: none;
-        @apply w-full h-2 absolute -top-2 pointer-events-none outline-none;
+        @apply w-full h-2 absolute -top-8 pointer-events-none outline-none;
     }
 
     .range-input > input::-webkit-slider-thumb {

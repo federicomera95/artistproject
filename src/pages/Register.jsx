@@ -34,7 +34,7 @@ const Register = () => {
                 <div className='flex flex-col gap-[16px]'>
                     <InputText objInputText={objArtName} />
                     <InputText objInputText={objEmail} required />
-                    <InputText objInputText={objPassword} required icon />
+                    <InputText objInputText={objPassword} required eye />
                 </div>
                 <Button
                     id='login-sub'

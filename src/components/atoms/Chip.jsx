@@ -3,14 +3,10 @@ import { useState } from 'react';
 const Chip = ({ text, defaultActive }) => {
     const [active, setActive] = useState(defaultActive);
 
-    const handleClick = () => {
-        setActive(!active);
-    };
-
     return (
         <div className='inline-flex justify-center'>
             <span
-                onClick={handleClick}
+                onClick={() => setActive((a) => !a)}
                 className={`
                 px-2 py-1 rounded-full font-medium text-[12px]
                 flex align-center w-max cursor-pointer 

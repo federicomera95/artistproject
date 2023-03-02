@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { Eye } from '../../assets/icons';
+import { Eye, Search } from '../../assets/icons';
 
-const InputText = ({ objInputText, disabled, required, icon, iconPos = 'right' }) => {
+const InputText = ({ objInputText, disabled, required, eye, search, iconPos = 'right' }) => {
     const { id, type = 'text', label, placeholder, msgError = '', val } = objInputText;
     const [value, setValue] = useState(val);
 
@@ -19,7 +19,7 @@ const InputText = ({ objInputText, disabled, required, icon, iconPos = 'right' }
                 {label}
             </label>
             <div className='input-text-group flex relative'>
-                {!!icon && iconPos === 'left' && (
+                {!!eye && iconPos === 'left' && (
                     <div
                         className='left-[1em] object-cover w-[100%] h-[100%] [&+input]:pl-[3em]
                         absolute max-w-[24px] max-h-[24px] top-[50%] translate-y-[-50%]'
@@ -45,9 +45,9 @@ const InputText = ({ objInputText, disabled, required, icon, iconPos = 'right' }
                     required={required}
                     onChange={handleChange}
                 />
-                {!!icon && iconPos === 'right' && (
+                {(!!eye || !!search) && iconPos === 'right' && (
                     <div className='right-[1em] absolute max-w-[24px] max-h-[24px] top-[50%] translate-y-[-50%]'>
-                        <Eye />
+                        {(!!eye && !search && <Eye />) || (!eye && !!search && <Search dark />)}
                     </div>
                 )}
                 <label
