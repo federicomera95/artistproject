@@ -18,7 +18,10 @@ const ArrowDown = () => {
     );
 };
 
-const Cross = () => {
+const Cross = ({ dark }) => {
+    let color = '#ffffff';
+    if (dark) color = '#1F2937';
+
     return (
         <svg
             width='29'
@@ -29,14 +32,14 @@ const Cross = () => {
         >
             <path
                 d='M21.929 7.9289L7.78689 22.071'
-                stroke='#1F2937'
+                stroke={color}
                 strokeWidth='3'
                 strokeLinecap='round'
                 strokeLinejoin='round'
             />
             <path
                 d='M21.9289 22.071L7.7868 7.9289'
-                stroke='#1F2937'
+                stroke={color}
                 strokeWidth='3'
                 strokeLinecap='round'
                 strokeLinejoin='round'
@@ -409,6 +412,109 @@ const Logout = () => {
     );
 };
 
+const Microphone = () => {
+    return (
+        <svg
+            width='24'
+            height='24'
+            viewBox='0 0 24 24'
+            fill='none'
+            xmlns='http://www.w3.org/2000/svg'
+        >
+            <path
+                fillRule='evenodd'
+                clipRule='evenodd'
+                d='M12.0002 14.5743V14.5743C10.2942 14.5737 8.91144 13.191 8.91089 11.485V6.33587C8.91144 4.62993 10.2942 3.24713 12.0002 3.24658V3.24658C13.7061 3.24713 15.0889 4.62993 15.0895 6.33587V11.485C15.0897 12.3044 14.7643 13.0904 14.1849 13.6698C13.6055 14.2492 12.8196 14.5746 12.0002 14.5743Z'
+                stroke='#9333EA'
+                strokeWidth='1.5'
+                strokeLinecap='round'
+                strokeLinejoin='round'
+            />
+            <path
+                d='M19.0031 11.6499C19.0031 15.5175 15.8678 18.6528 12.0002 18.6528V18.6528C8.13263 18.6528 4.99731 15.5175 4.99731 11.6499'
+                stroke='#9333EA'
+                strokeWidth='1.5'
+                strokeLinecap='round'
+                strokeLinejoin='round'
+            />
+            <path
+                d='M12.0002 20.7537V18.6528'
+                stroke='#9333EA'
+                strokeWidth='1.5'
+                strokeLinecap='round'
+                strokeLinejoin='round'
+            />
+        </svg>
+    );
+};
+
+const Camera = () => {
+    return (
+        <svg
+            width='24'
+            height='24'
+            viewBox='0 0 24 24'
+            fill='none'
+            xmlns='http://www.w3.org/2000/svg'
+        >
+            <path
+                d='M16 10.2924L19.4752 8.15023C19.7837 7.96003 20.171 7.95165 20.4875 8.12832C20.8039 8.30499 21 8.63906 21 9.00149V15.9983C21 16.3607 20.8039 16.6948 20.4875 16.8714C20.171 17.0481 19.7838 17.0397 19.4753 16.8496L16 14.7074'
+                stroke='#9333EA'
+                strokeWidth='1.5'
+                strokeLinecap='round'
+                strokeLinejoin='round'
+            />
+            <rect
+                x='3'
+                y='6'
+                width='13'
+                height='13'
+                rx='3'
+                stroke='#9333EA'
+                strokeWidth='1.5'
+                strokeLinecap='round'
+                strokeLinejoin='round'
+            />
+        </svg>
+    );
+};
+
+const Photo = () => {
+    return (
+        <svg
+            width='24'
+            height='24'
+            viewBox='0 0 24 24'
+            fill='none'
+            xmlns='http://www.w3.org/2000/svg'
+        >
+            <path
+                fillRule='evenodd'
+                clipRule='evenodd'
+                d='M19.9969 21H4.00293C2.89793 21 2.00293 20.105 2.00293 19V5C2.00293 3.895 2.89793 3 4.00293 3H19.9969C21.1019 3 21.9969 3.895 21.9969 5V19C21.9969 20.105 21.1009 21 19.9969 21Z'
+                stroke='#9333EA'
+                strokeWidth='1.5'
+                strokeLinecap='round'
+                strokeLinejoin='round'
+            />
+            <path
+                d='M9.41422 7.58579C10.1953 8.36684 10.1953 9.63317 9.41422 10.4142C8.63317 11.1953 7.36684 11.1953 6.58579 10.4142C5.80474 9.63317 5.80474 8.36684 6.58579 7.58579C7.36684 6.80474 8.63317 6.80474 9.41422 7.58579'
+                stroke='#9333EA'
+                strokeWidth='1.5'
+                strokeLinecap='round'
+                strokeLinejoin='round'
+            />
+            <path
+                d='M22 15.9999L17.781 12.6249C17.35 12.2799 16.72 12.3499 16.375 12.7809L13.039 16.9509C12.694 17.3819 12.065 17.4519 11.633 17.1069L9.765 15.6119C9.34 15.2719 8.721 15.3339 8.372 15.7529L4 20.9999'
+                stroke='#9333EA'
+                strokeWidth='1.5'
+                strokeLinecap='round'
+                strokeLinejoin='round'
+            />
+        </svg>
+    );
+};
+
 export {
     ArrowDown,
     Cross,
@@ -421,5 +527,8 @@ export {
     Profile,
     Search,
     Upload,
-    Logout
+    Logout,
+    Microphone,
+    Camera,
+    Photo
 };

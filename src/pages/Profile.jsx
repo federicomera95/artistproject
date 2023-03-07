@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Edit, Logout } from '../assets/icons';
+import { Camera, Cross, Edit, Logout, Microphone, Photo } from '../assets/icons';
 
 import Button from '../components/atoms/Button';
 import AudioCard from '../components/molecules/AudioCard';
@@ -70,6 +70,7 @@ const contents = [
 
 const Profile = () => {
     const [currentPage, setCurrentPage] = useState('tutti');
+    const [isSelectContentOpen, setSelectContentOpen] = useState(false);
 
     const navigate = useNavigate();
 
@@ -94,6 +95,10 @@ const Profile = () => {
             default:
                 throw new Error(`Invalid content type 'type'`);
         }
+    };
+
+    const openSelectContent = () => {
+        setSelectContentOpen((status) => !status);
     };
 
     const handleLogout = () => {
@@ -190,6 +195,46 @@ const Profile = () => {
                                 );
                         }
                     })}
+                </div>
+            </div>
+            {isSelectContentOpen && (
+                <div className='w-screen h-screen fixed left-0 top-0 z-20 bg-white/80'></div>
+            )}
+            <div
+                className={`flex flex-col items-end gap-5 fixed z-30 bottom-[100px] right-5 rounded-full`}
+                onClick={openSelectContent}
+            >
+                {isSelectContentOpen && (
+                    <div className='flex flex-col gap-4 font-medium'>
+                        <div
+                            className='flex items-center p-3 gap-2 rounded-lg border border-dark-grey-disabled'
+                            onClick={() => navigate('/profile/add-audio')}
+                        >
+                            <Microphone />
+                            <span>Audio</span>
+                        </div>
+                        <div
+                            className='flex items-center p-3 gap-2 rounded-lg border border-dark-grey-disabled'
+                            onClick={() => navigate('/profile/add-video')}
+                        >
+                            <Camera />
+                            <span>Video</span>
+                        </div>
+                        <div
+                            className='flex items-center p-3 gap-2 rounded-lg border border-dark-grey-disabled'
+                            onClick={() => navigate('/profile/add-photo')}
+                        >
+                            <Photo />
+                            <span>Photo</span>
+                        </div>
+                    </div>
+                )}
+                <div
+                    className={`p-[14px] rounded-full shadow-play-pause bg-primary-base transition-all ${
+                        isSelectContentOpen ? 'bg-dark-grey-placeholder' : 'rotate-45'
+                    }`}
+                >
+                    <Cross />
                 </div>
             </div>
         </div>
