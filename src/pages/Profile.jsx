@@ -198,7 +198,7 @@ const Profile = () => {
                 </div>
             </div>
             {isSelectContentOpen && (
-                <div className='w-screen h-screen fixed left-0 top-0 z-20 bg-white/80'></div>
+                <div className='w-screen h-screen fixed left-0 top-0 z-20 backdrop-blur-[4px]'></div>
             )}
             <div
                 className={`flex flex-col items-end gap-5 fixed z-30 bottom-[100px] right-5 rounded-full`}
@@ -207,21 +207,21 @@ const Profile = () => {
                 {isSelectContentOpen && (
                     <div className='flex flex-col gap-4 font-medium'>
                         <div
-                            className='flex items-center p-3 gap-2 rounded-lg border border-dark-grey-disabled'
+                            className='flex items-center p-3 gap-2 rounded-lg border border-dark-grey-disabled bg-white'
                             onClick={() => navigate('/profile/add-audio')}
                         >
                             <Microphone />
                             <span>Audio</span>
                         </div>
                         <div
-                            className='flex items-center p-3 gap-2 rounded-lg border border-dark-grey-disabled'
+                            className='flex items-center p-3 gap-2 rounded-lg border border-dark-grey-disabled bg-white'
                             onClick={() => navigate('/profile/add-video')}
                         >
                             <Camera />
                             <span>Video</span>
                         </div>
                         <div
-                            className='flex items-center p-3 gap-2 rounded-lg border border-dark-grey-disabled'
+                            className='flex items-center p-3 gap-2 rounded-lg border border-dark-grey-disabled bg-white'
                             onClick={() => navigate('/profile/add-photo')}
                         >
                             <Photo />
