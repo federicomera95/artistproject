@@ -4,6 +4,7 @@ import Explore from './pages/Explore';
 import Home from './pages/Home';
 import Links from './pages/Links';
 
+
 import Login from './pages/Login';
 import Profile from './pages/Profile';
 import Register from './pages/Register';
@@ -11,6 +12,7 @@ import Search from './pages/Search';
 import Navbar from './components/molecules/Navbar';
 import { useEffect } from 'react';
 import AddAudio from './pages/AddAudio';
+import AddPhoto from './pages/AddPhoto';
 
 const Root = () => {
     const { pathname } = useLocation();
@@ -46,6 +48,7 @@ const App = () => {
                     <Route path='edit' element={<EditProfile />} />
                     <Route path='links' element={<Links />} />
                     <Route path='add-audio' element={<AddAudio />} />
+                    <Route path='add-photo' element = {<AddPhoto />} />
                 </Route>
             </Route>
         </Routes>
