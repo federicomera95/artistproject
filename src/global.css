@@ -9,7 +9,7 @@
         @apply font-custom;
     }
 
-    /* #root {
+    #root {
         @apply p-5;
-    } */
+    }
 }

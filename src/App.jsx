@@ -18,7 +18,7 @@ const Root = () => {
     const { pathname } = useLocation();
     const navigate = useNavigate();
 
-    const matchNav = ['/links', '/edit', '/add-audio'];
+    const matchNav = ['/links', '/edit', '/add-audio', '/add-photo', '/add-video'];
 
     useEffect(() => {
         if (pathname === '/') {

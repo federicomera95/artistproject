@@ -29,7 +29,7 @@ const instruments = [
 const AddPhoto = () => {
     return (
         <div className='h-screen w-[100%] relative flex flex-col gap-[44px]'>
-            <div className='sticky z-20 bg-white right-0 top-0 px-5'>
+            <div className='sticky z-20 bg-white right-0 top-0 '>
                 <div className='flex items-center justify-between '>
                     <p className='text-dark-grey-base font-medium text-xl tracking-wide py-2'>
                         Aggiungi foto
@@ -39,7 +39,7 @@ const AddPhoto = () => {
                     </a>
                 </div>
             </div>
-            <div className='flex flex-col gap-6 px-5'>
+            <div className='flex flex-col gap-6 pb-32'>
                 <div className='flex flex-col gap-[24px]'>
                     <InputText
                         objInputText={{
@@ -74,7 +74,7 @@ const AddPhoto = () => {
                     </div>
                 </div>
             </div>
-            <div className='w-full bottom-0 right-0 shadow-navbar py-[18px] px-5 bg-white sticky z-10 '>
+            <div className='w-full fixed bottom-0 right-0 shadow-navbar py-[18px] px-5 bg-white  z-10 '>
                 <Button id='upload-photo' style='primary' text='Carica foto' size='medium' />
             </div>
         </div>
