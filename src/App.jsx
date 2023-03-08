@@ -12,6 +12,7 @@ import Search from './pages/Search';
 import Navbar from './components/molecules/Navbar';
 import { useEffect } from 'react';
 import AddAudio from './pages/AddAudio';
+import AddPhoto from './pages/AddPhoto';
 
 const Root = () => {
     const { pathname } = useLocation();
@@ -35,7 +36,6 @@ const Root = () => {
 
 const App = () => {
     return (
-     
         <Routes>
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />
@@ -48,6 +48,7 @@ const App = () => {
                     <Route path='edit' element={<EditProfile />} />
                     <Route path='links' element={<Links />} />
                     <Route path='add-audio' element={<AddAudio />} />
+                    <Route path='add-photo' element = {<AddPhoto />} />
                 </Route>
             </Route>
         </Routes>
