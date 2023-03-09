@@ -21,7 +21,7 @@ const InputFile = ({ id, label, error = '', required, text }) => {
     return (
         <div className='w-[100%] flex flex-col gap-[8px] text-[14px]'>
             <label
-                className='relative first-letter:uppercase text-dark-grey-base font-medium'
+                className='relative first-letter:uppercase text-dark-grey-base font-medium pointer-events-none'
                 htmlFor={id}
             >
                 {label}
