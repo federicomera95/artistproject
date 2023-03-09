@@ -28,18 +28,16 @@ const instruments = [
 
 const AddPhoto = () => {
     return (
-        <div className='h-screen w-[100%] relative flex flex-col gap-[44px]'>
-            <div className='sticky z-20 bg-white right-0 top-0 '>
-                <div className='flex items-center justify-between '>
-                    <p className='text-dark-grey-base font-medium text-xl tracking-wide py-2'>
-                        Aggiungi foto
-                    </p>
-                    <a className='w-7 h-7'>
-                        <Cross dark={true} />
-                    </a>
-                </div>
+        <div className='h-screen w-[100%] flex flex-col gap-[44px]'>
+            <div className='w-full fixed z-50 bg-white right-0 top-0 px-[20px] py-[12px] flex items-center justify-between'>
+                <p className='text-dark-grey-base font-medium text-xl tracking-wide py-2'>
+                    Aggiungi foto
+                </p>
+                <a className='w-7 h-7'>
+                    <Cross dark={true} />
+                </a>
             </div>
-            <div className='flex flex-col gap-6 pb-32'>
+            <div className='flex flex-col gap-6 pb-32 pt-[48px]'>
                 <div className='flex flex-col gap-[24px]'>
                     <InputText
                         objInputText={{

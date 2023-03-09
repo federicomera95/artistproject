@@ -29,17 +29,15 @@ const instruments = [
 const AddVideo = () => {
     return (
         <div className='h-screen w-[100%] relative flex flex-col gap-[44px]'>
-            <div className='sticky z-20 bg-white right-0 top-0 '>
-                <div className='flex items-center justify-between '>
-                    <p className='text-dark-grey-base font-medium text-xl tracking-wide py-2'>
-                        Aggiungi video
-                    </p>
-                    <a className='w-7 h-7'>
-                        <Cross dark={true} />
-                    </a>
-                </div>
+            <div className='w-full fixed z-50 bg-white right-0 top-0 px-[20px] py-[12px] flex items-center justify-between'>
+                <p className='text-dark-grey-base font-medium text-xl tracking-wide py-2'>
+                    Aggiungi video
+                </p>
+                <a className='w-7 h-7'>
+                    <Cross dark={true} />
+                </a>
             </div>
-            <div className='flex flex-col gap-6 pb-32'>
+            <div className='flex flex-col gap-6 pb-32 pt-[48px]'>
                 <div className='flex flex-col gap-[24px]'>
                     <InputText
                         objInputText={{
@@ -54,7 +52,11 @@ const AddVideo = () => {
                         placeholder='Inserisci una descrizione'
                     />
                     <InputFile id='File' label='Selezione file' text='Massimo 5MB, .mp4' />
-                    <InputFile id='File' label='Seleziona immagine di copertina' text='Massimo 2MB, .png, .jpg'/>
+                    <InputFile
+                        id='File'
+                        label='Seleziona immagine di copertina'
+                        text='Massimo 2MB, .png, .jpg'
+                    />
                 </div>
                 <div className='flex flex-col gap-[24px]'>
                     <div className='flex flex-col gap-2'>
@@ -75,8 +77,8 @@ const AddVideo = () => {
                     </div>
                 </div>
             </div>
-            <div className='w-full fixed bottom-0 right-0 shadow-navbar py-[18px] px-5 bg-white  z-10 '>
-                <Button id='upload-photo' style='primary' text='Carica video' size='medium' />
+            <div className='w-full fixed bottom-0 right-0 shadow-navbar py-[18px] px-5 bg-white z-10'>
+                <Button id='upload-photo' style='primary' text='Carica foto' size='medium' />
             </div>
         </div>
     );

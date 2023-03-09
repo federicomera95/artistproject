@@ -28,18 +28,16 @@ const instruments = [
 
 const AddAudio = () => {
     return (
-        <div className='h-screen w-[100%] relative'>
-            <div className='sticky top-0 z-20 bg-white right-0 px-5'>
-                <div className='flex items-center justify-between py-3'>
-                    <p className='text-dark-grey-base font-medium text-xl tracking-wide'>
-                        Aggiungi audio
-                    </p>
-                    <a className='w-7 h-7'>
-                        <Cross />
-                    </a>
-                </div>
+        <div className='h-screen w-[100%] relative flex flex-col gap-[44px]'>
+            <div className='w-full fixed z-50 bg-white right-0 top-0 px-[20px] py-[12px] flex items-center justify-between'>
+                <p className='text-dark-grey-base font-medium text-xl tracking-wide py-2'>
+                    Aggiungi audio
+                </p>
+                <a className='w-7 h-7'>
+                    <Cross dark={true} />
+                </a>
             </div>
-            <div className='flex flex-col gap-8 px-5 pt-5 pb-11'>
+            <div className='flex flex-col gap-8 pb-32 pt-[48px]'>
                 <div className='flex flex-col gap-6'>
                     <InputText
                         objInputText={{
@@ -77,8 +75,8 @@ const AddAudio = () => {
                     </div>
                 </div>
             </div>
-            <div className='w-full sticky bottom-0 right-0 z-20 bg-white py-[18px] px-5 shadow-navbar'>
-                <Button id='upload-audio' text='Carica Audio' size='medium' style='primary' />
+            <div className='w-full fixed bottom-0 right-0 shadow-navbar py-[18px] px-5 bg-white z-10'>
+                <Button id='upload-photo' style='primary' text='Carica foto' size='medium' />
             </div>
         </div>
     );
