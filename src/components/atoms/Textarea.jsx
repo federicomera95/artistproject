@@ -34,7 +34,7 @@ const Textarea = ({ id, label, error, placeholder, disabled, type }) => {
             </div>
             <label
                 htmlFor={id}
-                className='text-sm font-medium peer-disabled:text-dark-grey-disabled'
+                className='text-sm font-medium peer-disabled:text-dark-grey-disabled pointer-events-none'
             >
                 {label}
             </label>
