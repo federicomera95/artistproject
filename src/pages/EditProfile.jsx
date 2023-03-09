@@ -20,7 +20,7 @@ const EditProfile = () => {
                 <div className='w-full z-10 fixed top-0 left-0 px-5 py-5 flex items-center justify-between bg-white'>
                     <h1 className='text-xl font-medium text-dark-grey-base'>Modifica profilo</h1>
                     <div onClick={() => navigate('/profile')}>
-                        <Cross />
+                        <Cross dark={true} />
                     </div>
                 </div>
                 <div className='flex flex-col gap-6 mt-16'>
@@ -31,11 +31,16 @@ const EditProfile = () => {
                             placeholder: `Inserisci il tuo nome d'arte`
                         }}
                     />
-                    <Textarea id='edit-profile-description' label='Descrizione' />
+                    <Textarea
+                        id='edit-profile-description'
+                        label='Descrizione'
+                        placeholder={`Inserisci una descrizione`}
+                    />
                     <ButtonFile />
                     <InputText
                         objInputText={{
                             id: 'edit-profile-age',
+                            type: 'number',
                             label: `Età`,
                             placeholder: 'Inserisci la tua età'
                         }}

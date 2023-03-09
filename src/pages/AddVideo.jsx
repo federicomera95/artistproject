@@ -4,6 +4,7 @@ import InputFile from '../components/atoms/InputFile';
 import InputText from '../components/atoms/InputText';
 import Textarea from '../components/atoms/Textarea';
 import { Cross } from '../assets/icons';
+import { useNavigate } from 'react-router-dom';
 
 const genres = [
     { name: 'Pop', active: false },
@@ -27,13 +28,15 @@ const instruments = [
 ];
 
 const AddVideo = () => {
+    const navigate = useNavigate();
+
     return (
         <div className='h-screen w-[100%] relative flex flex-col gap-[44px]'>
             <div className='w-full fixed z-50 bg-white right-0 top-0 px-[20px] py-[12px] flex items-center justify-between'>
                 <p className='text-dark-grey-base font-medium text-xl tracking-wide py-2'>
                     Aggiungi video
                 </p>
-                <a className='w-7 h-7'>
+                <a className='w-7 h-7' onClick={() => navigate('/profile')}>
                     <Cross dark={true} />
                 </a>
             </div>
