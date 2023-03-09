@@ -1,0 +1,9 @@
+.Toastify__toast-icon {
+  -webkit-margin-end: 0px;
+          margin-inline-end: 0px;
+  width: 24px !important;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  display: -ms-flexbox;
+  display: flex;
+}
