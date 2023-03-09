@@ -13,6 +13,7 @@ import Navbar from './components/molecules/Navbar';
 import { useEffect } from 'react';
 import AddAudio from './pages/AddAudio';
 import AddPhoto from './pages/AddPhoto';
+import AddVideo from './pages/AddVideo';
 
 const Root = () => {
     const { pathname } = useLocation();
@@ -49,6 +50,7 @@ const App = () => {
                     <Route path='links' element={<Links />} />
                     <Route path='add-audio' element={<AddAudio />} />
                     <Route path='add-photo' element = {<AddPhoto />} />
+                    <Route path='add-video' element={<AddVideo />} />
                 </Route>
             </Route>
         </Routes>
