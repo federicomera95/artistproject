@@ -1,12 +1,8 @@
-import { useState } from 'react';
-
-const Chip = ({ text, defaultActive }) => {
-    const [active, setActive] = useState(defaultActive);
-
+const Chip = ({ text, active, callback }) => {
     return (
         <div className='inline-flex justify-center'>
             <span
-                onClick={() => setActive((a) => !a)}
+                onClick={callback}
                 className={`
                 px-2 py-1 rounded-full font-medium text-[12px]
                 flex align-center w-max cursor-pointer 

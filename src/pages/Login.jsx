@@ -2,25 +2,50 @@ import { useNavigate } from 'react-router-dom';
 
 import Button from '../components/atoms/Button';
 import InputText from '../components/atoms/InputText';
-
-const objEmail = {
-    id: 'email',
-    label: 'email',
-    placeholder: 'Inserisci la tua email'
-};
-
-const objPwd = {
-    id: 'password',
-    label: 'password',
-    type: 'password',
-    placeholder: 'Inserisci la tua password'
-};
+import { setValidator } from '../validation/validator';
+import useForm from '../hooks/useForm';
 
 const Login = () => {
     const navigate = useNavigate();
 
-    const handleLogin = () => {
-        navigate('/home');
+    const stateSchema = {
+        email: { value: '', error: '' },
+        password: { value: '', error: '' }
+    };
+    const rules = {
+        email: setValidator(true, 'email'),
+        password: setValidator(true, 'password')
+    };
+
+    const handleSubmit = (values) => {
+        console.log(JSON.stringify({ ...values }, null, 2));
+    };
+
+    const { values, errors, dirty, touch, handleOnTouch, handleOnChange, handleOnSubmit, disable } =
+        useForm(stateSchema, rules, handleSubmit);
+
+    const { email, password } = values;
+
+    const INPUT_PROPS = {
+        _email: {
+            id: 'email',
+            label: 'Email',
+            placeholder: 'Inserisci la tua email',
+            error: errors.email && (dirty.email || touch.email) && errors.email,
+            val: email,
+            change: handleOnChange,
+            blur: handleOnTouch
+        },
+        _password: {
+            id: 'password',
+            label: 'Password',
+            type: 'password',
+            placeholder: 'Inserisci la tua password',
+            error: errors.password && (dirty.password || touch.password) && errors.password,
+            val: password,
+            change: handleOnChange,
+            blur: handleOnTouch
+        }
     };
 
     return (
@@ -31,19 +56,18 @@ const Login = () => {
             <div>
                 <form className='flex flex-col gap-[24px]'>
                     <div className='flex flex-col gap-[16px]'>
-                        <InputText objInputText={objEmail} required />
-                        <InputText objInputText={objPwd} required eye />
+                        <InputText inputProps={INPUT_PROPS._email} />
+                        <InputText inputProps={INPUT_PROPS._password} />
                     </div>
                     <p className='text-dark-grey-base text-base'>
                         <strong>Password dimenticata?</strong>
                     </p>
                     <Button
                         id='login_sub'
-                        type='submit'
                         text='Accedi'
-                        size='medium'
                         style='primary'
-                        callback={handleLogin}
+                        callback={handleOnSubmit}
+                        disabled={disable}
                     />
                     <Button
                         text='Registrati'

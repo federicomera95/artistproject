@@ -1,30 +1,31 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-const TripleSelect = ({ label, choices = ['Choice 1', 'Choice 2', 'Choice 3'] }) => {
-    const [clicked, setClicked] = useState([true, false, false]);
+const TripleSelect = ({ tripleSelectProps }) => {
+    const {
+        id,
+        label,
+        val,
+        choices = ['Choice 1', 'Choice 2', 'Choice 3'],
+        callback
+    } = tripleSelectProps;
 
-    const handleClick = ({ target }) => {
-        const cache = [...clicked];
-
-        cache[target.id] = !cache[target.id];
-
-        setClicked(cache);
-    };
+    useEffect(() => {}, [val]);
 
     return (
         <div className='flex flex-col gap-4'>
             <label className='text-sm font-medium text-dark-grey-base'>{label}</label>
             <div className='flex justify-between gap-2 font-medium text-sm'>
-                {choices.map((choice) => (
+                {choices.map((choice, i) => (
                     <button
-                        key={choices.indexOf(choice)}
-                        id={choices.indexOf(choice)}
+                        key={i}
+                        id={i}
+                        name={id}
                         className={`${
-                            clicked[choices.indexOf(choice)]
+                            val[i]
                                 ? 'bg-primary-base text-white'
                                 : 'bg-primary-background text-primary-base'
                         } py-4 w-full rounded-lg`}
-                        onClick={handleClick}
+                        onClick={callback}
                     >
                         {choice}
                     </button>

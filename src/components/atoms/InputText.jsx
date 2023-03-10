@@ -1,57 +1,99 @@
-import { useState } from 'react';
-import { Eye, Search } from '../../assets/icons';
+import { useEffect, useState } from 'react';
+import { Eye, HideEye } from '../../assets/icons';
 
-const InputText = ({ objInputText, disabled, required, eye, search, iconPos = 'right' }) => {
-    const { id, type = 'text', label, placeholder, msgError = '', val } = objInputText;
-    const [value, setValue] = useState(val);
+const INPUT = {
+    base: 'w-[100%] text-base p-input ring-inset ring-2 border-none outline-none rounded-lg',
+    filled: 'ring-dark-grey-placeholder',
+    hover: 'hover:ring-primary-hover',
+    focus: 'focus:shadow-primary-base/30 focus:shadow-hover focus:ring-primary-hover',
+    disabled: 'disabled:ring-dark-grey-disabled disabled:text-dark-grey-disabled',
+    error: 'ring-error hover:ring-error focus:shadow-hover focus:shadow-error/30'
+};
 
-    const handleChange = (e) => setValue(e.target.value);
+const InputText = ({ inputProps }) => {
+    const {
+        id,
+        type = 'text',
+        label,
+        placeholder,
+        error = '',
+        val,
+        forwardedRef,
+        change,
+        blur,
+        disabled,
+        icon,
+        iconPos = 'right'
+    } = inputProps;
 
     if (!id) throw new Error('The parameter "id" is required');
 
+    const [passwordType, setPasswordType] = useState('password');
+
+    const handleClick = () => {
+        return passwordType === 'password' ? setPasswordType('text') : setPasswordType('password');
+    };
+
+    useEffect(() => {}, [val, error, forwardedRef]);
+
     return (
-        <div className='input-field-group flex flex-col justify-start text-dark-grey-base gap-2 w-[100%]'>
+        <div className='flex flex-col justify-start text-dark-grey-base gap-2 w-[100%]'>
             <label
                 htmlFor={id}
-                className='text-sm font-medium capitalize pointer-events-none disabled:text-dark-grey-disabled'
+                className='text-sm font-medium pointer-events-none disabled:text-dark-grey-disabled'
                 disabled={disabled}
             >
-                {label}
+                <span className='first-letter:capitalize'>{label}</span>
             </label>
-            <div className='input-text-group flex relative'>
-                {!!eye && iconPos === 'left' && (
+            <div className='flex relative'>
+                {!!icon && iconPos === 'left' && (
                     <div
                         className='left-[1em] object-cover w-[100%] h-[100%] [&+input]:pl-[3em]
                         absolute max-w-[24px] max-h-[24px] top-[50%] translate-y-[-50%]'
                     >
-                        <Eye />
+                        {icon}
                     </div>
                 )}
                 <input
                     title={placeholder}
-                    className={`${
-                        msgError && !value
-                            ? 'ring-error enabled:hover:ring-error focus:ring-error focus:shadow-error/30'
-                            : ''
-                    } ${
-                        value && 'filled'
-                    } [&.filled]:ring-dark-grey-placeholder w-[100%] text-base p-input ring-inset ring-2 ring-dark-grey-disabled border-none rounded-lg
-                    enabled:hover:ring-primary-hover enabled:hover:outline-none focus:shadow-hover focus:shadow-primary-base/30 focus:ring-primary-hover focus:outline-none
-                    disabled:ring-dark-grey-disabled disabled:text-dark-grey-disabled`}
-                    type={type}
+                    className={`${INPUT.base} ${!error && INPUT.focus} ${!error && INPUT.hover} ${
+                        INPUT.disabled
+                    } ${error && INPUT.error} ${!error && !val && 'ring-dark-grey-disabled'} ${
+                        !!val && !error && INPUT.filled
+                    }
+                    `}
+                    type={type === 'password' ? passwordType : type}
                     id={id}
-                    defaultValue={value}
+                    name={id}
+                    value={val}
+                    ref={forwardedRef}
                     disabled={disabled}
-                    required={required}
-                    onChange={handleChange}
+                    onBlur={blur}
+                    onChange={change}
                 />
-                {(!!eye || !!search) && iconPos === 'right' && (
+                {!!icon && iconPos === 'right' && (
                     <div className='right-[1em] absolute max-w-[24px] max-h-[24px] top-[50%] translate-y-[-50%]'>
-                        {(!!eye && !search && <Eye />) || (!eye && !!search && <Search dark />)}
+                        {icon}
                     </div>
                 )}
+                {id === 'password' &&
+                    (passwordType === 'password' ? (
+                        <span
+                            className='right-[1em] absolute max-w-[24px] max-h-[24px] top-[50%] translate-y-[-50%]'
+                            onClick={handleClick}
+                        >
+                            <Eye />
+                        </span>
+                    ) : (
+                        <span
+                            className='right-[1em] absolute max-w-[24px] max-h-[24px] top-[50%] translate-y-[-50%]'
+                            onClick={handleClick}
+                        >
+                            <HideEye />
+                        </span>
+                    ))}
                 <label
-                    className={`${value ? 'hidden transition-all duration-[200ms]' : ''} ${
+                    className={`${val ? 'hidden transition-all duration-[200ms]' : ''} ${
                         iconPos === 'left' ? 'pl-[3em]' : ''
                     } absolute top-[50%] translate-y-[-50%] p-input w-[calc(100%-40px)] pointer-events-none text-dark-grey-placeholder text-base whitespace-nowrap 
                     overflow-hidden text-ellipsis [&first-letter]:uppercase disabled:text-dark-grey-disabled`}
@@ -60,7 +102,7 @@ const InputText = ({ objInputText, disabled, required, eye, search, iconPos = 'r
                     {placeholder}
                 </label>
             </div>
-            {!!msgError && !value && <p className='text-error text-xs font-normal'>{msgError}</p>}
+            {!!error && <p className='text-error text-xs font-normal'>{error}</p>}
         </div>
     );
 };
