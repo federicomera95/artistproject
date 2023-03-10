@@ -29,6 +29,7 @@ const InputText = ({ inputProps }) => {
     if (!id) throw new Error('The parameter "id" is required');
 
     const [passwordType, setPasswordType] = useState('password');
+
     const handleClick = () => {
         return passwordType === 'password' ? setPasswordType('text') : setPasswordType('password');
     };
