@@ -18,13 +18,15 @@ const EditProfile = () => {
         artist_name: { value: '', error: '' },
         description: { value: '', error: '' },
         age: { value: '', error: '' },
-        profile_photo: { value: '', error: '' }
+        profile_photo: { value: '', error: '' },
+        city: { value: 'seleziona una città', error: '' }
     };
     const rules = {
-        title: setValidator(true),
+        artist_name: setValidator(true),
         description: setValidator(true),
         age: setValidator(true, 'number'),
-        profile_photo: setValidator(true, 'image')
+        profile_photo: setValidator(false, 'image'),
+        city: setValidator(false)
     };
 
     const handleSubmit = (values) => {
@@ -34,7 +36,7 @@ const EditProfile = () => {
     const { values, errors, dirty, touch, handleOnTouch, handleOnChange, handleOnSubmit, disable } =
         useForm(stateSchema, rules, handleSubmit);
 
-    const { artist_name, description, age, profile_photo } = values;
+    const { artist_name, description, age, profile_photo, city } = values;
 
     const INPUT_PROPS = {
         _artist_name: {
@@ -63,7 +65,8 @@ const EditProfile = () => {
         },
         _age: {
             id: 'age',
-            label: "Nome d'arte",
+            label: 'età',
+            type: 'number',
             placeholder: 'Inserisci la tua età',
             error: errors.age && (dirty.age || touch.age) && errors.age,
             val: age,
@@ -81,12 +84,13 @@ const EditProfile = () => {
                 errors.profile_photo,
             val: profile_photo,
             change: handleOnChange
+        },
+        _city: {
+            id: 'city',
+            val: city,
+            change: handleOnChange
         }
     };
-
-    // const handleSaveProfile = () => {
-    //     navigate('/profile');
-    // };
 
     return (
         <div>
@@ -102,7 +106,7 @@ const EditProfile = () => {
                     <Textarea textareaProps={INPUT_PROPS._description} />
                     <ButtonFile buttonFileProps={INPUT_PROPS._profile_photo} />
                     <InputText inputProps={INPUT_PROPS._age} />
-                    <CitySelect />
+                    <CitySelect selectProps={INPUT_PROPS._city} />
                 </div>
             </div>
             <div className='w-full fixed bottom-0 left-0 z-10 px-5 py-[18px] shadow-navbar bg-white'>
