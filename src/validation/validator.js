@@ -4,7 +4,7 @@ const PATTERN = {
         error: 'Il seguente campo può contenere solo lettere con un minimo di 3 e un massimo di 15'
     },
     number: {
-        func: (value) => /^[0-9]$/.test(value),
+        func: (value) => /^[0-9]{2,2}$/.test(value),
         error: 'Il seguente campo accetta solo numeri'
     },
     email: {
