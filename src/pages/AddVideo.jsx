@@ -1,12 +1,18 @@
-import Button from '../components/atoms/Button';
-import Chip from '../components/atoms/Chip';
-import InputFile from '../components/atoms/InputFile';
-import InputText from '../components/atoms/InputText';
-import Textarea from '../components/atoms/Textarea';
-import { Cross } from '../assets/icons';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const genres = [
+import useForm from '../hooks/useForm';
+import { setValidator } from '../validation/validator';
+
+import { Cross } from '../assets/icons';
+
+import Chip from '../components/atoms/Chip';
+import Button from '../components/atoms/Button';
+import Textarea from '../components/atoms/Textarea';
+import InputText from '../components/atoms/InputText';
+import InputFile from '../components/atoms/InputFile';
+
+const initGenres = [
     { name: 'Pop', active: false },
     { name: 'Hip Hop', active: false },
     { name: 'Rap', active: false },
@@ -18,7 +24,7 @@ const genres = [
     { name: 'Tecno', active: false }
 ];
 
-const instruments = [
+const initInstruments = [
     { name: 'Chitarra elettrica', active: true },
     { name: 'Tastiera', active: false },
     { name: 'Chitarra Classica', active: false },
@@ -29,6 +35,83 @@ const instruments = [
 
 const AddVideo = () => {
     const navigate = useNavigate();
+
+    const stateSchema = {
+        title: { value: '', error: '' },
+        description: { value: '', error: '' },
+        video: { value: '', error: '' },
+        thumbnail: { value: '', error: '' }
+    };
+    const rules = {
+        title: setValidator(true),
+        description: setValidator(true),
+        video: setValidator(true, 'video'),
+        thumbnail: setValidator(true, 'image')
+    };
+
+    const [genres, setGenre] = useState(initGenres);
+    const [instruments, setInstrument] = useState(initInstruments);
+
+    const handleSubmit = (values) => {
+        console.log(
+            JSON.stringify(
+                {
+                    ...values,
+                    genres: [...genres.filter((genre) => genre.active === true)],
+                    instruments: [...instruments.filter((instrument) => instrument.active === true)]
+                },
+                null,
+                2
+            )
+        );
+    };
+
+    const { values, errors, dirty, touch, handleOnTouch, handleOnChange, handleOnSubmit, disable } =
+        useForm(stateSchema, rules, handleSubmit);
+
+    const { title, description, video, thumbnail } = values;
+
+    const INPUT_PROPS = {
+        _title: {
+            id: 'title',
+            label: 'titolo',
+            placeholder: 'Inserisci un titolo',
+            error: errors.title && (dirty.title || touch.title) && errors.title,
+            val: title,
+            change: handleOnChange,
+            blur: handleOnTouch
+        },
+        _description: {
+            id: 'description',
+            label: 'descrizione',
+            placeholder: 'Inserisci una descrizione',
+            error:
+                errors.description &&
+                (dirty.description || touch.description) &&
+                errors.description,
+            val: description,
+            change: handleOnChange,
+            blur: handleOnTouch
+        },
+        _video: {
+            id: 'video',
+            label: 'seleziona file',
+            text: 'Massimo 20MB, .mp3',
+            acceptRules: '.mp4',
+            error: errors.video && (dirty.video || touch.video) && errors.video,
+            val: video,
+            change: handleOnChange
+        },
+        _thumbnail: {
+            id: 'thumbnail',
+            label: 'seleziona immagine di copertina',
+            text: 'Massimo 2MB, .jpg, .jpeg, .png',
+            acceptRules: '.jpg, .jpeg, .png',
+            error: errors.thumbnail && (dirty.thumbnail || touch.thumbnail) && errors.thumbnail,
+            val: thumbnail,
+            change: handleOnChange
+        }
+    };
 
     return (
         <div className='h-screen w-[100%] relative flex flex-col gap-[44px]'>
@@ -42,46 +125,71 @@ const AddVideo = () => {
             </div>
             <div className='flex flex-col gap-6 pb-32 pt-[48px]'>
                 <div className='flex flex-col gap-[24px]'>
-                    <InputText
-                        objInputText={{
-                            id: 'title',
-                            label: 'Titolo',
-                            placeholder: 'Inserisci un titolo'
-                        }}
-                    />
-                    <Textarea
-                        id='Description'
-                        label='Descrizione'
-                        placeholder='Inserisci una descrizione'
-                    />
-                    <InputFile id='File' label='Selezione file' text='Massimo 5MB, .mp4' />
-                    <InputFile
-                        id='File'
-                        label='Seleziona immagine di copertina'
-                        text='Massimo 2MB, .png, .jpg'
-                    />
+                    <InputText inputProps={INPUT_PROPS._title} />
+                    <Textarea textareaProps={INPUT_PROPS._description} />
+                    <InputFile inputFileProps={INPUT_PROPS._video} />
+                    <InputFile inputFileProps={INPUT_PROPS._thumbnail} />
                 </div>
                 <div className='flex flex-col gap-[24px]'>
                     <div className='flex flex-col gap-2'>
                         <p className='text-dark-grey-base font-medium text-sm'>Genere</p>
                         <div className='flex flex-wrap gap-2'>
-                            {genres.map(({ name, active }) => (
-                                <Chip key={name} text={name} defaultActive={active} />
+                            {genres.map(({ name, active }, i) => (
+                                <Chip
+                                    key={i}
+                                    text={name}
+                                    active={active}
+                                    callback={() =>
+                                        setGenre((prev) => {
+                                            return [
+                                                ...prev.slice(0, i),
+                                                {
+                                                    ...prev[i],
+                                                    active: ![...prev][i].active
+                                                },
+                                                ...prev.slice(i + 1)
+                                            ];
+                                        })
+                                    }
+                                />
                             ))}
                         </div>
                     </div>
                     <div className='flex flex-col gap-2'>
                         <p className='text-dark-grey-base font-medium text-sm'>Strumenti</p>
                         <div className='flex flex-wrap gap-2'>
-                            {instruments.map(({ name, active }) => (
-                                <Chip key={name} text={name} defaultActive={active} />
+                            {instruments.map(({ name, active }, i) => (
+                                <Chip
+                                    key={i}
+                                    text={name}
+                                    active={active}
+                                    callback={() =>
+                                        setInstrument((prev) => {
+                                            return [
+                                                ...prev.slice(0, i),
+                                                {
+                                                    ...prev[i],
+                                                    active: ![...prev][i].active
+                                                },
+                                                ...prev.slice(i + 1)
+                                            ];
+                                        })
+                                    }
+                                />
                             ))}
                         </div>
                     </div>
                 </div>
             </div>
             <div className='w-full fixed bottom-0 right-0 shadow-navbar py-[18px] px-5 bg-white z-10'>
-                <Button id='upload-photo' style='primary' text='Carica foto' size='medium' />
+                <Button
+                    id='upload-photo'
+                    style='primary'
+                    text='Carica video'
+                    size='medium'
+                    callback={handleOnSubmit}
+                    disabled={disable}
+                />
             </div>
         </div>
     );
