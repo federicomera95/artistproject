@@ -1,7 +1,7 @@
 const PATTERN = {
     username: {
-        func: (value) => /^[a-zA-Z]{3,15}$/.test(value),
-        error: 'Il seguente campo può contenere solo lettere con un minimo di 3 e un massimo di 15'
+        func: (value) => /^[a-zA-Z0-9]{3,15}$/.test(value),
+        error: 'Il seguente campo può contenere solo lettere e numeri con un minimo di 3 e un massimo di 15'
     },
     number: {
         func: (value) => /^[0-9]{2,2}$/.test(value),
