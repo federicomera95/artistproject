@@ -57,8 +57,14 @@ const AddVideo = () => {
             JSON.stringify(
                 {
                     ...values,
-                    genres: [...genres.filter((genre) => genre.active === true)],
-                    instruments: [...instruments.filter((instrument) => instrument.active === true)]
+                    genres: [...genres.filter((genre) => genre.active === true)].map((genre) => {
+                        return genre['name'];
+                    }),
+                    instruments: [
+                        ...instruments.filter((instrument) => instrument.active === true)
+                    ].map((instrument) => {
+                        return instrument['name'];
+                    })
                 },
                 null,
                 2
