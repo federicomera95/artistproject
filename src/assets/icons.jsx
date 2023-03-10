@@ -196,6 +196,33 @@ const Eye = () => {
     );
 };
 
+const HideEye = () => {
+    return (
+        <svg
+            width='24'
+            height='24'
+            viewBox='0 0 24 24'
+            fill='none'
+            xmlns='http://www.w3.org/2000/svg'
+        >
+            <path
+                d='M2.09009 13.09C7.56309 6.043 16.4361 6.043 21.9091 13.09'
+                stroke='#4B5563'
+                strokeWidth='1.5'
+                strokeLinecap='round'
+                strokeLinejoin='round'
+            />
+            <path
+                d='M15.431 9.31802C17.1884 11.0754 17.1884 13.9246 15.431 15.682C13.6736 17.4393 10.8244 17.4393 9.06704 15.682C7.30968 13.9246 7.30968 11.0754 9.06704 9.31802C10.8244 7.56066 13.6736 7.56066 15.431 9.31802'
+                stroke='#4B5563'
+                strokeWidth='1.5'
+                strokeLinecap='round'
+                strokeLinejoin='round'
+            />
+        </svg>
+    );
+};
+
 const Home = ({ dark }) => {
     let color = '#9333EA';
     if (dark) color = '#4B5563';
@@ -586,6 +613,7 @@ export {
     Edit,
     Explore,
     Eye,
+    HideEye,
     Home,
     ToggleAudio,
     ToggleVideo,
