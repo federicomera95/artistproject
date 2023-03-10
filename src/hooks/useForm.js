@@ -148,6 +148,17 @@ function useForm(stateSchema = {}, stateValidatorSchema = {}, submitFormCallback
         [validateFormFields]
     );
 
+    const handleOnClick = useCallback(
+        ({ target }) => {
+            setIsDirty(true);
+            const { id, name } = target;
+            const cache = [...values[name]];
+            cache[id] = !cache[id];
+            setValues((prevState) => ({ ...prevState, [name]: cache }));
+        },
+        [values, setValues]
+    );
+
     const handleOnSubmit = useCallback(
         (event) => {
             event.preventDefault();
@@ -179,6 +190,7 @@ function useForm(stateSchema = {}, stateValidatorSchema = {}, submitFormCallback
     return {
         handleOnTouch,
         handleOnChange,
+        handleOnClick,
         handleOnSubmit,
         values,
         errors,
