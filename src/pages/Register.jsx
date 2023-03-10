@@ -49,7 +49,7 @@ const Register = () => {
         },
         _password: {
             id: 'password',
-            label: 'Password',
+            label: 'Crea password',
             type: 'password',
             placeholder: 'Inserisci la tua password',
             error: errors.password && (dirty.password || touch.password) && errors.password,
