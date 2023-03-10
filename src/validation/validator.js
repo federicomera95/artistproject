@@ -36,6 +36,21 @@ const PATTERN = {
             ({ size }) => size < 10000000
         ],
         error: ["L'estensione del file è errata", 'La dimensione del file è superiore ai 10MB']
+    },
+    https: {
+        func: (value) => {
+            try {
+                const url = new URL(value);
+                return url.protocol === 'https:';
+            } catch (err) {
+                return false;
+            }
+        },
+        error: 'Il link deve contenere il prefisso https:'
+    },
+    phone: {
+        func: (value) => /^[0-9]{8,10}$/.test(value),
+        error: 'Inserire un numero di telefono valido'
     }
 };
 
