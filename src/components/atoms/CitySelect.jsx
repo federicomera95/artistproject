@@ -6,9 +6,7 @@ const options = ['Seleziona dalla lista', 'Torino', 'Milano', 'Roma', 'Napoli', 
 const CitySelect = ({ selectProps }) => {
     const { id = 'city-select', val, error = '', change } = selectProps;
 
-    useEffect(() => {
-        console.log(val, 'inside select');
-    }, [val, error]);
+    useEffect(() => {}, [val, error]);
 
     return (
         <div className='flex flex-col gap-2'>
