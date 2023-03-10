@@ -32,10 +32,10 @@ const Root = () => {
     }, [pathname, navigate]);
 
     return (
-        <div>
+        <>
             <Outlet />
             {!matchNav.some((path) => pathname.includes(path)) && pathname !== '/' && <Navbar />}
-        </div>
+        </>
     );
 };
 
