@@ -39,6 +39,7 @@ const PATTERN = {
     },
     https: {
         func: (value) => {
+            if (!value) return true;
             try {
                 const url = new URL(value);
                 return url.protocol === 'https:';
