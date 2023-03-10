@@ -30,7 +30,7 @@ const InputFile = ({ inputFileProps }) => {
                 {label}
             </label>
             <div
-                className={`flex items-center justify-center border-[2px] border-dashed border-dark-grey-disabled bg-no-repeat bg-center ${
+                className={`flex items-center justify-center border-[2px] border-dashed border-dark-grey-disabled bg-cover bg-center ${
                     error && 'border-error'
                 }`}
                 style={{

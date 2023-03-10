@@ -21,7 +21,7 @@ const ButtonFile = ({ buttonFileProps }) => {
             <h3 className='font-medium text-sm text-dark-grey-base'>Foto profilo</h3>
             <div className='flex items-center justify-between'>
                 <div
-                    className={`w-[90px] h-[90px] rounded-[50%] bg-no-repeat bg-center ${
+                    className={`w-[90px] h-[90px] rounded-[50%] bg-cover bg-center ${
                         error && 'border-error border-[2px]'
                     }`}
                     style={{
