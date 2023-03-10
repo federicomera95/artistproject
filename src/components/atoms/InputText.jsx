@@ -40,10 +40,10 @@ const InputText = ({ inputProps }) => {
         <div className='flex flex-col justify-start text-dark-grey-base gap-2 w-[100%]'>
             <label
                 htmlFor={id}
-                className='text-sm font-medium capitalize pointer-events-none disabled:text-dark-grey-disabled'
+                className='text-sm font-medium pointer-events-none disabled:text-dark-grey-disabled'
                 disabled={disabled}
             >
-                {label}
+                <span className='first-letter:capitalize'>{label}</span>
             </label>
             <div className='flex relative'>
                 {!!icon && iconPos === 'left' && (
