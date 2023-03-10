@@ -19,7 +19,7 @@ const InputFile = ({ inputFileProps }) => {
         const objectUrl = URL.createObjectURL(val);
         setPreview(objectUrl);
         return () => URL.revokeObjectURL(objectUrl);
-    }, [val, error, id]);
+    }, [val, error, id, setPreview]);
 
     return (
         <div className='w-[100%] flex flex-col gap-[8px] text-[14px]'>
