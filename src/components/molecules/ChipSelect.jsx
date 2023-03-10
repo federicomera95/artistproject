@@ -1,6 +1,6 @@
 import Chip from '../atoms/Chip';
 
-const ChipSelect = ({ type }) => {
+const ChipSelect = ({ chips, type, callback }) => {
     if (!type) throw new Error(`Prop 'type' is required`);
 
     return (
@@ -8,25 +8,16 @@ const ChipSelect = ({ type }) => {
             <label className='text-sm font-medium text-dark-grey-base'>{type}</label>
             {type === 'Genere' && (
                 <div className='flex gap-2 flex-wrap'>
-                    <Chip text='Pop' />
-                    <Chip text='Hip Pop' />
-                    <Chip text='Rap' />
-                    <Chip text='Rock' />
-                    <Chip text='Classico' />
-                    <Chip text='Instrumental' />
-                    <Chip text='Chill' />
-                    <Chip text='Jazz' />
-                    <Chip text='Tecno' />
+                    {chips.map(({ name, active }, i) => (
+                        <Chip key={i} text={name} active={active} callback={(e) => callback(i)} />
+                    ))}
                 </div>
             )}
             {type === 'Strumenti' && (
                 <div className='flex gap-2 flex-wrap'>
-                    <Chip text='Chitarra elettrica' />
-                    <Chip text='Tastiera' />
-                    <Chip text='Chitarra classica' />
-                    <Chip text='Batteria' />
-                    <Chip text='Sassofono' />
-                    <Chip text='Violino' />
+                    {chips.map(({ name, active }, i) => (
+                        <Chip key={i} text={name} active={active} callback={(e) => callback(i)} />
+                    ))}
                 </div>
             )}
         </div>
