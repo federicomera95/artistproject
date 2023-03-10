@@ -33,9 +33,7 @@ const InputText = ({ inputProps }) => {
         return passwordType === 'password' ? setPasswordType('text') : setPasswordType('password');
     };
 
-    useEffect(() => {
-        console.log(val, error);
-    }, [val, error, forwardedRef]);
+    useEffect(() => {}, [val, error, forwardedRef]);
 
     return (
         <div className='flex flex-col justify-start text-dark-grey-base gap-2 w-[100%]'>
@@ -59,7 +57,7 @@ const InputText = ({ inputProps }) => {
                     title={placeholder}
                     className={`${INPUT.base} ${!error && INPUT.focus} ${!error && INPUT.hover} ${
                         INPUT.disabled
-                    } ${error ? INPUT.error : 'ring-dark-grey-disabled'} ${
+                    } ${error && INPUT.error} ${!error && !val && 'ring-dark-grey-disabled'} ${
                         !!val && !error && INPUT.filled
                     }
                     `}
