@@ -33,7 +33,9 @@ const InputText = ({ inputProps }) => {
         return passwordType === 'password' ? setPasswordType('text') : setPasswordType('password');
     };
 
-    useEffect(() => {}, [val, error, forwardedRef]);
+    useEffect(() => {
+        console.log(val, error);
+    }, [val, error, forwardedRef]);
 
     return (
         <div className='flex flex-col justify-start text-dark-grey-base gap-2 w-[100%]'>
@@ -101,7 +103,7 @@ const InputText = ({ inputProps }) => {
                     {placeholder}
                 </label>
             </div>
-            {!!error && !val && <p className='text-error text-xs font-normal'>{error}</p>}
+            {!!error && <p className='text-error text-xs font-normal'>{error}</p>}
         </div>
     );
 };
