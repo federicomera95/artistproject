@@ -71,8 +71,7 @@ const Search = () => {
         handleOnTouch,
         handleOnClick,
         handleOnChange,
-        handleOnSubmit,
-        disable
+        handleOnSubmit
     } = useForm(stateSchema, rules, handleSubmit);
 
     const { search, type, range_age, gender, city } = values;
@@ -159,7 +158,7 @@ const Search = () => {
                         });
                     }}
                 />
-                <Button text='Cerca' callback={handleOnSubmit} disabled={disable} />
+                <Button text='Cerca' callback={handleOnSubmit} />
             </div>
         </div>
     );
