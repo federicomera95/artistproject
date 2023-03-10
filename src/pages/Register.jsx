@@ -40,7 +40,7 @@ const Register = () => {
         },
         _email: {
             id: 'email',
-            label: 'email',
+            label: 'Email',
             placeholder: 'Inserisci la tua email',
             error: errors.email && (dirty.email || touch.email) && errors.email,
             val: email,
@@ -49,7 +49,7 @@ const Register = () => {
         },
         _password: {
             id: 'password',
-            label: 'password',
+            label: 'Password',
             type: 'password',
             placeholder: 'Inserisci la tua password',
             error: errors.password && (dirty.password || touch.password) && errors.password,
