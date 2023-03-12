@@ -15,15 +15,9 @@ const Home = () => {
                 <div className='flex flex-col gap-4'>
                     <h3 className='font-medium text-dark-grey-placeholder'>Profili</h3>
                     <div className='grid gap-4 grid-flow-col auto-cols-[25%] overflow-x-auto overscroll-x-contain hide-scrollbar'>
-                        <ProfileCard username="Nome d'arte" />
-                        <ProfileCard username="Nome d'arte" />
-                        <ProfileCard username="Nome d'arte" />
-                        <ProfileCard username="Nome d'arte" />
-                        <ProfileCard username="Nome d'arte" />
-                        <ProfileCard username="Nome d'arte" />
-                        <ProfileCard username="Nome d'arte" />
-                        <ProfileCard username="Nome d'arte" />
-                        <ProfileCard username="Nome d'arte" />
+                        {new Array(10).fill(0).map((_, i) => (
+                            <ProfileCard key={i} username='Users' />
+                        ))}
                     </div>
                 </div>
 
@@ -31,14 +25,9 @@ const Home = () => {
                 <div className='flex flex-col gap-4'>
                     <h3 className='font-medium text-dark-grey-placeholder'>Foto</h3>
                     <div className='grid gap-4 grid-flow-col auto-cols-[40%] overflow-x-auto overscroll-x-contain hide-scrollbar '>
-                        <PhotoCard title='placeholder 2' username='User 2' />
-                        <PhotoCard title='placeholder 2' username='User 2' />
-                        <PhotoCard title='placeholder 2' username='User 2' />
-                        <PhotoCard title='placeholder 2' username='User 2' />
-                        <PhotoCard title='placeholder 2' username='User 2' />
-                        <PhotoCard title='placeholder 2' username='User 2' />
-                        <PhotoCard title='placeholder 2' username='User 2' />
-                        <PhotoCard title='placeholder 2' username='User 2' />
+                        {new Array(10).fill(0).map((_, i) => (
+                            <PhotoCard key={i} username='Users' title='Username' />
+                        ))}
                     </div>
                 </div>
 
@@ -46,25 +35,22 @@ const Home = () => {
                 <div className='flex flex-col gap-4'>
                     <h3 className='font-medium text-dark-grey-placeholder'>Video</h3>
                     <div className='grid gap-4 grid-flow-col auto-cols-[42%] overflow-x-auto overscroll-x-contain hide-scrollbar'>
-                        <VideoCard name='User-1' title='User' />
-                        <VideoCard name='User-1' title='User' />
-                        <VideoCard name='User-1' title='User' />
-                        <VideoCard name='User-1' title='User' />
-                        <VideoCard name='User-1' title='User' />
-                        <VideoCard name='User-1' title='User' />
-                        <VideoCard name='User-1' title='User' />
+                        {new Array(10).fill(0).map((_, i) => (
+                            <VideoCard key={i} name='Users' title='Username' />
+                        ))}
                     </div>
                 </div>
                 <div className='flex flex-col gap-4 '>
                     <h3 className='font-medium text-dark-grey-placeholder'>Audio</h3>
                     <div className='grid gap-4 grid-flow-col auto-cols-[25%] overflow-x-auto overscroll-x-contain hide-scrollbar'>
-                        <AudioCard title='Title' username='User' thumbnail='/photo-default.svg' />
-                        <AudioCard title='Title' username='User' thumbnail='/photo-default.svg' />
-                        <AudioCard title='Title' username='User' thumbnail='/photo-default.svg' />
-                        <AudioCard title='Title' username='User' thumbnail='/photo-default.svg' />
-                        <AudioCard title='Title' username='User' thumbnail='/photo-default.svg' />
-                        <AudioCard title='Title' username='User' thumbnail='/photo-default.svg' />
-                        <AudioCard title='Title' username='User' thumbnail='/photo-default.svg' />
+                        {new Array(10).fill(0).map((_, i) => (
+                            <AudioCard
+                                key={i}
+                                username='Users'
+                                title='Username'
+                                thumbnail='/photo-default.svg'
+                            />
+                        ))}
                     </div>
                 </div>
                 <div className='grid grid-cols-2 gap-5'>
