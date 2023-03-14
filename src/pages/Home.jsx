@@ -1,8 +1,9 @@
+import '../styles/hide-scrollbar.css';
+
 import ProfileCard from '../components/atoms/ProfileCard';
 import PhotoCard from '../components/molecules/PhotoCard';
 import VideoCard from '../components/molecules/VideoCard';
 import AudioCard from '../components/molecules/AudioCard';
-import '../styles/hide-scrollbar.css';
 import GenreCard from '../components/molecules/GenreCard';
 
 const Home = () => {

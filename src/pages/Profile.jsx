@@ -4,8 +4,8 @@ import { Camera, Cross, Edit, Logout, Microphone, Photo } from '../assets/icons'
 
 import Button from '../components/atoms/Button';
 import AudioCard from '../components/molecules/AudioCard';
+import ExtendedVideoCard from '../components/molecules/ExtendedVideoCard';
 import PhotoCard from '../components/molecules/PhotoCard';
-import VideoCard from '../components/molecules/VideoCard';
 
 const navigation = ['Tutti', 'Foto', 'Audio', 'Video'];
 
@@ -42,8 +42,11 @@ const contents = [
         type: 'video',
         name: 'Matteo',
         title: 'Video bellissimo',
+        tags: ['Rock', 'Blues', 'Chitarra'],
+        description:
+            'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.',
         avatar: '',
-        video: ''
+        video: '/media/sample-video.mp4'
     },
     {
         type: 'foto',
@@ -56,15 +59,21 @@ const contents = [
         type: 'video',
         name: 'Matteo',
         title: 'Video bellissimo',
+        tags: ['Rock', 'Blues', 'Chitarra'],
+        description:
+            'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.',
         avatar: '',
-        video: ''
+        video: '/media/sample-video-2.mp4'
     },
     {
         type: 'video',
         name: 'Matteo',
         title: 'Video bellissimo',
+        tags: ['Rock', 'Blues', 'Chitarra'],
+        description:
+            'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.',
         avatar: '',
-        video: ''
+        video: '/media/sample-video-3.mp4'
     }
 ];
 
@@ -139,7 +148,7 @@ const Profile = () => {
                 <div className='w-screen relative right-5 flex justify-between text-center'>
                     {navigation.map((nav, i) => (
                         <p
-                            key={i}
+                            key={`${nav}-${i}`}
                             id={nav.toLowerCase()}
                             className={`w-1/4 px-[10px] py-3 font-medium border-b border-dark-grey-disabled ${
                                 currentPage === nav.toLowerCase()
@@ -166,7 +175,7 @@ const Profile = () => {
                             case 'foto':
                                 return (
                                     <PhotoCard
-                                        key={i}
+                                        key={`${content.title}-${i}`}
                                         avatar={content.avatar}
                                         image={content.image}
                                         title={content.title}
@@ -176,7 +185,7 @@ const Profile = () => {
                             case 'audio':
                                 return (
                                     <AudioCard
-                                        key={i}
+                                        key={`${content.title}-${i}`}
                                         username={content.username}
                                         title={content.title}
                                         thumbnail={content.thumbnail}
@@ -185,12 +194,14 @@ const Profile = () => {
                                 );
                             case 'video':
                                 return (
-                                    <VideoCard
-                                        key={i}
+                                    <ExtendedVideoCard
+                                        key={`${content.title}-${i}`}
                                         name={content.name}
                                         title={content.title}
+                                        description={content.description}
                                         avatar={content.avatar}
                                         video={content.video}
+                                        tags={content.tags}
                                     />
                                 );
                         }

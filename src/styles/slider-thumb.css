@@ -1,0 +1,13 @@
+@tailwind components;
+
+@layer components {
+    .range-input > input::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        height: 20px;
+        width: 20px;
+        border-radius: 50%;
+        pointer-events: auto;
+        cursor: pointer;
+        @apply bg-primary-base;
+    }
+}

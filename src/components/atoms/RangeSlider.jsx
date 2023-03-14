@@ -1,4 +1,4 @@
-import './rangeSlider.css';
+import '../../styles/slider-thumb.css';
 
 import { useState } from 'react';
 
@@ -58,20 +58,20 @@ const RangeSlider = ({ id, defaultValues = [25, 45] }) => {
                     {max}
                 </p>
             </div>
-            <div className='slider'>
+            <div className='slider h-2 relative bg-primary-disabled rounded-[30px]'>
                 <div
-                    className='track'
+                    className='h-full absolute bg-primary-base  rounded-[30px]'
                     style={{
                         left: `${getLeft()}%`,
                         right: `${getRight()}%`
                     }}
                 ></div>
             </div>
-            <div className='range-input'>
+            <div className='range-input relative'>
                 <input
                     id='min'
                     type='range'
-                    className='range-min'
+                    className='range-min w-full h-2 absolute -top-8 pointer-events-none outline-none appearance-none bg-transparent'
                     min={minValue}
                     max={maxValue}
                     value={min}
@@ -80,7 +80,7 @@ const RangeSlider = ({ id, defaultValues = [25, 45] }) => {
                 <input
                     id='max'
                     type='range'
-                    className='range-max'
+                    className='range-max w-full h-2 absolute -top-8 pointer-events-none outline-none appearance-none bg-transparent'
                     min={minValue}
                     max={maxValue}
                     value={max}
