@@ -20,7 +20,9 @@ module.exports = {
                 warning: '#f59e0b',
                 white: '#ffffff',
                 'profile-gradient-from': 'rgb(147,51,234)',
-                'profile-gradient-to': 'rgb(73,8,132)'
+                'profile-gradient-to': 'rgb(73,8,132)',
+                'card-gradient-from': 'rgba(31, 41, 55, 0)',
+                'card-gradient-to': 'rgba(31, 41, 55, 100)'
             },
             padding: {
                 ms: '10px 16px',
@@ -31,6 +33,7 @@ module.exports = {
                 hover: '0 4px 8px',
                 focus: '0 0 0 2px',
                 snack: '0 4px 16px',
+                card: '0 4px 12px 0 rgba(57, 83, 118, 0.2)',
                 navbar: '0 -4px 8px 0 rgba(31, 41, 55, 0.16)',
                 'play-pause': '0px 4px 8px rgba(147, 51, 234, 0.3)'
             }
