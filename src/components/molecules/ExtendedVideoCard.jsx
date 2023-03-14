@@ -1,7 +1,15 @@
 import { useState, useRef } from 'react';
 import { ToggleVideo } from '../../assets/icons';
 
-const ExtendedVideoCard = ({ avatar, name, video, title, description, tags = [] }) => {
+const ExtendedVideoCard = ({
+    avatar,
+    username,
+    video,
+    title,
+    thumbnail,
+    description,
+    tags = []
+}) => {
     const [isPlaying, setIsPlaying] = useState(false);
     const videoRef = useRef(null);
 
@@ -18,7 +26,7 @@ const ExtendedVideoCard = ({ avatar, name, video, title, description, tags = [] 
             <div className='flex px-4 py-2'>
                 <div className='flex items-center gap-2'>
                     <img className='w-6 h-6' src='/logo-default.svg' alt='' />
-                    <h3 className='text-[10px] text-dark-grey-base'>{name}</h3>
+                    <h3 className='text-[10px] text-dark-grey-base'>{username}</h3>
                 </div>
             </div>
             <div className='relative h-[188px] bg-black'>

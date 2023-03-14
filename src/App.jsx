@@ -59,6 +59,7 @@ const App = () => {
                         <Route path='add-video' element={<AddVideo />} />
                     </Route>
                 </Route>
+                <Route path='*' element='Not Found' />
             </Routes>
             {/* to call snackbar import toast and call method:
             toast('text here',{autoClose: milliseconds autoclose, type: 'success' || 'error'});  */}

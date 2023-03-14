@@ -33,8 +33,10 @@ module.exports = {
                 hover: '0 4px 8px',
                 focus: '0 0 0 2px',
                 snack: '0 4px 16px',
-                card: '0 4px 12px 0 rgba(57, 83, 118, 0.2)',
                 navbar: '0 -4px 8px 0 rgba(31, 41, 55, 0.16)',
+                card: '0 4px 12px 0 rgba(57, 83, 118, 0.2)',
+                'card-top': '0 -2px 0 0 #F5F5F5',
+                'card-bot': '0 2px 0 0 #F5F5F5',
                 'play-pause': '0px 4px 8px rgba(147, 51, 234, 0.3)'
             }
         }

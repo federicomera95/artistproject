@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Camera, Cross, Edit, Logout, Microphone, Photo } from '../assets/icons';
 
 import Button from '../components/atoms/Button';
-import AudioCard from '../components/molecules/AudioCard';
+import ExtendedAudioCard from '../components/molecules/ExtendedAudioCard';
 import ExtendedVideoCard from '../components/molecules/ExtendedVideoCard';
 import PhotoCard from '../components/molecules/PhotoCard';
 
@@ -19,17 +19,25 @@ const contents = [
     },
     {
         type: 'audio',
+        avatar: '',
         username: 'Matteo',
         title: 'Audio bellissimo',
+        description:
+            'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.',
         thumbnail: '',
-        audio: ''
+        audio: '/media/sample-audio.mp3',
+        tags: ['Rock', 'Blues', 'Chitarra']
     },
     {
         type: 'audio',
+        avatar: '',
         username: 'Matteo',
         title: 'Audio bruttissimo',
         thumbnail: '',
-        audio: ''
+        description:
+            'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.',
+        audio: '/media/sample-audio.mp3',
+        tags: ['Rock', 'Blues', 'Chitarra']
     },
     {
         type: 'foto',
@@ -40,9 +48,10 @@ const contents = [
     },
     {
         type: 'video',
-        name: 'Matteo',
+        username: 'Matteo',
         title: 'Video bellissimo',
         tags: ['Rock', 'Blues', 'Chitarra'],
+        thumbnail: '',
         description:
             'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.',
         avatar: '',
@@ -57,9 +66,10 @@ const contents = [
     },
     {
         type: 'video',
-        name: 'Matteo',
+        username: 'Matteo',
         title: 'Video bellissimo',
         tags: ['Rock', 'Blues', 'Chitarra'],
+        thumbnail: '',
         description:
             'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.',
         avatar: '',
@@ -67,9 +77,10 @@ const contents = [
     },
     {
         type: 'video',
-        name: 'Matteo',
+        username: 'Matteo',
         title: 'Video bellissimo',
         tags: ['Rock', 'Blues', 'Chitarra'],
+        thumbnail: '',
         description:
             'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.',
         avatar: '',
@@ -184,19 +195,23 @@ const Profile = () => {
                                 );
                             case 'audio':
                                 return (
-                                    <AudioCard
+                                    <ExtendedAudioCard
                                         key={`${content.title}-${i}`}
                                         username={content.username}
                                         title={content.title}
                                         thumbnail={content.thumbnail}
+                                        description={content.description}
                                         audio={content.audio}
+                                        tags={content.tags}
+                                        avatar={content.avatar}
                                     />
                                 );
                             case 'video':
                                 return (
                                     <ExtendedVideoCard
                                         key={`${content.title}-${i}`}
-                                        name={content.name}
+                                        username={content.username}
+                                        thumbnail={content.thumbnail}
                                         title={content.title}
                                         description={content.description}
                                         avatar={content.avatar}

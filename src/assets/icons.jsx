@@ -310,6 +310,37 @@ const ToggleVideo = () => {
     );
 };
 
+const PauseAudio = () => {
+    return (
+        <svg
+            width='11'
+            height='11'
+            viewBox='0 0 16 16'
+            fill='none'
+            xmlns='http://www.w3.org/2000/svg'
+        >
+            <path
+                fillRule='evenodd'
+                clipRule='evenodd'
+                d='M12.5 14.5V14.5C11.5685 14.5 10.8125 13.772 10.8125 12.875L10.8125 3.125C10.8125 2.228 11.5685 1.5 12.5 1.5V1.5C13.4315 1.5 14.1875 2.228 14.1875 3.125L14.1875 12.875C14.1875 13.772 13.4315 14.5 12.5 14.5Z'
+                stroke='#9333EA'
+                strokeWidth='2'
+                strokeLinecap='round'
+                strokeLinejoin='round'
+            />
+            <path
+                fillRule='evenodd'
+                clipRule='evenodd'
+                d='M3.5 14.5V14.5C2.5685 14.5 1.8125 13.772 1.8125 12.875L1.8125 3.125C1.8125 2.228 2.5685 1.5 3.5 1.5V1.5C4.4315 1.5 5.1875 2.228 5.1875 3.125L5.1875 12.875C5.1875 13.772 4.4315 14.5 3.5 14.5Z'
+                stroke='#9333EA'
+                strokeWidth='2'
+                strokeLinecap='round'
+                strokeLinejoin='round'
+            />
+        </svg>
+    );
+};
+
 const Profile = ({ dark }) => {
     let color = '#9333EA';
     if (dark) color = '#4B5563';
@@ -618,6 +649,7 @@ export {
     Home,
     ToggleAudio,
     ToggleVideo,
+    PauseAudio,
     Profile,
     Search,
     Upload,
