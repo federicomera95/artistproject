@@ -5,17 +5,20 @@ import { Camera, Cross, Edit, Logout, Microphone, Photo } from '../assets/icons'
 import Button from '../components/atoms/Button';
 import ExtendedAudioCard from '../components/molecules/ExtendedAudioCard';
 import ExtendedVideoCard from '../components/molecules/ExtendedVideoCard';
-import PhotoCard from '../components/molecules/PhotoCard';
+import ExtendedPhotoCard from '../components/molecules/ExtendedPhotoCard';
 
 const navigation = ['Tutti', 'Foto', 'Audio', 'Video'];
 
 const contents = [
     {
         type: 'foto',
-        username: 'Matteo',
-        title: 'Foto bellissima',
+        username: 'Giuseppe',
+        title: 'Anche oggi viva la legalità',
         avatar: '',
-        image: ''
+        image: '',
+        tags: ['Rock', 'Blues', 'Chitarra'],
+        description:
+            'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.'
     },
     {
         type: 'audio',
@@ -41,10 +44,13 @@ const contents = [
     },
     {
         type: 'foto',
-        username: 'Matteo',
-        title: 'Foto brutta',
+        username: 'Giuseppe',
+        title: 'Anche oggi viva la legalità',
         avatar: '',
-        image: ''
+        image: '',
+        tags: ['Rock', 'Blues', 'Chitarra'],
+        description:
+            'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.'
     },
     {
         type: 'video',
@@ -62,7 +68,10 @@ const contents = [
         username: 'Giuseppe',
         title: 'Anche oggi viva la legalità',
         avatar: '',
-        image: ''
+        image: '',
+        tags: ['Rock', 'Blues', 'Chitarra'],
+        description:
+            'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.'
     },
     {
         type: 'video',
@@ -185,12 +194,14 @@ const Profile = () => {
                         switch (content.type) {
                             case 'foto':
                                 return (
-                                    <PhotoCard
+                                    <ExtendedPhotoCard
                                         key={`${content.title}-${i}`}
                                         avatar={content.avatar}
                                         image={content.image}
                                         title={content.title}
                                         username={content.username}
+                                        description={content.description}
+                                        tags={content.tags}
                                     />
                                 );
                             case 'audio':
