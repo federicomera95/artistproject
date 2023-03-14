@@ -58,6 +58,12 @@ const ExtendedVideoCard = ({
                         </div>
                     </div>
                 </div>
+                <img
+                    className='w-full h-full absolute top-0 bottom-0 left-0 right-0 bg-black'
+                    style={{ opacity: !!video && isPlaying ? '0' : '1' }}
+                    src={`${thumbnail ? thumbnail : '/photo-default.svg'}`}
+                    alt=''
+                />
                 <div
                     className='w-full absolute top-0 bottom-0 left-0 right-0 from-card-gradient-from to-card-gradient-to bg-gradient-to-b'
                     style={{ opacity: !!video && isPlaying ? '0' : '1' }}
