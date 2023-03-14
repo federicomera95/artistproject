@@ -4,7 +4,7 @@ const ExtendedPhotoCard = ({ props }) => {
     const { id, avatar, artist, photo, title, description, tags = [] } = props;
 
     return (
-        <div className='flex flex-col w-full shadow-card shadow-[#39537633]/20 rounded-lg'>
+        <div className='flex flex-col w-full shadow-photoCard shadow-[#39537633]/20 rounded-lg'>
             <div className='flex justify-between items-center px-4 py-2'>
                 <div className='flex gap-2 justify-center items-center'>
                     <img
