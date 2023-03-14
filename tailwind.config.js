@@ -30,6 +30,7 @@ module.exports = {
             boxShadow: {
                 hover: '0 4px 8px',
                 focus: '0 0 0 2px',
+                card: '0 4px 12px',
                 snack: '0 4px 16px',
                 navbar: '0 -4px 8px 0 rgba(31, 41, 55, 0.16)',
                 'play-pause': '0px 4px 8px rgba(147, 51, 234, 0.3)'

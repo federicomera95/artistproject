@@ -608,6 +608,28 @@ const DeleteMark = () => {
     );
 };
 
+const Bookmark = () => {
+    return (
+        <svg
+            width='24'
+            height='24'
+            viewBox='0 0 24 24'
+            fill='none'
+            xmlns='http://www.w3.org/2000/svg'
+        >
+            <path
+                fillRule='evenodd'
+                clipRule='evenodd'
+                d='M4.99731 19.5035V6.99832C4.99731 5.34078 6.34102 3.99707 7.99856 3.99707H16.0019C17.6594 3.99707 19.0031 5.34078 19.0031 6.99832V19.5035C19.0033 19.6911 18.8985 19.8629 18.7318 19.9487C18.565 20.0345 18.3643 20.0198 18.2118 19.9107L12.2914 15.6809C12.1173 15.5563 11.8832 15.5563 11.7091 15.6809L5.78864 19.9097C5.63629 20.0187 5.43579 20.0335 5.26911 19.9479C5.10243 19.8624 4.99754 19.6909 4.99731 19.5035Z'
+                stroke='#1F2937'
+                strokeWidth='1.5'
+                strokeLinecap='round'
+                strokeLinejoin='round'
+            />
+        </svg>
+    );
+};
+
 export {
     ArrowDown,
     Cross,
@@ -626,5 +648,6 @@ export {
     Camera,
     Photo,
     CheckMark,
-    DeleteMark
+    DeleteMark,
+    Bookmark
 };
