@@ -288,11 +288,11 @@ const ToggleAudio = () => {
     );
 };
 
-const ToggleVideo = () => {
+const ToggleVideo = ({ w, h }) => {
     return (
         <svg
-            width='13'
-            height='12'
+            width={w ? w : '13'}
+            height={h ? h : '12'}
             viewBox='0 0 13 12'
             fill='none'
             xmlns='http://www.w3.org/2000/svg'
