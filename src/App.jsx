@@ -29,7 +29,8 @@ const Root = () => {
         if (pathname === '/') {
             navigate('/login');
         }
-    }, [pathname, navigate]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [pathname]);
 
     return (
         <>
@@ -59,7 +60,7 @@ const App = () => {
                     </Route>
                 </Route>
             </Routes>
-            {/* to call snackbar import toast and call method:  
+            {/* to call snackbar import toast and call method:
             toast('text here',{autoClose: milliseconds autoclose, type: 'success' || 'error'});  */}
             <Snackbar />
         </>

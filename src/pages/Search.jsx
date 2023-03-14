@@ -1,7 +1,7 @@
 import CitySelect from '../components/atoms/CitySelect';
 import TripleSelect from '../components/atoms/TripleSelect';
 import InputText from '../components/atoms/InputText';
-import RangeSlider from '../components/atoms/rangeSlider/rangeSlider';
+import RangeSlider from '../components/atoms/RangeSlider';
 import Button from '../components/atoms/Button';
 import ChipSelect from '../components/molecules/ChipSelect';
 import { useState } from 'react';
@@ -80,6 +80,7 @@ const Search = () => {
         handleOnSubmit
     } = useForm(stateSchema, rules, handleSubmit);
 
+    // eslint-disable-next-line no-unused-vars
     const { search, type, range_age, gender, city } = values;
 
     const INPUT_PROPS = {

@@ -1,5 +1,3 @@
-import { useEffect, useState } from 'react';
-
 const TripleSelect = ({ tripleSelectProps }) => {
     const {
         id,
@@ -8,8 +6,6 @@ const TripleSelect = ({ tripleSelectProps }) => {
         choices = ['Choice 1', 'Choice 2', 'Choice 3'],
         callback
     } = tripleSelectProps;
-
-    useEffect(() => {}, [val]);
 
     return (
         <div className='flex flex-col gap-4'>
