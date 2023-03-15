@@ -1,12 +1,14 @@
 import { useNavigate } from 'react-router-dom';
-
 import Button from '../components/atoms/Button';
 import InputText from '../components/atoms/InputText';
 import useForm from '../hooks/useForm';
 import { setValidator } from '../validation/validator';
+import { useState } from 'react';
 
 const Register = () => {
     const navigate = useNavigate();
+    const [chooseRole, setChooseRole] = useState(true);
+    const [role, setRole] = useState(true);
 
     const stateSchema = {
         username: { value: '', error: '' },
@@ -20,7 +22,7 @@ const Register = () => {
     };
 
     const handleSubmit = (values) => {
-        console.log(JSON.stringify({ ...values }, null, 2));
+        console.log(JSON.stringify({ ...values, role: role ? 'user' : 'artist' }, null, 2));
     };
 
     const { values, errors, dirty, touch, handleOnTouch, handleOnChange, handleOnSubmit, disable } =
@@ -59,31 +61,78 @@ const Register = () => {
         }
     };
 
+    const handleSelectRole = (e) => {
+        if ((e.target.id === 'user' && role) || (e.target.id === 'artist' && !role)) return;
+        setRole(!role);
+    };
+
     return (
-        <div className='flex flex-col '>
-            <div className='text-4xl text-center font-bold p-10'>
-                Artist<span className='text-primary-base'>All</span>
-            </div>
-            <div className='flex flex-col gap-6 '>
+        <div>
+            {(chooseRole && (
                 <div className='flex flex-col gap-4'>
-                    <InputText inputProps={INPUT_PROPS._username} />
-                    <InputText inputProps={INPUT_PROPS._email} />
-                    <InputText inputProps={INPUT_PROPS._password} />
+                    <div className='flex justify-center'>
+                        <img src='logo-artistall.svg' className='w-[150px]'></img>
+                    </div>
+                    <div className='flex gap-1 rounded-lg p-[16px] shadow-[0_4px_12px_-0px_rgba(57,83,118,0.2)]'>
+                        <input
+                            id='user'
+                            type='checkbox'
+                            checked={role}
+                            onChange={handleSelectRole}
+                        />
+                        <label htmlFor='user'>Utente</label>
+                    </div>
+                    <div className='flex gap-1 rounded-lg p-[16px] shadow-[0_4px_12px_-0px_rgba(57,83,118,0.2)]'>
+                        <input
+                            id='artist'
+                            type='checkbox'
+                            checked={!role}
+                            onChange={handleSelectRole}
+                        />
+                        <label htmlFor='artist'>Artista</label>
+                    </div>
+                    <Button
+                        text='Continua'
+                        style='primary'
+                        size='medium'
+                        callback={() => setChooseRole(false)}
+                    />
+                    <Button
+                        text='Accedi'
+                        style='tertiary'
+                        size='medium'
+                        callback={() => {
+                            navigate('/login');
+                        }}
+                    />
                 </div>
-                <Button
-                    id='login-sub'
-                    text='Crea il tuo account'
-                    callback={handleOnSubmit}
-                    disabled={disable}
-                />
-                {/* <Button text='Indietro' size='medium' style='secondary' /> */}
-                <Button
-                    text='Accedi'
-                    size='medium'
-                    style='tertiary'
-                    callback={() => navigate('/login')}
-                />
-            </div>
+            )) || (
+                <div className='flex flex-col '>
+                    <div className='text-4xl text-center font-bold p-10'>
+                        Artist<span className='text-primary-base'>All</span>
+                    </div>
+                    <div className='flex flex-col gap-6 '>
+                        <div className='flex flex-col gap-4'>
+                            <InputText inputProps={INPUT_PROPS._username} />
+                            <InputText inputProps={INPUT_PROPS._email} />
+                            <InputText inputProps={INPUT_PROPS._password} />
+                        </div>
+                        <Button
+                            id='login-sub'
+                            text='Crea il tuo account'
+                            callback={handleOnSubmit}
+                            disabled={disable}
+                        />
+                        {/* <Button text='Indietro' size='medium' style='secondary' /> */}
+                        <Button
+                            text='Accedi'
+                            size='medium'
+                            style='tertiary'
+                            callback={() => navigate('/login')}
+                        />
+                    </div>
+                </div>
+            )}
         </div>
     );
 };
