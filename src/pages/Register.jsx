@@ -69,42 +69,74 @@ const Register = () => {
     return (
         <div>
             {(chooseRole && (
-                <div className='flex flex-col gap-4'>
+                <div className='flex flex-col gap-14 mt-10'>
                     <div className='flex justify-center'>
                         <img src='logo-artistall.svg' className='w-[150px]'></img>
                     </div>
-                    <div className='flex gap-1 rounded-lg p-[16px] shadow-[0_4px_12px_-0px_rgba(57,83,118,0.2)]'>
-                        <input
-                            id='user'
-                            type='checkbox'
-                            checked={role}
-                            onChange={handleSelectRole}
-                        />
-                        <label htmlFor='user'>Utente</label>
+                    <div className='flex flex-col gap-6'>
+                        <div className='flex flex-col gap-4'>
+                            <div className='flex items-center rounded-lg p-4 shadow-card'>
+                                <input
+                                    id='user'
+                                    type='checkbox'
+                                    checked={role}
+                                    onChange={handleSelectRole}
+                                    className={`peer absolute appearance-none focus:outline-none
+                                    checked:before:content-[''] checked:before:inline-block checked:before:bg-white
+                                    checked:before:w-[0.75em] checked:before:h-[0.75em] checked:before:rounded-full checked:before:relative checked:before:left-[6px]`}
+                                />
+                                <label
+                                    htmlFor='user'
+                                    className={`flex items-center gap-[0.5em]
+                                    before:content-[''] before:w-[1.5em] before:h-[1.5em] before:border-[0.1em] before:rounded-[50%] before:border-dark-grey-disabled
+                                    peer-checked:before:bg-primary-base peer-checked:before:border-none
+                                    peer-hover:before:border-primary-hover peer-focus:before:shadow-focus peer-focus:before:shadow-primary-disabled peer-focus:before:border-primary-hover
+                                    peer-disabled:text-dark-grey-disabled peer-checked:peer-disabled:before:bg-primary-disabled
+                                    peer-hover:peer-disabled:before:border-dark-grey-disabled`}
+                                >
+                                    Utente
+                                </label>
+                            </div>
+                            <div className='flex items-center rounded-lg p-4 shadow-card'>
+                                <input
+                                    id='artist'
+                                    type='checkbox'
+                                    checked={!role}
+                                    onChange={handleSelectRole}
+                                    className={`peer absolute appearance-none focus:outline-none
+                                    checked:before:content-[''] checked:before:inline-block checked:before:bg-white
+                                    checked:before:w-[0.75em] checked:before:h-[0.75em] checked:before:rounded-full checked:before:relative checked:before:left-[6px]`}
+                                />
+                                <label
+                                    htmlFor='artist'
+                                    className={`flex items-center gap-[0.5em]
+                                    before:content-[''] before:w-[1.5em] before:h-[1.5em] before:border-[0.1em] before:rounded-[50%] before:border-dark-grey-disabled
+                                    peer-checked:before:bg-primary-base peer-checked:before:border-none
+                                    peer-hover:before:border-primary-hover peer-focus:before:shadow-focus peer-focus:before:shadow-primary-disabled peer-focus:before:border-primary-hover
+                                    peer-disabled:text-dark-grey-disabled peer-checked:peer-disabled:before:bg-primary-disabled
+                                    peer-hover:peer-disabled:before:border-dark-grey-disabled`}
+                                >
+                                    Artista
+                                </label>
+                            </div>
+                        </div>
+                        <div className='flex flex-col gap-6'>
+                            <Button
+                                text='Continua'
+                                style='primary'
+                                size='medium'
+                                callback={() => setChooseRole(false)}
+                            />
+                            <Button
+                                text='Accedi'
+                                style='tertiary'
+                                size='medium'
+                                callback={() => {
+                                    navigate('/login');
+                                }}
+                            />
+                        </div>
                     </div>
-                    <div className='flex gap-1 rounded-lg p-[16px] shadow-[0_4px_12px_-0px_rgba(57,83,118,0.2)]'>
-                        <input
-                            id='artist'
-                            type='checkbox'
-                            checked={!role}
-                            onChange={handleSelectRole}
-                        />
-                        <label htmlFor='artist'>Artista</label>
-                    </div>
-                    <Button
-                        text='Continua'
-                        style='primary'
-                        size='medium'
-                        callback={() => setChooseRole(false)}
-                    />
-                    <Button
-                        text='Accedi'
-                        style='tertiary'
-                        size='medium'
-                        callback={() => {
-                            navigate('/login');
-                        }}
-                    />
                 </div>
             )) || (
                 <div className='flex flex-col '>
@@ -123,7 +155,6 @@ const Register = () => {
                             callback={handleOnSubmit}
                             disabled={disable}
                         />
-                        {/* <Button text='Indietro' size='medium' style='secondary' /> */}
                         <Button
                             text='Accedi'
                             size='medium'
@@ -138,3 +169,103 @@ const Register = () => {
 };
 
 export default Register;
+
+/*
+<div className='radio-container flex items-center gap-[0.5em]'>
+            <input
+                type='radio'
+                id={id}
+                defaultChecked={checked}
+                disabled={disabled}
+                className={`peer absolute appearance-none flex justify-center items-center focus:outline-none
+                checked:before:content-[''] checked:before:inline-block checked:before:bg-white
+                checked:before:w-[0.5em] checked:before:h-[0.5em] checked:before:rounded-full checked:before:relative checked:before:left-[0.25em]`}
+            />
+            <label
+                htmlFor={id}
+                className={`flex items-center gap-[0.5em]
+                before:content-[''] before:w-[1em] before:h-[1em] before:border-[0.1em] before:rounded-[50%] before:border-dark-grey-disabled
+                peer-checked:before:bg-primary-base peer-checked:before:border-none
+                peer-hover:before:border-primary-hover peer-focus:before:shadow-focus peer-focus:before:shadow-primary-disabled peer-focus:before:border-primary-hover
+                peer-disabled:text-dark-grey-disabled peer-checked:peer-disabled:before:bg-primary-disabled
+                peer-hover:peer-disabled:before:border-dark-grey-disabled`}
+            >
+                {text}
+            </label>
+        </div>
+*/
+
+/*
+<div>
+            {(chooseRole && (
+                <div className='flex flex-col gap-14 mt-10'>
+                    <div className='flex justify-center'>
+                        <img src='logo-artistall.svg' className='w-[150px]'></img>
+                    </div>
+                    <div className='flex flex-col gap-6'>
+                        <div className='flex flex-col gap-4'>
+                            <div className='flex gap-1 rounded-lg p-4 shadow-card'>
+                                <input
+                                    id='user'
+                                    type='checkbox'
+                                    checked={role}
+                                    onChange={handleSelectRole}
+                                />
+                                <label htmlFor='user'>Utente</label>
+                            </div>
+                            <div className='flex gap-1 rounded-lg p-4 shadow-card'>
+                                <input
+                                    id='artist'
+                                    type='checkbox'
+                                    checked={!role}
+                                    onChange={handleSelectRole}
+                                />
+                                <label htmlFor='artist'>Artista</label>
+                            </div>
+                        </div>
+                        <div className='flex flex-col gap-6'>
+                            <Button
+                                text='Continua'
+                                style='primary'
+                                size='medium'
+                                callback={() => setChooseRole(false)}
+                            />
+                            <Button
+                                text='Accedi'
+                                style='tertiary'
+                                size='medium'
+                                callback={() => {
+                                    navigate('/login');
+                                }}
+                            />
+                        </div>
+                    </div>
+                </div>
+            )) || (
+                <div className='flex flex-col '>
+                    <div className='text-4xl text-center font-bold p-10'>
+                        Artist<span className='text-primary-base'>All</span>
+                    </div>
+                    <div className='flex flex-col gap-6 '>
+                        <div className='flex flex-col gap-4'>
+                            <InputText inputProps={INPUT_PROPS._username} />
+                            <InputText inputProps={INPUT_PROPS._email} />
+                            <InputText inputProps={INPUT_PROPS._password} />
+                        </div>
+                        <Button
+                            id='login-sub'
+                            text='Crea il tuo account'
+                            callback={handleOnSubmit}
+                            disabled={disable}
+                        />
+                        <Button
+                            text='Accedi'
+                            size='medium'
+                            style='tertiary'
+                            callback={() => navigate('/login')}
+                        />
+                    </div>
+                </div>
+            )}
+        </div>
+*/
