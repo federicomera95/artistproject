@@ -70,7 +70,7 @@ const ExtendedAudioCard = ({
     };
 
     return (
-        <div className='flex flex-col rounded-lg shadow-card'>
+        <div className='w-full flex flex-col rounded-lg shadow-card'>
             <div className='flex px-4 py-2 shadow-card-bot'>
                 <div className='flex items-center gap-2'>
                     <img className='w-6 h-6' src={avatar ? avatar : '/logo-default.svg'} alt='' />
