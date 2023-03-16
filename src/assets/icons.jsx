@@ -310,11 +310,11 @@ const ToggleVideo = ({ w, h }) => {
     );
 };
 
-const PauseAudio = () => {
+const PauseAudio = ({ w, h }) => {
     return (
         <svg
-            width='11'
-            height='11'
+            width={w ? w : '11'}
+            height={h ? h : '11'}
             viewBox='0 0 16 16'
             fill='none'
             xmlns='http://www.w3.org/2000/svg'

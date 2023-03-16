@@ -1,0 +1,51 @@
+input[type='range'] {
+    -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
+    width: 100%; /* Specific width is required for Firefox. */
+    background: #f3e8ff;
+    border-radius: 40px;
+    height: 8px;
+    overflow: hidden;
+    /* Otherwise white in Chrome */
+}
+
+input[type='range']::-webkit-slider-thumb {
+    -webkit-appearance: none;
+}
+
+input[type='range']:focus {
+    outline: none; /* Removes the blue border. You should probably do some kind of focus styling for accessibility reasons though. */
+}
+
+input[type='range']::-ms-track {
+    width: 100%;
+    cursor: pointer;
+
+    /* Hides the slider so custom styles can be added */
+    background: transparent;
+    border-color: transparent;
+    color: transparent;
+}
+
+/* Special styling for WebKit/Blink */
+input[type='range']::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 12px;
+    width: 12px;
+    border-radius: 157.5px;
+    background: white;
+    cursor: pointer;
+    margin-top: -2px; /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
+    /* Add cool effects to your sliders! */
+    box-shadow: -100vw 0 0 calc(100vw - 10px) rgba(147, 51, 234, 0.3);
+}
+
+/* All the same stuff for Firefox */
+input[type='range']::-moz-range-thumb {
+    height: 12px;
+    width: 12px;
+    border-radius: 157.5px;
+    background: white;
+    cursor: pointer;
+    margin-top: -2px; /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
+    box-shadow: 0px 2px 6px rgba(147, 51, 234, 0.3); /* Add cool effects to your sliders! */
+}
