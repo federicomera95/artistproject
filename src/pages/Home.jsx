@@ -9,9 +9,9 @@ import GenreCard from '../components/molecules/GenreCard';
 const Home = () => {
     return (
         <div className='flex flex-col pt-9 gap-9 pb-[80px]'>
-            <h1 className='mx-auto font-bold text-4xl text-dark-grey-base'>
-                Artist<span className='text-primary-base'>All</span>
-            </h1>
+            <div className='ml-[25%]'>
+                <img src='../logo-artistall.svg' alt='logo' />
+            </div>
             <div className='flex flex-col gap-4'>
                 <div className='flex flex-col gap-4'>
                     <h3 className='font-medium text-dark-grey-placeholder'>Profili</h3>
