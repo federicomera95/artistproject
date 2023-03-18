@@ -1,19 +1,20 @@
 //react
-import { useEffect } from 'react';
+import { Suspense, useEffect, lazy } from 'react';
 import { Routes, Route, Outlet, useLocation, useNavigate } from 'react-router-dom';
 
 //pages
-import Home from './pages/Home';
-import Login from './pages/Login';
-import Links from './pages/Links';
-import Search from './pages/Search';
-import Explore from './pages/Explore';
-import Profile from './pages/Profile';
-import AddAudio from './pages/AddAudio';
-import AddPhoto from './pages/AddPhoto';
-import AddVideo from './pages/AddVideo';
-import Register from './pages/Register';
-import EditProfile from './pages/EditProfile';
+const Home = lazy(() => import('./pages/Home'));
+const Login = lazy(() => import('./pages/Login'));
+const Links = lazy(() => import('./pages/Links'));
+const Search = lazy(() => import('./pages/Search'));
+const Explore = lazy(() => import('./pages/Explore'));
+const Profile = lazy(() => import('./pages/Profile'));
+const AddAudio = lazy(() => import('./pages/AddAudio'));
+const AddPhoto = lazy(() => import('./pages/AddPhoto'));
+const AddVideo = lazy(() => import('./pages/AddVideo'));
+const Register = lazy(() => import('./pages/Register'));
+const EditProfile = lazy(() => import('./pages/EditProfile'));
+import Loading from './pages/Loading';
 
 //component
 import Snackbar from './components/atoms/Snackbar';
@@ -33,10 +34,10 @@ const Root = () => {
     }, [pathname]);
 
     return (
-        <>
+        <Suspense fallback={<Loading />}>
             <Outlet />
             {!matchNav.some((path) => pathname.includes(path)) && pathname !== '/' && <Navbar />}
-        </>
+        </Suspense>
     );
 };
 
