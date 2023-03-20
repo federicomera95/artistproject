@@ -7,11 +7,11 @@ const useFetch = (url, options = { method: 'GET', data: {} }) => {
     const [data, setData] = useState(null);
     const [load, setLoad] = useState(false);
 
-    const fetchHook = async () => {
+    const fetch = async () => {
         setError(null);
         setData(null);
+        setLoad(true);
         try {
-            setLoad(true);
             const _data = await axios({
                 url,
                 ...options
@@ -19,12 +19,12 @@ const useFetch = (url, options = { method: 'GET', data: {} }) => {
             setData(_data);
         } catch (err) {
             console.log(err);
-            setError("Something went wrong");
+            setError(true);
         } finally {
             setLoad(false);
         }
     };
-    return [error, data, load];
+    return [error, data, load, fetch];
 };
 
 export default useFetch;
