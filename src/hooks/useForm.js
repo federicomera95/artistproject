@@ -159,6 +159,51 @@ function useForm(stateSchema = {}, stateValidatorSchema = {}, submitFormCallback
         [values, setValues]
     );
 
+    const handleRangeChange = useCallback(
+        ({ target }, id, minDistance) => {
+            setIsDirty(true);
+            if (values[id][1] - values[id][0] <= minDistance) {
+                if (target.id === 'min') {
+                    if (target.value < values[id][1] && target.value < values[id][0]) {
+                        setValues((prevState) => ({
+                            ...prevState,
+                            [id]: [target.value, prevState[id][1]]
+                        }));
+                    } else {
+                        setValues((prevState) => ({
+                            ...prevState,
+                            [id]: [prevState[id][1] - minDistance, prevState[id][1]]
+                        }));
+                    }
+                }
+                if (target.id === 'max') {
+                    if (target.value > values[id][1] && target.value > values[id][0]) {
+                        setValues((prevState) => ({
+                            ...prevState,
+                            [id]: [prevState[id][0], target.value]
+                        }));
+                    } else {
+                        setValues((prevState) => ({
+                            ...prevState,
+                            [id]: [prevState[id][0], prevState[id][0] + minDistance]
+                        }));
+                    }
+                }
+            } else {
+                target.id === 'min'
+                    ? setValues((prevState) => ({
+                          ...prevState,
+                          [id]: [Number(target.value), prevState[id][1]]
+                      }))
+                    : setValues((prevState) => ({
+                          ...prevState,
+                          [id]: [prevState[id][0], Number(target.value)]
+                      }));
+            }
+        },
+        [values]
+    );
+
     const handleOnSubmit = useCallback(
         (event) => {
             event.preventDefault();
@@ -191,6 +236,7 @@ function useForm(stateSchema = {}, stateValidatorSchema = {}, submitFormCallback
         handleOnTouch,
         handleOnChange,
         handleOnClick,
+        handleRangeChange,
         handleOnSubmit,
         values,
         errors,

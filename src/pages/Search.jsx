@@ -34,14 +34,14 @@ const Search = () => {
     const stateSchema = {
         search: { value: '', error: '' },
         type: { value: [true, false, false], error: '' },
-        range_age: { value: '', error: '' },
+        rangeAge: { value: [25, 45], error: '' },
         gender: { value: [true, false, false], error: '' },
         city: { value: 'seleziona una città', error: '' }
     };
     const rules = {
         search: setValidator(false),
         type: setValidator(false),
-        range_age: setValidator(false),
+        rangeAge: setValidator(false),
         gender: setValidator(false),
         city: setValidator(false)
     };
@@ -77,11 +77,12 @@ const Search = () => {
         handleOnTouch,
         handleOnClick,
         handleOnChange,
+        handleRangeChange,
         handleOnSubmit
     } = useForm(stateSchema, rules, handleSubmit);
 
     // eslint-disable-next-line no-unused-vars
-    const { search, type, range_age, gender, city } = values;
+    const { search, type, rangeAge, gender, city } = values;
 
     const INPUT_PROPS = {
         _search: {
@@ -101,14 +102,10 @@ const Search = () => {
             callback: handleOnClick,
             choices: ['Foto', 'Video', 'Audio']
         },
-        _range_age: {
-            id: 'search',
-            label: 'Cerca',
-            placeholder: 'Inserisci un nome, un genere, etc...',
-            error: errors.search && (dirty.search || touch.search) && errors.search,
-            val: search,
-            change: handleOnChange,
-            blur: handleOnTouch
+        _rangeAge: {
+            id: 'rangeAge',
+            val: rangeAge,
+            change: handleRangeChange
         },
         _gender: {
             id: 'gender',
@@ -130,7 +127,7 @@ const Search = () => {
             <h3 className='font-medium text-dark-grey-placeholder'>Filtri</h3>
             <div className='flex flex-col gap-8'>
                 <TripleSelect tripleSelectProps={INPUT_PROPS._type} />
-                <RangeSlider id='slider' />
+                <RangeSlider rangeSliderProps={INPUT_PROPS._rangeAge} />
                 <TripleSelect tripleSelectProps={INPUT_PROPS._gender} />
                 <CitySelect selectProps={INPUT_PROPS._city} />
                 <ChipSelect

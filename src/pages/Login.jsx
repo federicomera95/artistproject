@@ -50,8 +50,8 @@ const Login = () => {
 
     return (
         <div className='flex w-[100%] flex-col gap-[48px] py-[36px]'>
-            <div className='ml-[25%]'>
-                <img src='../logo-artistall.svg' alt='logo' />
+            <div className='flex justify-center'>
+                <img src='logo-artistall.svg' alt='logo' />
             </div>
             <div>
                 <form className='flex flex-col gap-[24px]'>

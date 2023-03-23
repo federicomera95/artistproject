@@ -67,11 +67,11 @@ const Register = () => {
     };
 
     return (
-        <div>
+        <div className='w-full'>
             {(chooseRole && (
                 <div className='flex flex-col gap-14 mt-10'>
                     <div className='flex justify-center'>
-                        <img src='logo-artistall.svg' className='w-[150px]'></img>
+                        <img src='logo-artistall.svg' />
                     </div>
                     <div className='flex flex-col gap-6'>
                         <div className='flex flex-col gap-4'>
