@@ -18,10 +18,6 @@ const ProgressBar = ({ progressBarRef, audioRef, timeProgress, duration }) => {
         return '00:00';
     };
 
-    useEffect(() => {
-        console.log(audioRef?.current?.currentTime);
-    }, [audioRef]);
-
     return (
         <div className='flex flex-col w-full gap-1'>
             <input
