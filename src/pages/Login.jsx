@@ -73,7 +73,7 @@ const Login = () => {
                         text='Registrati'
                         size='medium'
                         style='tertiary'
-                        callback={() => navigate('/register')}
+                        callback={() => navigate('/signup')}
                     />
                 </form>
             </div>
