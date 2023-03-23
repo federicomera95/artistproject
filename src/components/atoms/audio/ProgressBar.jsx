@@ -1,5 +1,3 @@
-import { useEffect } from 'react';
-
 import '../../../styles/slider-audio.css';
 
 const ProgressBar = ({ progressBarRef, audioRef, timeProgress, duration }) => {
