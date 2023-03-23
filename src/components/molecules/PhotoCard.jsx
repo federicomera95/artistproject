@@ -1,6 +1,7 @@
-const PhotoCard = ({ username, title, avatar, image }) => {
+const PhotoCard = ({ props, callback }) => {
+    const { username, title, avatar, thumbnail } = props;
     return (
-        <div className='flex flex-col gap-2 text-dark-grey-base'>
+        <div className='flex flex-col gap-2 text-dark-grey-base' onClick={() => callback(props)}>
             <div className='flex flex-col gap-1'>
                 <div className='flex items-center gap-1'>
                     <img
@@ -12,7 +13,7 @@ const PhotoCard = ({ username, title, avatar, image }) => {
                 <div className='flex gap-4'>
                     <img
                         className='w-[150px] h-[150px] rounded-lg'
-                        src={image ? image : '/photo-default.svg'}
+                        src={thumbnail ? thumbnail : '/photo-default.svg'}
                     />
                 </div>
             </div>

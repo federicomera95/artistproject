@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 import { Bookmark, Cross, ToggleVideo } from '../../assets/icons';
 
-const ContentVideo = ({ props }) => {
+const ContentVideo = ({ props, callback }) => {
     const { avatar, image, video, title, username, description, tags = [] } = props;
 
     const [isPlaying, setIsPlaying] = useState(false);
@@ -20,14 +20,14 @@ const ContentVideo = ({ props }) => {
             <div className='flex justify-between items-center'>
                 <div className='flex gap-[10px] justify-center items-center'>
                     <img
-                        className='w-[30px] h-[30px] rounded-[50%] bg-cover bg-center bg-no-repeat'
+                        className='w-[30px] h-[30px] rounded-[50%] object-cover bg-cover bg-center bg-no-repeat'
                         src={avatar ? avatar : '/logo-default.svg'}
                     />
                     <p className='first-letter:capitalize text-[14px] text-dark-grey-base'>
                         {username}
                     </p>
                 </div>
-                <div onClick={() => console.log('close')}>
+                <div onClick={callback}>
                     <Cross dark />
                 </div>
             </div>

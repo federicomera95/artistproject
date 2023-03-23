@@ -1,27 +1,30 @@
 import { Bookmark, Cross } from '../../assets/icons';
 
-const ContentPhoto = ({ props }) => {
-    const { avatar, image, title, username, description, tags = [] } = props;
+const ContentPhoto = ({ props, callback }) => {
+    const { avatar, thumbnail, title, username, description, tags = [] } = props;
 
     return (
         <div className='w-full flex flex-col gap-[19px]'>
             <div className='flex justify-between items-center'>
                 <div className='flex gap-[10px] justify-center items-center'>
                     <img
-                        className='w-[30px] h-[30px] rounded-[50%] bg-cover bg-center bg-no-repeat'
+                        className='w-[30px] h-[30px] rounded-[50%] object-cover bg-cover bg-center bg-no-repeat'
                         src={avatar ? avatar : '/logo-default.svg'}
                     />
                     <p className='first-letter:capitalize text-[14px] text-dark-grey-base'>
                         {username}
                     </p>
                 </div>
-                <div onClick={() => console.log('close')}>
+                <div onClick={callback}>
                     <Cross dark />
                 </div>
             </div>
             <div className='flex flex-col gap-4'>
                 <div className='w-screen relative right-5'>
-                    <img className='w-full h-[250px]' src={image ? image : '/cover-default.png'} />
+                    <img
+                        className='w-full h-[250px]'
+                        src={thumbnail ? thumbnail : '/cover-default.png'}
+                    />
                 </div>
                 <div className='flex justify-between items-center'>
                     <p className='text-[14px] font-medium text-dark-grey-base'>{title}</p>

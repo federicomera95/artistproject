@@ -1,33 +1,22 @@
 import { Bookmark, Cross } from '../../assets/icons';
 import AudioPlayer from '../atoms/audio/AudioPlayer';
 
-const ContentAudio = ({
-    props = {
-        avatar: '',
-        image: '',
-        audio: '/media/town-10169.mp3',
-        title: 'audio title',
-        username: 'artist name',
-        description:
-            'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.',
-        tags: ['rock', 'chitarra', 'basso']
-    }
-}) => {
-    const { avatar, image, audio, title, username, description, tags = [] } = props;
+const ContentAudio = ({ props, callback }) => {
+    const { avatar, thumbnail, audio, title, username, description, tags = [] } = props;
 
     return (
-        <div className='w-full flex flex-col gap-[19px]'>
+        <div className='w-full h-[100%] fixed p-5 flex flex-col gap-[19px] bg-white z-[9999] inset-0'>
             <div className='flex justify-between items-center'>
                 <div className='flex gap-[10px] justify-center items-center'>
                     <img
-                        className='w-[30px] h-[30px] rounded-[50%] bg-cover bg-center bg-no-repeat'
+                        className='w-[30px] h-[30px] rounded-[50%] object-cover bg-cover bg-center bg-no-repeat'
                         src={avatar ? avatar : '/logo-default.svg'}
                     />
                     <p className='first-letter:capitalize text-[14px] text-dark-grey-base'>
                         {username}
                     </p>
                 </div>
-                <div onClick={() => console.log('close')}>
+                <div onClick={callback}>
                     <Cross dark />
                 </div>
             </div>
@@ -35,7 +24,7 @@ const ContentAudio = ({
                 <div className='flex flex-col justify-center items-center pt-4 pb-2 gap-6'>
                     <img
                         className='w-[106px] h-[106px] object-cover rounded-lg'
-                        src={image ? image : '/cover-default.png'}
+                        src={thumbnail ? thumbnail : '/cover-default.png'}
                     />
                     <div className='flex flex-col gap-8 w-[100%] items-center'>
                         <AudioPlayer audio={audio} />
