@@ -28,7 +28,7 @@ const contents = [
         description:
             'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.',
         thumbnail: '',
-        audio: '/media/sample-audio.mp3',
+        audio: '/media/town-10169.mp3',
         tags: ['Rock', 'Blues', 'Chitarra']
     },
     {
@@ -39,7 +39,7 @@ const contents = [
         thumbnail: '',
         description:
             'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.',
-        audio: '/media/sample-audio.mp3',
+        audio: '/media/town-10169.mp3',
         tags: ['Rock', 'Blues', 'Chitarra']
     },
     {
