@@ -110,7 +110,7 @@ const AddPhoto = () => {
 
     return (
         <div className='h-screen w-[100%] flex flex-col gap-[44px]'>
-            <div className='w-full fixed z-50 bg-white right-0 top-0 px-[20px] py-[12px] flex items-center justify-between'>
+            <div className='w-full fixed z-40 bg-white right-0 top-0 px-[20px] py-[12px] flex items-center justify-between'>
                 <p className='text-dark-grey-base font-medium text-xl tracking-wide py-2'>
                     Aggiungi foto
                 </p>
