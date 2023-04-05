@@ -12,7 +12,6 @@ import { find, remove } from '../utility/storage';
 
 const navigation = ['Tutti', 'Foto', 'Audio', 'Video'];
 
-const role = 'artist';
 const fans = 10;
 
 const contents = [
@@ -143,7 +142,7 @@ const Profile = () => {
 
     return (
         <>
-            {(role !== 'user' && (
+            {(find('token').type !== 'user' && (
                 <div className='flex flex-col gap-6 relative bottom-5'>
                     <div className='flex flex-col gap-8'>
                         <div className='flex flex-col gap-6'>
@@ -290,7 +289,7 @@ const Profile = () => {
             )) || (
                 <div className='flex flex-col gap-6 relative bottom-5'>
                     {linksPopup && <LinksPopup setOpen={setLinksPopup} />}
-                    <div className={`flex flex-col gap-8 ${linksPopup ? 'relative -top-5' : ''}`}>
+                    <div className='flex flex-col gap-8'>
                         <div className='flex flex-col gap-6'>
                             <div
                                 className='bg-gradient-to-br text-white from-profile-gradient-from to-profile-gradient-to to h-[208px] w-screen rounded-b-[20px]

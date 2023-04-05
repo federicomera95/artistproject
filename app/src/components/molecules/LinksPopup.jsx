@@ -56,7 +56,7 @@ const PopupLink = ({ social, url }) => {
 
 const LinksPopup = ({ setOpen }) => {
     return (
-        <div>
+        <>
             <div className='w-screen h-screen fixed left-0 top-0 z-40 backdrop-blur-[4px]'></div>
             <div className='flex flex-col gap-4 p-4 shadow-navbar rounded-t-lg bg-white fixed z-50 left-0 right-0 bottom-0'>
                 <div className='flex items-center justify-between'>
@@ -72,7 +72,7 @@ const LinksPopup = ({ setOpen }) => {
                         ))}
                 </div>
             </div>
-        </div>
+        </>
     );
 };
 
