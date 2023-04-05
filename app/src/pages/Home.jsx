@@ -155,7 +155,7 @@ const Home = () => {
     return (
         <>
             <div className={`flex flex-col pt-9 gap-9 pb-[80px] ${open && 'hidden'}`}>
-                <div className='ml-[25%]'>
+                <div className='mx-auto'>
                     <img src='../logo-artistall.svg' alt='logo' />
                 </div>
                 <div className='flex flex-col gap-4'>

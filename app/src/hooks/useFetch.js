@@ -1,11 +1,12 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
-const axios = require('axios');
+export const API_URL = 'http://localhost:3001/api';
 
-const useFetch = (url, options = { method: 'GET', data: {} }) => {
+const useFetch = (path, options = {}) => {
     const [error, setError] = useState(null);
     const [data, setData] = useState(null);
-    const [load, setLoad] = useState(false);
+    const [loading, setLoad] = useState(false);
 
     const fetch = async () => {
         const controller = new AbortController();
@@ -16,7 +17,8 @@ const useFetch = (url, options = { method: 'GET', data: {} }) => {
 
         try {
             const _data = await axios({
-                url,
+                method: 'GET',
+                url: `${API_URL}${path}`,
                 signal: controller.signal,
                 ...options
             });
@@ -29,7 +31,12 @@ const useFetch = (url, options = { method: 'GET', data: {} }) => {
             controller.abort();
         }
     };
-    return [error, data, load, fetch];
+
+    useEffect(() => {
+        fetch();
+    }, []);
+
+    return [data, loading, error, fetch];
 };
 
 export default useFetch;

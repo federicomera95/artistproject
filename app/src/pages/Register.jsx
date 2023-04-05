@@ -4,11 +4,14 @@ import InputText from '../components/atoms/InputText';
 import useForm from '../hooks/useForm';
 import { setValidator } from '../validation/validator';
 import { useState } from 'react';
+import signin from '../services/signin';
+import { save } from '../utility/storage';
 
 const Register = () => {
-    const navigate = useNavigate();
     const [chooseRole, setChooseRole] = useState(true);
     const [role, setRole] = useState(true);
+
+    const navigate = useNavigate();
 
     const stateSchema = {
         username: { value: '', error: '' },
@@ -22,7 +25,9 @@ const Register = () => {
     };
 
     const handleSubmit = (values) => {
-        console.log(JSON.stringify({ ...values, role: role ? 'user' : 'artist' }, null, 2));
+        signin({ ...values, type: role ? 'user' : 'artist' })
+            .then(({ data }) => save('token', data))
+            .then(() => navigate('/home'));
     };
 
     const { values, errors, dirty, touch, handleOnTouch, handleOnChange, handleOnSubmit, disable } =
@@ -169,103 +174,3 @@ const Register = () => {
 };
 
 export default Register;
-
-/*
-<div className='radio-container flex items-center gap-[0.5em]'>
-            <input
-                type='radio'
-                id={id}
-                defaultChecked={checked}
-                disabled={disabled}
-                className={`peer absolute appearance-none flex justify-center items-center focus:outline-none
-                checked:before:content-[''] checked:before:inline-block checked:before:bg-white
-                checked:before:w-[0.5em] checked:before:h-[0.5em] checked:before:rounded-full checked:before:relative checked:before:left-[0.25em]`}
-            />
-            <label
-                htmlFor={id}
-                className={`flex items-center gap-[0.5em]
-                before:content-[''] before:w-[1em] before:h-[1em] before:border-[0.1em] before:rounded-[50%] before:border-dark-grey-disabled
-                peer-checked:before:bg-primary-base peer-checked:before:border-none
-                peer-hover:before:border-primary-hover peer-focus:before:shadow-focus peer-focus:before:shadow-primary-disabled peer-focus:before:border-primary-hover
-                peer-disabled:text-dark-grey-disabled peer-checked:peer-disabled:before:bg-primary-disabled
-                peer-hover:peer-disabled:before:border-dark-grey-disabled`}
-            >
-                {text}
-            </label>
-        </div>
-*/
-
-/*
-<div>
-            {(chooseRole && (
-                <div className='flex flex-col gap-14 mt-10'>
-                    <div className='flex justify-center'>
-                        <img src='logo-artistall.svg' className='w-[150px]'></img>
-                    </div>
-                    <div className='flex flex-col gap-6'>
-                        <div className='flex flex-col gap-4'>
-                            <div className='flex gap-1 rounded-lg p-4 shadow-card'>
-                                <input
-                                    id='user'
-                                    type='checkbox'
-                                    checked={role}
-                                    onChange={handleSelectRole}
-                                />
-                                <label htmlFor='user'>Utente</label>
-                            </div>
-                            <div className='flex gap-1 rounded-lg p-4 shadow-card'>
-                                <input
-                                    id='artist'
-                                    type='checkbox'
-                                    checked={!role}
-                                    onChange={handleSelectRole}
-                                />
-                                <label htmlFor='artist'>Artista</label>
-                            </div>
-                        </div>
-                        <div className='flex flex-col gap-6'>
-                            <Button
-                                text='Continua'
-                                style='primary'
-                                size='medium'
-                                callback={() => setChooseRole(false)}
-                            />
-                            <Button
-                                text='Accedi'
-                                style='tertiary'
-                                size='medium'
-                                callback={() => {
-                                    navigate('/login');
-                                }}
-                            />
-                        </div>
-                    </div>
-                </div>
-            )) || (
-                <div className='flex flex-col '>
-                    <div className='text-4xl text-center font-bold p-10'>
-                        Artist<span className='text-primary-base'>All</span>
-                    </div>
-                    <div className='flex flex-col gap-6 '>
-                        <div className='flex flex-col gap-4'>
-                            <InputText inputProps={INPUT_PROPS._username} />
-                            <InputText inputProps={INPUT_PROPS._email} />
-                            <InputText inputProps={INPUT_PROPS._password} />
-                        </div>
-                        <Button
-                            id='login-sub'
-                            text='Crea il tuo account'
-                            callback={handleOnSubmit}
-                            disabled={disable}
-                        />
-                        <Button
-                            text='Accedi'
-                            size='medium'
-                            style='tertiary'
-                            callback={() => navigate('/login')}
-                        />
-                    </div>
-                </div>
-            )}
-        </div>
-*/

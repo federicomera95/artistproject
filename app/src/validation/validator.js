@@ -13,7 +13,7 @@ const PATTERN = {
     },
     password: {
         func: (value) =>
-            /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$/.test(value),
+            /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[.@$!%*?&])[A-Za-z\d.@$!%*?&]{8,20}$/.test(value),
         error: 'La password deve contenere almeno: una lettera maiuscola, una minuscola, un numero, un simbolo (@$!%*?&), minimo 8 e massimo 20 caratteri.'
     },
     image: {

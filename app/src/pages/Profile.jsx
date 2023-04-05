@@ -6,10 +6,13 @@ import Button from '../components/atoms/Button';
 import ExtendedAudioCard from '../components/molecules/ExtendedAudioCard';
 import ExtendedVideoCard from '../components/molecules/ExtendedVideoCard';
 import ExtendedPhotoCard from '../components/molecules/ExtendedPhotoCard';
+import LinksPopup from '../components/molecules/LinksPopup';
+import logout from '../services/logout';
+import { find, remove } from '../utility/storage';
 
 const navigation = ['Tutti', 'Foto', 'Audio', 'Video'];
 
-const role = 'artista';
+const role = 'artist';
 const fans = 10;
 
 const contents = [
@@ -133,7 +136,9 @@ const Profile = () => {
     };
 
     const handleLogout = () => {
-        navigate('/login');
+        logout({ email: find('token').email })
+            .then(() => remove('token'))
+            .then(() => navigate('/login'));
     };
 
     return (
@@ -284,15 +289,8 @@ const Profile = () => {
                 </div>
             )) || (
                 <div className='flex flex-col gap-6 relative bottom-5'>
-                    {linksPopup && (
-                        <div className='flex justify-between fixed h-60 bg-gray-400 z-50 left-0 right-0 bottom-0'>
-                            <span>Social links</span>
-                            <div onClick={() => setLinksPopup(false)}>
-                                <Cross dark />
-                            </div>
-                        </div>
-                    )}
-                    <div className='flex flex-col gap-8'>
+                    {linksPopup && <LinksPopup setOpen={setLinksPopup} />}
+                    <div className={`flex flex-col gap-8 ${linksPopup ? 'relative -top-5' : ''}`}>
                         <div className='flex flex-col gap-6'>
                             <div
                                 className='bg-gradient-to-br text-white from-profile-gradient-from to-profile-gradient-to to h-[208px] w-screen rounded-b-[20px]
