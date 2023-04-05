@@ -1,12 +1,25 @@
+import { createSearchParams, useNavigate } from 'react-router-dom';
 import { ToggleVideo } from '../../assets/icons';
 
 const VideoCard = ({ props, callback }) => {
     const { avatar, username, title, thumbnail } = props;
 
+    const navigate = useNavigate();
+
     return (
         <div className='flex flex-col gap-2' onClick={() => callback(props)}>
             <div className='flex flex-col gap-1'>
-                <div className='flex items-center gap-1'>
+                <div
+                    className='flex items-center gap-1'
+                    onClick={() =>
+                        navigate({
+                            pathname: '/profile',
+                            search: `?${createSearchParams({
+                                user: username
+                            })}`
+                        })
+                    }
+                >
                     <img className='w-5 h-5' src={avatar ? avatar : '/logo-default.svg'} />
                     <p className='text-[10px] font-normal text-dark-grey-base'>{username}</p>
                 </div>

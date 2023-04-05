@@ -1,9 +1,15 @@
-import { useLocation, useNavigate } from 'react-router-dom';
+import decode from 'jwt-decode';
+import { useLocation, useNavigate, createSearchParams } from 'react-router-dom';
+import { find } from '../../utility/storage';
+
 import { Explore, Home, Profile, Search } from '../../assets/icons';
 
 const Navbar = () => {
     const navigate = useNavigate();
-    const { pathname } = useLocation();
+    const location = useLocation();
+    const { pathname, search } = location;
+
+    const decoded = decode(find('token').token);
 
     return (
         <nav>
@@ -50,21 +56,30 @@ const Navbar = () => {
                         Esplora
                     </p>
                 </div>
-                <div
-                    onClick={() => navigate('/profile')}
-                    className='flex flex-col items-center gap-2'
-                >
-                    {(pathname === '/profile' && <Profile />) || <Profile dark />}
-                    <p
-                        className={`font-medium ${
-                            pathname === '/profile'
-                                ? 'text-dark-grey-base'
-                                : 'text-dark-grey-placeholder'
-                        }`}
+                {decoded.type === 'artist' && (
+                    <div
+                        onClick={() =>
+                            navigate({
+                                pathname: '/profile',
+                                search: `?${createSearchParams({
+                                    user: decoded.username
+                                })}`
+                            })
+                        }
+                        className='flex flex-col items-center gap-2'
                     >
-                        Profilo
-                    </p>
-                </div>
+                        {(search.includes(decoded.username) && <Profile />) || <Profile dark />}
+                        <p
+                            className={`font-medium ${
+                                search.includes(decoded.username)
+                                    ? 'text-dark-grey-base'
+                                    : 'text-dark-grey-placeholder'
+                            }`}
+                        >
+                            Profilo
+                        </p>
+                    </div>
+                )}
             </div>
         </nav>
     );

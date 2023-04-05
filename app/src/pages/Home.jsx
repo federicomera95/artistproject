@@ -193,6 +193,8 @@ const Home = () => {
                             )}
                         </div>
                     </div>
+
+                    {/* Audio */}
                     <div className='flex flex-col gap-4 '>
                         <h3 className='font-medium text-dark-grey-placeholder'>Audio</h3>
                         <div className='grid gap-4 grid-flow-col auto-cols-[25%] overflow-x-auto overscroll-x-contain hide-scrollbar'>
@@ -202,12 +204,6 @@ const Home = () => {
                                 )
                             )}
                         </div>
-                    </div>
-                    <div className='grid grid-cols-2 gap-5'>
-                        <GenreCard text='Rock' />
-                        <GenreCard text='Pop' />
-                        <GenreCard text='R&B' />
-                        <GenreCard text='Blues' />
                     </div>
                 </div>
             </div>

@@ -21,7 +21,7 @@ const Login = () => {
 
     const handleSubmit = (values) => {
         login({ ...values })
-            .then(({ data }) => save('token', data))
+            .then(({ data: token }) => save('token', token))
             .then(() => navigate('/home'));
     };
 

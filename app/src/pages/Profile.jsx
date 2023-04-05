@@ -1,5 +1,6 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import decode from 'jwt-decode';
+import { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Camera, Cross, Edit, Logout, Microphone, Photo } from '../assets/icons';
 
 import Button from '../components/atoms/Button';
@@ -7,14 +8,12 @@ import ExtendedAudioCard from '../components/molecules/ExtendedAudioCard';
 import ExtendedVideoCard from '../components/molecules/ExtendedVideoCard';
 import ExtendedPhotoCard from '../components/molecules/ExtendedPhotoCard';
 import LinksPopup from '../components/molecules/LinksPopup';
-import logout from '../services/logout';
 import { find, remove } from '../utility/storage';
+import getUser from '../services/getUser';
 
 const navigation = ['Tutti', 'Foto', 'Audio', 'Video'];
 
-const fans = 10;
-
-const contents = [
+const CONTENTS = [
     {
         type: 'foto',
         username: 'Giuseppe',
@@ -102,7 +101,7 @@ const contents = [
     }
 ];
 
-const getContent = (type) => {
+const getContent = (type, contents) => {
     switch (type) {
         case 'tutti':
             return contents;
@@ -120,29 +119,42 @@ const getContent = (type) => {
 };
 
 const Profile = () => {
-    const [follow, toggleFollow] = useState(false);
     const [linksPopup, setLinksPopup] = useState(false);
-
     const [currentPage, setCurrentPage] = useState('tutti');
     const [isSelectContentOpen, setSelectContentOpen] = useState(false);
+    const [follow, toggleFollow] = useState(false);
+    const [self, setSelf] = useState(null);
+
+    const [userData, setUserData] = useState(null);
 
     const navigate = useNavigate();
+    const { search } = useLocation();
+    const user = new URLSearchParams(search).get('user');
 
-    const handleProfileNav = ({ target }) => {
-        if (currentPage === target.id) return;
+    useEffect(() => {
+        if (!user) return navigate('/home');
 
-        setCurrentPage(target.id);
-    };
+        const token = find('token').token;
+        const decoded = decode(token);
 
-    const handleLogout = () => {
-        logout({ email: find('token').email })
-            .then(() => remove('token'))
-            .then(() => navigate('/login'));
-    };
+        getUser(user, {
+            headers: { Authorization: `Bearer ${token}` }
+        })
+            .then(({ data }) => {
+                console.dir(data);
+                setUserData(data);
+            })
+            .catch(() => navigate('/home'));
+
+        if (decoded.type === 'artist' && decoded.username === user) {
+            setSelf(true);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [user]);
 
     return (
         <>
-            {(find('token').type !== 'user' && (
+            {(self && (
                 <div className='flex flex-col gap-6 relative bottom-5'>
                     <div className='flex flex-col gap-8'>
                         <div className='flex flex-col gap-6'>
@@ -151,24 +163,28 @@ const Profile = () => {
                         relative right-5 flex justify-between items-start pt-12 px-5'
                             >
                                 <p className='absolute bottom-5 text-xs font-bold rounded-[30px] px-2 py-1 bg-dark-grey-base'>
-                                    {fans} Fans
+                                    {(userData && userData.info.followers.length) || 0} Fans
                                 </p>
-                                <div className='w-6' onClick={handleLogout}>
+
+                                <div
+                                    className='w-6'
+                                    onClick={() => {
+                                        remove('token');
+                                        navigate('/login');
+                                    }}
+                                >
                                     <Logout />
                                 </div>
                                 <div className='flex flex-col items-center gap-4'>
                                     <img src='/logo-default.svg' />
-                                    <p>{`Nome d'arte`}</p>
+                                    <p>{(userData && userData.username) || `Nome D'arte`}</p>
                                 </div>
                                 <div className='w-6' onClick={() => navigate('/profile/edit')}>
                                     <Edit />
                                 </div>
                             </div>
-                            <p className='text-sm font-normal'>
-                                Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet
-                                sint. Velit officia consequat duis enim velit mollit. Exercitation
-                                veniam consequat sunt nostrud amet.
-                            </p>
+                            <p className='text-sm font-normal'>{userData && userData.info.bio}</p>
+
                             <Button
                                 text='Modifica i tuoi link'
                                 style='secondary'
@@ -186,7 +202,10 @@ const Profile = () => {
                                             ? 'border-b-[2px] border-b-primary-base'
                                             : ''
                                     }`}
-                                    onClick={handleProfileNav}
+                                    onClick={({ target }) => {
+                                        if (currentPage === target.id) return;
+                                        setCurrentPage(target.id);
+                                    }}
                                 >
                                     {nav}
                                 </p>
@@ -196,53 +215,54 @@ const Profile = () => {
                     <div className='flex flex-col gap-6 pb-20'>
                         <p className='font-medium text-dark-grey-placeholder'>
                             <span className='font-bold text-dark-grey-base'>
-                                {getContent(currentPage).length}
+                                {userData && getContent(currentPage, userData.contents).length}
                             </span>{' '}
                             Contenuti {currentPage === 'tutti' ? 'totali' : currentPage}
                         </p>
                         <div className='flex flex-col gap-4'>
-                            {getContent(currentPage).map((content, i) => {
-                                switch (content.type) {
-                                    case 'foto':
-                                        return (
-                                            <ExtendedPhotoCard
-                                                key={`${content.title}-${i}`}
-                                                avatar={content.avatar}
-                                                image={content.image}
-                                                title={content.title}
-                                                username={content.username}
-                                                description={content.description}
-                                                tags={content.tags}
-                                            />
-                                        );
-                                    case 'audio':
-                                        return (
-                                            <ExtendedAudioCard
-                                                key={`${content.title}-${i}`}
-                                                username={content.username}
-                                                title={content.title}
-                                                thumbnail={content.thumbnail}
-                                                description={content.description}
-                                                audio={content.audio}
-                                                tags={content.tags}
-                                                avatar={content.avatar}
-                                            />
-                                        );
-                                    case 'video':
-                                        return (
-                                            <ExtendedVideoCard
-                                                key={`${content.title}-${i}`}
-                                                username={content.username}
-                                                thumbnail={content.thumbnail}
-                                                title={content.title}
-                                                description={content.description}
-                                                avatar={content.avatar}
-                                                video={content.video}
-                                                tags={content.tags}
-                                            />
-                                        );
-                                }
-                            })}
+                            {userData &&
+                                getContent(currentPage, userData.contents).map((content, i) => {
+                                    switch (content.type) {
+                                        case 'foto':
+                                            return (
+                                                <ExtendedPhotoCard
+                                                    key={`${content.title}-${i}`}
+                                                    avatar={content.avatar}
+                                                    image={content.image}
+                                                    title={content.title}
+                                                    username={content.username}
+                                                    description={content.description}
+                                                    tags={content.tags}
+                                                />
+                                            );
+                                        case 'audio':
+                                            return (
+                                                <ExtendedAudioCard
+                                                    key={`${content.title}-${i}`}
+                                                    username={content.username}
+                                                    title={content.title}
+                                                    thumbnail={content.thumbnail}
+                                                    description={content.description}
+                                                    audio={content.audio}
+                                                    tags={content.tags}
+                                                    avatar={content.avatar}
+                                                />
+                                            );
+                                        case 'video':
+                                            return (
+                                                <ExtendedVideoCard
+                                                    key={`${content.title}-${i}`}
+                                                    username={content.username}
+                                                    thumbnail={content.thumbnail}
+                                                    title={content.title}
+                                                    description={content.description}
+                                                    avatar={content.avatar}
+                                                    video={content.video}
+                                                    tags={content.tags}
+                                                />
+                                            );
+                                    }
+                                })}
                         </div>
                     </div>
                     {isSelectContentOpen && (
@@ -302,14 +322,10 @@ const Profile = () => {
                                 )}
                                 <div className='flex flex-col items-center gap-4'>
                                     <img src='/logo-default.svg' />
-                                    <p>{`Nome d'arte`}</p>
+                                    <p>{(userData && userData.username) || `Nome D'arte`}</p>
                                 </div>
                             </div>
-                            <p className='text-sm font-normal'>
-                                Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet
-                                sint. Velit officia consequat duis enim velit mollit. Exercitation
-                                veniam consequat sunt nostrud amet.
-                            </p>
+                            <p className='text-sm font-normal'>{userData && userData.info.bio}</p>
                             <Button
                                 text='Segui artista'
                                 size='large'
@@ -332,7 +348,10 @@ const Profile = () => {
                                             ? 'border-b-[2px] border-b-primary-base'
                                             : ''
                                     }`}
-                                    onClick={handleProfileNav}
+                                    onClick={({ target }) => {
+                                        if (currentPage === target.id) return;
+                                        setCurrentPage(target.id);
+                                    }}
                                 >
                                     {nav}
                                 </p>
@@ -342,53 +361,54 @@ const Profile = () => {
                     <div className='flex flex-col gap-6 pb-20'>
                         <p className='font-medium text-dark-grey-placeholder'>
                             <span className='font-bold text-dark-grey-base'>
-                                {getContent(currentPage).length}
+                                {userData && getContent(currentPage, userData.contents).length}
                             </span>{' '}
                             Contenuti {currentPage === 'tutti' ? 'totali' : currentPage}
                         </p>
                         <div className='flex flex-col gap-4'>
-                            {getContent(currentPage).map((content, i) => {
-                                switch (content.type) {
-                                    case 'foto':
-                                        return (
-                                            <ExtendedPhotoCard
-                                                key={`${content.title}-${i}`}
-                                                avatar={content.avatar}
-                                                image={content.image}
-                                                title={content.title}
-                                                username={content.username}
-                                                description={content.description}
-                                                tags={content.tags}
-                                            />
-                                        );
-                                    case 'audio':
-                                        return (
-                                            <ExtendedAudioCard
-                                                key={`${content.title}-${i}`}
-                                                username={content.username}
-                                                title={content.title}
-                                                thumbnail={content.thumbnail}
-                                                description={content.description}
-                                                audio={content.audio}
-                                                tags={content.tags}
-                                                avatar={content.avatar}
-                                            />
-                                        );
-                                    case 'video':
-                                        return (
-                                            <ExtendedVideoCard
-                                                key={`${content.title}-${i}`}
-                                                username={content.username}
-                                                thumbnail={content.thumbnail}
-                                                title={content.title}
-                                                description={content.description}
-                                                avatar={content.avatar}
-                                                video={content.video}
-                                                tags={content.tags}
-                                            />
-                                        );
-                                }
-                            })}
+                            {userData &&
+                                getContent(currentPage, userData.contents).map((content, i) => {
+                                    switch (content.type) {
+                                        case 'foto':
+                                            return (
+                                                <ExtendedPhotoCard
+                                                    key={`${content.title}-${i}`}
+                                                    avatar={content.avatar}
+                                                    image={content.image}
+                                                    title={content.title}
+                                                    username={content.username}
+                                                    description={content.description}
+                                                    tags={content.tags}
+                                                />
+                                            );
+                                        case 'audio':
+                                            return (
+                                                <ExtendedAudioCard
+                                                    key={`${content.title}-${i}`}
+                                                    username={content.username}
+                                                    title={content.title}
+                                                    thumbnail={content.thumbnail}
+                                                    description={content.description}
+                                                    audio={content.audio}
+                                                    tags={content.tags}
+                                                    avatar={content.avatar}
+                                                />
+                                            );
+                                        case 'video':
+                                            return (
+                                                <ExtendedVideoCard
+                                                    key={`${content.title}-${i}`}
+                                                    username={content.username}
+                                                    thumbnail={content.thumbnail}
+                                                    title={content.title}
+                                                    description={content.description}
+                                                    avatar={content.avatar}
+                                                    video={content.video}
+                                                    tags={content.tags}
+                                                />
+                                            );
+                                    }
+                                })}
                         </div>
                     </div>
                 </div>

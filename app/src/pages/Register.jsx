@@ -26,7 +26,7 @@ const Register = () => {
 
     const handleSubmit = (values) => {
         signin({ ...values, type: role ? 'user' : 'artist' })
-            .then(({ data }) => save('token', data))
+            .then(({ data: token }) => save('token', token))
             .then(() => navigate('/home'));
     };
 

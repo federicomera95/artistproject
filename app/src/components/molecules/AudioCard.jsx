@@ -1,7 +1,10 @@
+import { createSearchParams, useNavigate } from 'react-router-dom';
 import { ToggleAudio } from '../../assets/icons';
 
 const AudioCard = ({ props, callback }) => {
     const { title, username, thumbnail } = props;
+
+    const navigate = useNavigate();
 
     return (
         <div className='flex flex-col gap-2 text-dark-grey-base' onClick={() => callback(props)}>
@@ -20,7 +23,19 @@ const AudioCard = ({ props, callback }) => {
             </div>
             <div className='flex flex-col gap-1'>
                 <p className='text-xs'>{title}</p>
-                <p className='text-[8px]'>{username}</p>
+                <p
+                    className='text-[8px]'
+                    onClick={() =>
+                        navigate({
+                            pathname: '/profile',
+                            search: `?${createSearchParams({
+                                user: username
+                            })}`
+                        })
+                    }
+                >
+                    {username}
+                </p>
             </div>
         </div>
     );

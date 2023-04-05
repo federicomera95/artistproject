@@ -20,17 +20,23 @@ import Loading from './pages/Loading';
 import Snackbar from './components/atoms/Snackbar';
 import Navbar from './components/molecules/Navbar';
 import useFetch from './hooks/useFetch';
-import { find } from './utility/storage';
+import { find, remove } from './utility/storage';
 
 const ProtectedLayout = () => {
     const [data, loading, error] = useFetch('/auth/me', {
-        headers: { token: JSON.stringify(find('token')) }
+        headers: { Authorization: `Bearer ${find('token').token}` }
     });
 
     const navigate = useNavigate();
     const { pathname } = useLocation();
 
     const matchNav = ['/links', '/edit', '/add-audio', '/add-photo', '/add-video'];
+
+    useEffect(() => {
+        if (error) {
+            remove('token');
+        }
+    }, [error]);
 
     useEffect(() => {
         if (pathname === '/') {
@@ -78,7 +84,7 @@ const App = () => {
                         <Route path='add-video' element={<AddVideo />} />
                     </Route>
                 </Route>
-                <Route path='*' element='Not Found' />
+                <Route path='*' element={<Navigate to='/home' />} />
             </Routes>
             {/* to call snackbar import toast and call method:
             toast('text here',{autoClose: milliseconds autoclose, type: 'success' || 'error'});  */}
