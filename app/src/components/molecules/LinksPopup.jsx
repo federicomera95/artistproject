@@ -1,71 +1,78 @@
-import { Cross } from '../../assets/icons';
-import { useNavigate } from 'react-router-dom';
+import { Cross, Share } from '../../assets/icons';
+import { Link } from 'react-router-dom';
 
-const PopupElement = (props) => {
+const LINKS = [
+    {
+        social: 'Instagram',
+        url: ''
+    },
+    {
+        social: 'Facebook',
+        url: ''
+    },
+    {
+        social: 'Twitter',
+        url: ''
+    },
+    {
+        social: 'TikTok',
+        url: ''
+    },
+    {
+        social: 'YouTube',
+        url: ''
+    },
+    {
+        social: 'Apple Music',
+        url: ''
+    },
+    {
+        social: 'Amazon Music',
+        url: ''
+    },
+    {
+        social: 'Email',
+        url: ''
+    },
+    {
+        social: 'Telefono',
+        url: ''
+    }
+];
+
+const PopupLink = ({ social, url }) => {
     return (
-        <div className='flex flex-row'>
-            <div className='flex flex-row w-full border-b-2 mb-1 p-3'>
-                <img
-                    className='w-10 h-10 bg-cover bg-center bg-no-repeat mr-5'
-                    src='/cover-default.png'
-                />
-                <p className='text-xl pt-1'>{props.social}</p>
+        <Link href={url}>
+            <div className='flex py-4 px-1 items-center justify-between shadow-card-bot'>
+                <div className='flex items-center gap-4'>
+                    <img className='w-8 h-8 bg-cover bg-center' src='/cover-default.png' />
+                    <p>{social}</p>
+                </div>
+                <Share />
             </div>
-            <div className='pt-4'>
-                <a href={props.website}>
-                    <svg
-                        width='24'
-                        height='25'
-                        viewBox='0 0 24 25'
-                        fill='none'
-                        xmlns='http://www.w3.org/2000/svg'
-                    >
-                        <path
-                            d='M19 9.45581V5.45581H15'
-                            stroke='#4B5563'
-                            strokeWidth='1.5'
-                            strokeLinecap='round'
-                            strokeLinejoin='round'
-                        />
-                        <path
-                            d='M13 11.4558L19 5.45581'
-                            stroke='#4B5563'
-                            strokeWidth='1.5'
-                            strokeLinecap='round'
-                            strokeLinejoin='round'
-                        />
-                        <path
-                            d='M20 13.4558V15.4558C20 18.2172 17.7614 20.4558 15 20.4558H9C6.23858 20.4558 4 18.2172 4 15.4558V9.45581C4 6.69439 6.23858 4.45581 9 4.45581H11'
-                            stroke='#4B5563'
-                            strokeWidth='1.5'
-                            strokeLinecap='round'
-                            strokeLinejoin='round'
-                        />
-                    </svg>
-                </a>
-            </div>
-        </div>
+        </Link>
     );
 };
 
-const LinksPopup = () => {
-    const navigate = useNavigate();
-
+const LinksPopup = ({ setOpen }) => {
     return (
-        <div className='flex flex-col shadow-xl rounded-xl mt-5'>
-            <div className='flex flex-row w-full p-3'>
-                <p className='text-xl font-bold w-full pl-2'>Social links</p>
-                <div onClick={() => navigate('/profile/links')}>
-                    <Cross dark />
+        <>
+            <div className='w-screen h-screen fixed left-0 top-0 z-40 backdrop-blur-[4px]'></div>
+            <div className='flex flex-col gap-4 p-4 shadow-navbar rounded-t-lg bg-white fixed z-50 left-0 right-0 bottom-0'>
+                <div className='flex items-center justify-between'>
+                    <p className='text-lg font-semibold'>Social links</p>
+                    <div onClick={() => setOpen(false)}>
+                        <Cross dark />
+                    </div>
+                </div>
+                <div className='flex flex-col'>
+                    {LINKS.length > 0 &&
+                        LINKS.map(({ social, url }, i) => (
+                            <PopupLink key={i} social={social} url={url} />
+                        ))}
                 </div>
             </div>
-            <div className='p-3'>
-                <PopupElement social='Placeholder 1' website='#' />
-                <PopupElement social='Placeholder 2' website='#' />
-                <PopupElement social='Placeholder 3' website='#' />
-                <PopupElement social='Placeholder 4' website='#' />
-            </div>
-        </div>
+        </>
     );
 };
 

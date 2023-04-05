@@ -50,6 +50,9 @@ router.put("/login", async (req: Request, res: Response) => {
     const user: UserFields | null = await User.findOne({ email: data.email });
     if (!user) return res.status(400).json({ msg: "Email non valida" });
 
+    if (data.password !== user.password)
+      return res.status(400).json({ msg: "Invalid password" });
+
     if (!user.isLogged) {
       user.isLogged = true;
       await user.save();
@@ -89,13 +92,17 @@ router.put("/logout", async (req: Request, res: Response) => {
 
 router.get("/me", async (req: Request, res: Response) => {
   try {
+    const token = req.headers["token"] as string;
+
+    if (!token) return res.status(400).json({ msg: "Token is required" });
+
     const JoiSchema = Joi.object().keys({
       email: Joi.string().required(),
       type: Joi.string().required(),
     });
 
     // Validate request body
-    const { email, type } = await JoiSchema.validateAsync(req.body);
+    const { email, type } = await JoiSchema.validateAsync(JSON.parse(token));
 
     // Check if the user exists
     const user: UserFields | null = await User.findOne({ email, type });

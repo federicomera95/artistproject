@@ -1,10 +1,11 @@
 //react
 import { Suspense, useEffect, lazy } from 'react';
-import { Routes, Route, Outlet, useLocation, useNavigate } from 'react-router-dom';
+import { Routes, Route, Outlet, useLocation, useNavigate, Navigate } from 'react-router-dom';
 
 //pages
+import Login from './pages/Login';
+import Register from './pages/Register';
 const Home = lazy(() => import('./pages/Home'));
-const Login = lazy(() => import('./pages/Login'));
 const Links = lazy(() => import('./pages/Links'));
 const Search = lazy(() => import('./pages/Search'));
 const Explore = lazy(() => import('./pages/Explore'));
@@ -12,15 +13,20 @@ const Profile = lazy(() => import('./pages/Profile'));
 const AddAudio = lazy(() => import('./pages/AddAudio'));
 const AddPhoto = lazy(() => import('./pages/AddPhoto'));
 const AddVideo = lazy(() => import('./pages/AddVideo'));
-const Register = lazy(() => import('./pages/Register'));
 const EditProfile = lazy(() => import('./pages/EditProfile'));
 import Loading from './pages/Loading';
 
 //component
 import Snackbar from './components/atoms/Snackbar';
 import Navbar from './components/molecules/Navbar';
+import useFetch from './hooks/useFetch';
+import { find } from './utility/storage';
 
-const Root = () => {
+const ProtectedLayout = () => {
+    const [data, loading, error] = useFetch('/auth/me', {
+        headers: { token: JSON.stringify(find('token')) }
+    });
+
     const navigate = useNavigate();
     const { pathname } = useLocation();
 
@@ -28,16 +34,28 @@ const Root = () => {
 
     useEffect(() => {
         if (pathname === '/') {
-            navigate('/login');
+            navigate('/home');
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [pathname]);
 
     return (
-        <Suspense fallback={<Loading />}>
-            <Outlet />
-            {!matchNav.some((path) => pathname.includes(path)) && pathname !== '/' && <Navbar />}
-        </Suspense>
+        <>
+            <Suspense fallback={<Loading />}>
+                {(!loading && !error && !!data && (
+                    <>
+                        {(data.status === 200 && (
+                            <>
+                                <Outlet />
+                                {!matchNav.some((path) => pathname.includes(path)) &&
+                                    pathname !== '/' && <Navbar />}
+                            </>
+                        )) || <Navigate to='/login' />}
+                    </>
+                )) ||
+                    (error && <Navigate to='/login' />)}
+            </Suspense>
+        </>
     );
 };
 
@@ -47,7 +65,7 @@ const App = () => {
             <Routes>
                 <Route path='/login' element={<Login />} />
                 <Route path='/signup' element={<Register />} />
-                <Route path='/' element={<Root />}>
+                <Route path='/' element={<ProtectedLayout />}>
                     <Route path='home' element={<Home />} />
                     <Route path='search' element={<Search />} />
                     <Route path='explore' element={<Explore />} />

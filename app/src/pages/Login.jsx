@@ -4,6 +4,8 @@ import Button from '../components/atoms/Button';
 import InputText from '../components/atoms/InputText';
 import { setValidator } from '../validation/validator';
 import useForm from '../hooks/useForm';
+import login from '../services/login';
+import { save } from '../utility/storage';
 
 const Login = () => {
     const navigate = useNavigate();
@@ -18,7 +20,9 @@ const Login = () => {
     };
 
     const handleSubmit = (values) => {
-        console.log(JSON.stringify({ ...values }, null, 2));
+        login({ ...values })
+            .then(({ data }) => save('token', data))
+            .then(() => navigate('/home'));
     };
 
     const { values, errors, dirty, touch, handleOnTouch, handleOnChange, handleOnSubmit, disable } =

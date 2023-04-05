@@ -661,6 +661,40 @@ const Bookmark = () => {
     );
 };
 
+const Share = () => {
+    return (
+        <svg
+            width='24'
+            height='25'
+            viewBox='0 0 24 25'
+            fill='none'
+            xmlns='http://www.w3.org/2000/svg'
+        >
+            <path
+                d='M19 9.45581V5.45581H15'
+                stroke='#4B5563'
+                strokeWidth='1.5'
+                strokeLinecap='round'
+                strokeLinejoin='round'
+            />
+            <path
+                d='M13 11.4558L19 5.45581'
+                stroke='#4B5563'
+                strokeWidth='1.5'
+                strokeLinecap='round'
+                strokeLinejoin='round'
+            />
+            <path
+                d='M20 13.4558V15.4558C20 18.2172 17.7614 20.4558 15 20.4558H9C6.23858 20.4558 4 18.2172 4 15.4558V9.45581C4 6.69439 6.23858 4.45581 9 4.45581H11'
+                stroke='#4B5563'
+                strokeWidth='1.5'
+                strokeLinecap='round'
+                strokeLinejoin='round'
+            />
+        </svg>
+    );
+};
+
 export {
     ArrowDown,
     Cross,
@@ -681,5 +715,6 @@ export {
     Photo,
     CheckMark,
     DeleteMark,
-    Bookmark
+    Bookmark,
+    Share
 };
