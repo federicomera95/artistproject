@@ -5,6 +5,7 @@ import { User } from "../db";
 import { UserFields } from "../db/models/User";
 import isAuthenticated from "../middleware/auth";
 import { RequestArtistAll, TokenPayload } from "../types";
+import requireToken from "../middleware/requireToken";
 
 const router = Router();
 
@@ -78,6 +79,7 @@ router.put("/login", async (req: Request, res: Response) => {
 
 router.get(
   "/me",
+  requireToken,
   isAuthenticated,
   async (req: RequestArtistAll, res: Response) => {
     res.status(200).json({ user: req.data });

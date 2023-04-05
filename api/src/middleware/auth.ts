@@ -16,7 +16,10 @@ const isAuthenticated = async (
 
     const { email, role, publicKey } = token as TokenPayload;
 
-    const user = (await User.findOne({ email, publicKey })) as UserFields;
+    const user = (await User.findOne({
+      email,
+      publicKey,
+    })) as UserFields;
 
     if (
       user.email !== email ||
@@ -40,7 +43,7 @@ const isAuthenticated = async (
         return next();
     }
   } catch (err) {
-    res.status(401).json({ msg: "Unauthorized" });
+    res.status(401).json({ msg: "here" });
   }
 };
 
