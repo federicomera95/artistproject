@@ -1,7 +1,6 @@
 import { AccountType } from "../db/models/User";
 
 export interface TokenPayload {
-  _id: number;
   email: string;
   role: AccountType;
   publicKey: string;

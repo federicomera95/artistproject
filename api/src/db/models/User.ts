@@ -1,6 +1,6 @@
 import crypto from "crypto";
 import { Document, Schema, model } from "mongoose";
-const { String, Number, Boolean } = Schema.Types;
+const { String, Number } = Schema.Types;
 
 const emptyString = {
   type: String,
@@ -61,7 +61,11 @@ const UserSchema = new Schema<UserFields>(
       type: String,
       default: crypto.randomBytes(32).toString("hex"),
     },
-    username: emptyString,
+    username: {
+      type: String,
+      unique: true,
+      required: true,
+    },
     type: {
       type: String,
       required: true,
