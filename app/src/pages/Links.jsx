@@ -9,9 +9,9 @@ const Links = () => {
     const navigate = useNavigate();
 
     const stateSchema = {
+        spotify: { value: '', error: '' },
         instagram: { value: '', error: '' },
         facebook: { value: '', error: '' },
-        twitter: { value: '', error: '' },
         tiktok: { value: '', error: '' },
         youtube: { value: '', error: '' },
         applemusic: { value: '', error: '' },
@@ -20,9 +20,9 @@ const Links = () => {
         phone: { value: '', error: '' }
     };
     const rules = {
+        spotify: setValidator(false, 'https'),
         instagram: setValidator(false, 'https'),
         facebook: setValidator(false, 'https'),
-        twitter: setValidator(false, 'https'),
         tiktok: setValidator(false, 'https'),
         youtube: setValidator(false, 'https'),
         applemusic: setValidator(false, 'https'),
@@ -39,9 +39,9 @@ const Links = () => {
         useForm(stateSchema, rules, handleSubmit);
 
     const {
+        spotify,
         instagram,
         facebook,
-        twitter,
         tiktok,
         youtube,
         applemusic,
@@ -51,6 +51,15 @@ const Links = () => {
     } = values;
 
     const FIELDS = [
+        {
+            id: 'spotify',
+            label: 'Spotify',
+            placeholder: 'Inserisci il link al profilo Spotify',
+            error: errors.spotify && (dirty.spotify || touch.spotify) && errors.spotify,
+            val: spotify,
+            change: handleOnChange,
+            blur: handleOnTouch
+        },
         {
             id: 'instagram',
             label: 'Instagram',
@@ -66,15 +75,6 @@ const Links = () => {
             placeholder: 'Inserisci il link al profilo Facebook',
             error: errors.facebook && (dirty.facebook || touch.facebook) && errors.facebook,
             val: facebook,
-            change: handleOnChange,
-            blur: handleOnTouch
-        },
-        {
-            id: 'twitter',
-            label: 'Twitter',
-            placeholder: 'Inserisci il link al profilo Twitter',
-            error: errors.twitter && (dirty.twitter || touch.twitter) && errors.twitter,
-            val: twitter,
             change: handleOnChange,
             blur: handleOnTouch
         },
