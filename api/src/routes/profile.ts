@@ -23,7 +23,7 @@ router.get("/:user", async (req: RequestArtistAll, res: Response) => {
 router.put("/profile", async (req: RequestArtistAll, res: Response) => {
   try {
     //get artist user from middleware
-    const artist = req.data as UserFields;
+    const artist = req.data!.artist as UserFields;
 
     const JoiSchema = Joi.object().keys({
       username: Joi.string().required(),
