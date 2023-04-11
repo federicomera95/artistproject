@@ -18,13 +18,21 @@ export enum ContentType {
 	Video = 'video'
 }
 
+export enum GenderType {
+	Man = 'uomo',
+	Woman = 'donna',
+	Other = 'altro',
+	Unset = ''
+}
+
 export interface ContentFields {
 	type: ContentType;
 	title: string;
 	description: string;
 	file: string;
 	thumbnail: string;
-	tags: string[];
+	genres: string[];
+	instruments: string[];
 }
 
 export interface UserFields extends Document {
@@ -38,6 +46,7 @@ export interface UserFields extends Document {
 		bio: string;
 		age: number;
 		city: string;
+		gender: GenderType;
 		followers: string[];
 		links: {
 			[key: string]: string;
@@ -80,6 +89,7 @@ const UserSchema = new Schema<UserFields>(
 				type: Number
 			},
 			city: emptyString,
+			gender: emptyString,
 			followers: [String],
 			links: {
 				spotify: emptyString,

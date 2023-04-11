@@ -8,6 +8,8 @@ import { useState } from 'react';
 import useForm from '../hooks/useForm';
 import { Search as SearchIcon } from '../assets/icons';
 import { setValidator } from '../validation/validator';
+import searchContent from '../services/searchContent';
+import { find } from '../utility/storage';
 
 const initGenres = [
     { name: 'Pop', active: false },
@@ -50,23 +52,19 @@ const Search = () => {
     const [instruments, setInstrument] = useState(initInstruments);
 
     const handleSubmit = (values) => {
-        console.log(
-            JSON.stringify(
-                {
-                    ...values,
-                    genres: [...genres.filter((genre) => genre.active === true)].map((genre) => {
-                        return genre['name'];
-                    }),
-                    instruments: [
-                        ...instruments.filter((instrument) => instrument.active === true)
-                    ].map((instrument) => {
-                        return instrument['name'];
-                    })
-                },
-                null,
-                2
+        const data = {
+            ...values,
+            genres: [...genres.filter((genre) => genre.active === true)].map(
+                (genre) => genre['name']
+            ),
+            instruments: [...instruments.filter((instrument) => instrument.active === true)].map(
+                (instrument) => instrument['name']
             )
-        );
+        };
+
+        const token = find('token').token;
+
+        searchContent(token, data).then(({ data }) => console.log(data));
     };
 
     const {
@@ -81,7 +79,6 @@ const Search = () => {
         handleOnSubmit
     } = useForm(stateSchema, rules, handleSubmit);
 
-    // eslint-disable-next-line no-unused-vars
     const { search, type, rangeAge, gender, city } = values;
 
     const INPUT_PROPS = {

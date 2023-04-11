@@ -10,6 +10,7 @@ import ButtonFile from '../components/atoms/ButtonFile';
 import CitySelect from '../components/atoms/CitySelect';
 import InputText from '../components/atoms/InputText';
 import Textarea from '../components/atoms/Textarea';
+import GenderSelect from '../components/atoms/GenderSelect';
 
 const EditProfile = () => {
     const navigate = useNavigate();
@@ -19,7 +20,8 @@ const EditProfile = () => {
         description: { value: '', error: '' },
         age: { value: '', error: '' },
         profile_photo: { value: '', error: '' },
-        city: { value: 'seleziona una città', error: '' }
+        city: { value: 'seleziona una città', error: '' },
+        gender: { value: 'selezione un genere', error: '' }
     };
     const rules = {
         artist_name: setValidator(true),
@@ -36,7 +38,7 @@ const EditProfile = () => {
     const { values, errors, dirty, touch, handleOnTouch, handleOnChange, handleOnSubmit, disable } =
         useForm(stateSchema, rules, handleSubmit);
 
-    const { artist_name, description, age, profile_photo, city } = values;
+    const { artist_name, description, age, profile_photo, city, gender } = values;
 
     const INPUT_PROPS = {
         _artist_name: {
@@ -65,7 +67,7 @@ const EditProfile = () => {
         },
         _age: {
             id: 'age',
-            label: 'età',
+            label: 'Età',
             type: 'number',
             placeholder: 'Inserisci la tua età',
             error: errors.age && (dirty.age || touch.age) && errors.age,
@@ -89,6 +91,11 @@ const EditProfile = () => {
             id: 'city',
             val: city,
             change: handleOnChange
+        },
+        _gender: {
+            id: 'gender',
+            val: gender,
+            change: handleOnChange
         }
     };
 
@@ -106,6 +113,7 @@ const EditProfile = () => {
                     <Textarea textareaProps={INPUT_PROPS._description} />
                     <ButtonFile buttonFileProps={INPUT_PROPS._profile_photo} />
                     <InputText inputProps={INPUT_PROPS._age} />
+                    <GenderSelect selectProps={INPUT_PROPS._gender} />
                     <CitySelect selectProps={INPUT_PROPS._city} />
                 </div>
             </div>
