@@ -10,6 +10,9 @@ import { Search as SearchIcon } from '../assets/icons';
 import { setValidator } from '../validation/validator';
 import searchContent from '../services/searchContent';
 import { find } from '../utility/storage';
+import ExtendedPhotoCard from '../components/molecules/ExtendedPhotoCard';
+import ExtendedAudioCard from '../components/molecules/ExtendedAudioCard';
+import ExtendedVideoCard from '../components/molecules/ExtendedVideoCard';
 
 const initGenres = [
     { name: 'Pop', active: false },
@@ -51,6 +54,8 @@ const Search = () => {
     const [genres, setGenre] = useState(initGenres);
     const [instruments, setInstrument] = useState(initInstruments);
 
+    const [found, setFound] = useState(null);
+
     const handleSubmit = (values) => {
         const data = {
             ...values,
@@ -64,7 +69,7 @@ const Search = () => {
 
         const token = find('token').token;
 
-        searchContent(token, data).then(({ data }) => console.log(data));
+        searchContent(token, data).then(({ data }) => setFound(data));
     };
 
     const {
@@ -119,49 +124,109 @@ const Search = () => {
     };
 
     return (
-        <div className='flex flex-col gap-6 mb-24'>
-            <InputText inputProps={INPUT_PROPS._search} />
-            <h3 className='font-medium text-dark-grey-placeholder'>Filtri</h3>
-            <div className='flex flex-col gap-8'>
-                <TripleSelect tripleSelectProps={INPUT_PROPS._type} />
-                <RangeSlider rangeSliderProps={INPUT_PROPS._rangeAge} />
-                <TripleSelect tripleSelectProps={INPUT_PROPS._gender} />
-                <CitySelect selectProps={INPUT_PROPS._city} />
-                <ChipSelect
-                    type='Genere'
-                    chips={genres}
-                    callback={(i) => {
-                        setGenre((prev) => {
-                            return [
-                                ...prev.slice(0, i),
-                                {
-                                    ...prev[i],
-                                    active: ![...prev][i].active
-                                },
-                                ...prev.slice(i + 1)
-                            ];
+        <>
+            {(found && (
+                <div className='flex flex-col items-center gap-y-10 pb-20'>
+                    {found.map((user, i) => {
+                        return user.contents.map((content, _i) => {
+                            switch (content.type) {
+                                case 'photo':
+                                    return (
+                                        <ExtendedPhotoCard
+                                            key={`${i}-${_i}`}
+                                            avatar={user.avatar}
+                                            image={content.image}
+                                            title={content.title}
+                                            username={user.username}
+                                            description={content.description}
+                                            tags={[
+                                                ...(content.genres ? content.genres : []),
+                                                ...(content.instruments ? content.instruments : [])
+                                            ]}
+                                        />
+                                    );
+                                case 'audio':
+                                    return (
+                                        <ExtendedAudioCard
+                                            key={`${i}-${_i}`}
+                                            username={user.username}
+                                            title={content.title}
+                                            thumbnail={content.thumbnail}
+                                            description={content.description}
+                                            audio={content.audio}
+                                            avatar={user.avatar}
+                                            tags={[
+                                                ...(content.genres ? content.genres : []),
+                                                ...(content.instruments ? content.instruments : [])
+                                            ]}
+                                        />
+                                    );
+                                case 'video':
+                                    return (
+                                        <ExtendedVideoCard
+                                            key={`${i}-${_i}`}
+                                            username={user.username}
+                                            thumbnail={content.thumbnail}
+                                            title={content.title}
+                                            description={content.description}
+                                            avatar={user.avatar}
+                                            video={content.video}
+                                            tags={[
+                                                ...(content.genres ? content.genres : []),
+                                                ...(content.instruments ? content.instruments : [])
+                                            ]}
+                                        />
+                                    );
+                            }
                         });
-                    }}
-                />
-                <ChipSelect
-                    type='Strumenti'
-                    chips={instruments}
-                    callback={(i) => {
-                        setInstrument((prev) => {
-                            return [
-                                ...prev.slice(0, i),
-                                {
-                                    ...prev[i],
-                                    active: ![...prev][i].active
-                                },
-                                ...prev.slice(i + 1)
-                            ];
-                        });
-                    }}
-                />
-                <Button text='Cerca' callback={handleOnSubmit} />
-            </div>
-        </div>
+                    })}
+                </div>
+            )) || (
+                <div className='flex flex-col gap-6 mb-24'>
+                    <InputText inputProps={INPUT_PROPS._search} />
+                    <h3 className='font-medium text-dark-grey-placeholder'>Filtri</h3>
+                    <div className='flex flex-col gap-8'>
+                        <TripleSelect tripleSelectProps={INPUT_PROPS._type} />
+                        <RangeSlider rangeSliderProps={INPUT_PROPS._rangeAge} />
+                        <TripleSelect tripleSelectProps={INPUT_PROPS._gender} />
+                        <CitySelect selectProps={INPUT_PROPS._city} />
+                        <ChipSelect
+                            type='Genere'
+                            chips={genres}
+                            callback={(i) => {
+                                setGenre((prev) => {
+                                    return [
+                                        ...prev.slice(0, i),
+                                        {
+                                            ...prev[i],
+                                            active: ![...prev][i].active
+                                        },
+                                        ...prev.slice(i + 1)
+                                    ];
+                                });
+                            }}
+                        />
+                        <ChipSelect
+                            type='Strumenti'
+                            chips={instruments}
+                            callback={(i) => {
+                                setInstrument((prev) => {
+                                    return [
+                                        ...prev.slice(0, i),
+                                        {
+                                            ...prev[i],
+                                            active: ![...prev][i].active
+                                        },
+                                        ...prev.slice(i + 1)
+                                    ];
+                                });
+                            }}
+                        />
+                        <Button text='Cerca' callback={handleOnSubmit} />
+                    </div>
+                </div>
+            )}
+        </>
     );
 };
 
