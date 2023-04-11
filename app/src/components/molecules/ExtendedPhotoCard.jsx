@@ -1,10 +1,22 @@
-import { Bookmark } from '../../assets/icons';
+import { createSearchParams, useNavigate } from 'react-router-dom';
 
 const ExtendedPhotoCard = ({ avatar, username, image, title, description, tags = [] }) => {
+    const navigate = useNavigate();
+
     return (
         <div className='flex flex-col w-full shadow-photoCard shadow-[#39537633]/20 rounded-lg'>
             <div className='flex justify-between items-center px-4 py-2'>
-                <div className='flex gap-2 justify-center items-center'>
+                <div
+                    className='flex gap-2 justify-center items-center'
+                    onClick={() =>
+                        navigate({
+                            pathname: '/profile',
+                            search: `?${createSearchParams({
+                                user: username
+                            })}`
+                        })
+                    }
+                >
                     <img
                         className='w-6 h-6 rounded-[50%] bg-cover bg-center bg-no-repeat'
                         src={avatar ? avatar : '/logo-default.svg'}

@@ -19,7 +19,7 @@ const getContent = (type, contents) => {
             return contents;
 
         case 'foto':
-            return contents.filter((c) => c.type === 'foto');
+            return contents.filter((c) => c.type === 'photo');
         case 'audio':
             return contents.filter((c) => c.type === 'audio');
 
@@ -53,7 +53,6 @@ const Profile = () => {
             headers: { Authorization: `Bearer ${token}` }
         })
             .then(({ data }) => {
-                console.dir(data);
                 setUserData(data);
             })
             .catch(() => navigate('/home'));
@@ -135,7 +134,7 @@ const Profile = () => {
                             {userData &&
                                 getContent(currentPage, userData.contents).map((content, i) => {
                                     switch (content.type) {
-                                        case 'foto':
+                                        case 'photo':
                                             return (
                                                 <ExtendedPhotoCard
                                                     key={`${content.title}-${i}`}

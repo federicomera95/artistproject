@@ -3,6 +3,7 @@ import { User } from '../db';
 import { ContentFields, GenderType, UserFields } from '../db/models/User';
 import { ContentType } from '../db/models/User';
 import { string } from 'joi';
+import shuffle from '../utilities/shuffle';
 
 const router = Router();
 
@@ -97,7 +98,19 @@ router.put('/', async (req, res) => {
 		}))
 		.filter((uc) => uc.contents.length);
 
-	res.status(200).json(filteredContents);
+	res.status(200).json(shuffle(filteredContents));
+});
+
+router.get('/explore', async (req, res) => {
+	const users = await User.find({}, '-__v -_id -publicKey -password -email -type').lean();
+
+	const contents: ContentResponse[] = users.map((u) => ({
+		username: u.username,
+		avatar: u.info.avatar,
+		contents: u.contents
+	}));
+
+	res.status(200).json(shuffle(contents));
 });
 
 export default router;

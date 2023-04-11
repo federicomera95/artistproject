@@ -1,5 +1,6 @@
 import { useState, useRef } from 'react';
 import { ToggleVideo } from '../../assets/icons';
+import { createSearchParams, useNavigate } from 'react-router-dom';
 
 const ExtendedVideoCard = ({
     avatar,
@@ -13,6 +14,8 @@ const ExtendedVideoCard = ({
     const [isPlaying, setIsPlaying] = useState(false);
     const videoRef = useRef(null);
 
+    const navigate = useNavigate();
+
     const togglePlayPause = () => {
         if (!video) return;
 
@@ -24,7 +27,17 @@ const ExtendedVideoCard = ({
     return (
         <div className='w-full flex flex-col rounded-lg shadow-card'>
             <div className='flex px-4 py-2'>
-                <div className='flex items-center gap-2'>
+                <div
+                    className='flex items-center gap-2'
+                    onClick={() =>
+                        navigate({
+                            pathname: '/profile',
+                            search: `?${createSearchParams({
+                                user: username
+                            })}`
+                        })
+                    }
+                >
                     <img className='w-6 h-6' src='/logo-default.svg' alt='' />
                     <h3 className='text-[10px] text-dark-grey-base'>{username}</h3>
                 </div>

@@ -1,3 +1,4 @@
+import { createSearchParams, useNavigate } from 'react-router-dom';
 import ExtendedAudioPlayer from '../atoms/audio/ExtendedAudioPlayer';
 
 const ExtendedAudioCard = ({
@@ -9,10 +10,22 @@ const ExtendedAudioCard = ({
     description,
     tags = []
 }) => {
+    const navigate = useNavigate();
+
     return (
         <div className='w-full flex flex-col rounded-lg shadow-card'>
             <div className='flex px-4 py-2 shadow-card-bot'>
-                <div className='flex items-center gap-2'>
+                <div
+                    className='flex items-center gap-2'
+                    onClick={() =>
+                        navigate({
+                            pathname: '/profile',
+                            search: `?${createSearchParams({
+                                user: username
+                            })}`
+                        })
+                    }
+                >
                     <img className='w-6 h-6' src={avatar ? avatar : '/logo-default.svg'} alt='' />
                     <h3 className='text-[10px] text-dark-grey-base'>{username}</h3>
                 </div>
