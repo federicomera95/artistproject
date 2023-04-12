@@ -3,9 +3,11 @@ import ExtendedAudioCard from '../components/molecules/ExtendedAudioCard';
 import ExtendedVideoCard from '../components/molecules/ExtendedVideoCard';
 import useFetch from '../hooks/useFetch';
 import { find } from '../utility/storage';
+import Loading from './Loading';
 
 const Explore = () => {
-    const [data, load, err, reload] = useFetch('/search/explore', {
+    // eslint-disable-next-line no-unused-vars
+    const [data, load, err, reFetch] = useFetch('/contents/explore', {
         headers: {
             Authorization: `Bearer ${find('token').token}`
         }
@@ -14,6 +16,7 @@ const Explore = () => {
     return (
         <>
             <div className='flex flex-col items-center gap-y-10 pb-20'>
+                {load && <Loading />}
                 {data &&
                     !err &&
                     !load &&

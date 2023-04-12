@@ -24,16 +24,17 @@ const useFetch = (path, options = {}) => {
             });
             setData(_data);
         } catch (err) {
+            controller.abort();
             console.error(err);
             setError(true);
         } finally {
             setLoad(false);
-            controller.abort();
         }
     };
 
     useEffect(() => {
         fetch();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return [data, loading, error, fetch];

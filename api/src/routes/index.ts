@@ -2,7 +2,7 @@ import { Router, Request, Response } from 'express';
 
 import auth from './auth';
 import profile from './profile';
-import search from './search';
+import contents from './contents';
 import isAuthenticated from '../middleware/auth';
 import requireToken from '../middleware/requireToken';
 
@@ -14,6 +14,6 @@ router.get('/', (req: Request, res: Response) => {
 
 router.use('/auth', auth);
 router.use('/profile', requireToken, isAuthenticated, profile);
-router.use('/search', requireToken, isAuthenticated, search);
+router.use('/contents', requireToken, isAuthenticated, contents);
 
 export default router;
