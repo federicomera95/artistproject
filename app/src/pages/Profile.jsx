@@ -141,35 +141,50 @@ const Profile = () => {
                                                     avatar={content.avatar}
                                                     image={content.image}
                                                     title={content.title}
-                                                    username={content.username}
+                                                    username={user}
                                                     description={content.description}
-                                                    tags={content.tags}
+                                                    tags={[
+                                                        ...(content.genres ? content.genres : []),
+                                                        ...(content.instruments
+                                                            ? content.instruments
+                                                            : [])
+                                                    ]}
                                                 />
                                             );
                                         case 'audio':
                                             return (
                                                 <ExtendedAudioCard
                                                     key={`${content.title}-${i}`}
-                                                    username={content.username}
+                                                    username={user}
                                                     title={content.title}
                                                     thumbnail={content.thumbnail}
                                                     description={content.description}
                                                     audio={content.audio}
-                                                    tags={content.tags}
                                                     avatar={content.avatar}
+                                                    tags={[
+                                                        ...(content.genres ? content.genres : []),
+                                                        ...(content.instruments
+                                                            ? content.instruments
+                                                            : [])
+                                                    ]}
                                                 />
                                             );
                                         case 'video':
                                             return (
                                                 <ExtendedVideoCard
                                                     key={`${content.title}-${i}`}
-                                                    username={content.username}
+                                                    username={user}
                                                     thumbnail={content.thumbnail}
                                                     title={content.title}
                                                     description={content.description}
                                                     avatar={content.avatar}
                                                     video={content.video}
-                                                    tags={content.tags}
+                                                    tags={[
+                                                        ...(content.genres ? content.genres : []),
+                                                        ...(content.instruments
+                                                            ? content.instruments
+                                                            : [])
+                                                    ]}
                                                 />
                                             );
                                     }
@@ -287,35 +302,49 @@ const Profile = () => {
                                                     avatar={content.avatar}
                                                     image={content.image}
                                                     title={content.title}
-                                                    username={content.username}
+                                                    username={user}
                                                     description={content.description}
-                                                    tags={content.tags}
+                                                    tags={[
+                                                        ...(content.genres ? content.genres : []),
+                                                        ...(content.instruments
+                                                            ? content.instruments
+                                                            : [])
+                                                    ]}
                                                 />
                                             );
                                         case 'audio':
                                             return (
                                                 <ExtendedAudioCard
                                                     key={`${content.title}-${i}`}
-                                                    username={content.username}
+                                                    username={user}
                                                     title={content.title}
                                                     thumbnail={content.thumbnail}
                                                     description={content.description}
                                                     audio={content.audio}
-                                                    tags={content.tags}
-                                                    avatar={content.avatar}
+                                                    tags={[
+                                                        ...(content.genres ? content.genres : []),
+                                                        ...(content.instruments
+                                                            ? content.instruments
+                                                            : [])
+                                                    ]}
                                                 />
                                             );
                                         case 'video':
                                             return (
                                                 <ExtendedVideoCard
                                                     key={`${content.title}-${i}`}
-                                                    username={content.username}
+                                                    username={user}
                                                     thumbnail={content.thumbnail}
                                                     title={content.title}
                                                     description={content.description}
                                                     avatar={content.avatar}
                                                     video={content.video}
-                                                    tags={content.tags}
+                                                    tags={[
+                                                        ...(content.genres ? content.genres : []),
+                                                        ...(content.instruments
+                                                            ? content.instruments
+                                                            : [])
+                                                    ]}
                                                 />
                                             );
                                     }

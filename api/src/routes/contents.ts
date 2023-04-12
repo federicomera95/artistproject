@@ -43,7 +43,30 @@ const formatContentType = (type: boolean[]): string[] => {
 	return out;
 };
 
-router.put('/', async (req, res) => {
+router.get('/home', async (req, res) => {
+	const users = await User.find({}, '-__v -_id -publicKey -password -email -type').lean();
+
+	const profiles = users.map((u) => ({
+		username: u.username,
+		avatar: u.info.avatar
+	}));
+
+	const contents = [];
+
+	for (const user of users) {
+		contents.push(
+			...user.contents.map((c) => ({
+				...c,
+				username: user.username,
+				avatar: user.info.avatar
+			}))
+		);
+	}
+
+	res.status(200).json([shuffle(profiles), shuffle(contents)]);
+});
+
+router.put('/filter', async (req, res) => {
 	const { city, search, rangeAge, gender, type, genres, instruments } = req.body;
 
 	const users = await User.find({}, '-__v -_id -publicKey -password -email -type').lean();
