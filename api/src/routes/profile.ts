@@ -150,7 +150,7 @@ router.post(
       const data = await JoiSchema.validateAsync(req.body);
 
       data.type = "video";
-      data.file = req.files;
+      data.file = req.files; //capture file video and thumbnail
 
       artist.contents.push(data);
       await artist.save();
@@ -179,11 +179,11 @@ router.post(
       const data = await JoiSchema.validateAsync(req.body);
 
       data.type = "photo";
-      data.file = req.files;
+      data.file = req.file?.filename;
 
       artist.contents.push(data);
       await artist.save();
-      res.status(200).json({ msg: "Content audio created" });
+      res.status(200).json({ msg: "Content photo created" });
     } catch (error) {
       res.status(404).json(error);
     }
