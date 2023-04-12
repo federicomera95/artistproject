@@ -1,4 +1,4 @@
-input[type='range'] {
+#range_search {
     -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
     width: 100%; /* Specific width is required for Firefox. */
     background: #f3e8ff;
@@ -8,15 +8,15 @@ input[type='range'] {
     /* Otherwise white in Chrome */
 }
 
-input[type='range']::-webkit-slider-thumb {
+#range_search::-webkit-slider-thumb {
     -webkit-appearance: none;
 }
 
-input[type='range']:focus {
+#range_search:focus {
     outline: none; /* Removes the blue border. You should probably do some kind of focus styling for accessibility reasons though. */
 }
 
-input[type='range']::-ms-track {
+#range_search::-ms-track {
     width: 100%;
     cursor: pointer;
 
@@ -27,7 +27,7 @@ input[type='range']::-ms-track {
 }
 
 /* Special styling for WebKit/Blink */
-input[type='range']::-webkit-slider-thumb {
+#range_search::-webkit-slider-thumb {
     -webkit-appearance: none;
     height: 12px;
     width: 12px;
@@ -40,7 +40,7 @@ input[type='range']::-webkit-slider-thumb {
 }
 
 /* All the same stuff for Firefox */
-input[type='range']::-moz-range-thumb {
+#range_search::-moz-range-thumb {
     height: 12px;
     width: 12px;
     border-radius: 157.5px;

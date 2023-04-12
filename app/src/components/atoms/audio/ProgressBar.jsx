@@ -19,6 +19,7 @@ const ProgressBar = ({ progressBarRef, audioRef, timeProgress, duration }) => {
     return (
         <div className='flex flex-col w-full gap-1'>
             <input
+                id='range_search'
                 type='range'
                 ref={progressBarRef}
                 defaultValue='0'
