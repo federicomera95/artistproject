@@ -41,7 +41,7 @@ const ExtendedAudioCard = ({
                             key={`${tag}-${i}`}
                             className='flex gap-1 items-center text-[10px] text-primary-base'
                         >
-                            {tag}
+                            <span className='first-letter:capitalize'>{tag}</span>
                             {i !== tags.length - 1 && (
                                 <span className='text-[12px] text-black'>•</span>
                             )}
