@@ -4,9 +4,18 @@ import Button from '../components/atoms/Button';
 import { Cross } from '../assets/icons';
 import { setValidator } from '../validation/validator';
 import useForm from '../hooks/useForm';
+import { useEffect, useState } from 'react';
+import decode from 'jwt-decode';
+import getUser from '../services/getUser';
+import putLinks from '../services/putLinks';
+import { toast } from 'react-toastify';
+import { find } from '../utility/storage';
+import axios from 'axios';
+import { API_URL } from '../hooks/useFetch';
 
 const Links = () => {
     const navigate = useNavigate();
+    const [userInfo, setUserInfo] = useState(null);
 
     const stateSchema = {
         spotify: { value: '', error: '' },
@@ -16,7 +25,7 @@ const Links = () => {
         youtube: { value: '', error: '' },
         applemusic: { value: '', error: '' },
         amazonmusic: { value: '', error: '' },
-        contact_email: { value: '', error: '' },
+        email: { value: '', error: '' },
         phone: { value: '', error: '' }
     };
     const rules = {
@@ -27,28 +36,44 @@ const Links = () => {
         youtube: setValidator(false, 'https'),
         applemusic: setValidator(false, 'https'),
         amazonmusic: setValidator(false, 'https'),
-        contact_email: setValidator(false, 'email'),
+        email: setValidator(false, 'optionalEmail'),
         phone: setValidator(false, 'phone')
     };
 
     const handleSubmit = (values) => {
-        console.log(JSON.stringify({ ...values }, null, 2));
+        toast.dismiss();
+        const _token = find('token').token;
+        const _decoded = decode(_token);
+
+        putLinks(_token, values)
+            .then(() => {
+                toast('Informazioni aggiornate!', {
+                    autoClose: 3000,
+                    type: 'success'
+                });
+                setTimeout(() => {
+                    navigate(`/profile?user=${_decoded.username}`);
+                }, 3000);
+            })
+            .catch(() =>
+                toast('Verificare che i campi siano corretti!', { type: 'error', autoClose: 3000 })
+            );
     };
 
-    const { values, errors, dirty, touch, handleOnTouch, handleOnChange, handleOnSubmit, disable } =
-        useForm(stateSchema, rules, handleSubmit);
-
     const {
-        spotify,
-        instagram,
-        facebook,
-        tiktok,
-        youtube,
-        applemusic,
-        amazonmusic,
-        contact_email,
-        phone
-    } = values;
+        values,
+        errors,
+        dirty,
+        touch,
+        setValues,
+        handleOnTouch,
+        handleOnChange,
+        handleOnSubmit,
+        disable
+    } = useForm(stateSchema, rules, handleSubmit);
+
+    const { spotify, instagram, facebook, tiktok, youtube, applemusic, amazonmusic, email, phone } =
+        values;
 
     const FIELDS = [
         {
@@ -118,14 +143,11 @@ const Links = () => {
             blur: handleOnTouch
         },
         {
-            id: 'contact_email',
+            id: 'email',
             label: 'Email',
             placeholder: "Inserisci un'email",
-            error:
-                errors.contact_email &&
-                (dirty.contact_email || touch.contact_email) &&
-                errors.contact_email,
-            val: contact_email,
+            error: errors.email && (dirty.email || touch.email) && errors.email,
+            val: email,
             change: handleOnChange,
             blur: handleOnTouch
         },
@@ -140,11 +162,42 @@ const Links = () => {
         }
     ];
 
+    const token = find('token').token;
+    const decoded = decode(token);
+
+    useEffect(() => {
+        if (!token) return navigate('/home');
+
+        getUser(decoded.username, {
+            headers: { Authorization: `Bearer ${token}` }
+        })
+            .then(({ data }) => {
+                setUserInfo(data.info);
+            })
+            .catch(() => navigate('/home'));
+    }, []);
+
+    useEffect(() => {
+        if (userInfo?.links) {
+            setValues({
+                spotify: userInfo.links.spotify,
+                instagram: userInfo.links.instagram,
+                facebook: userInfo.links.facebook,
+                youtube: userInfo.links.youtube,
+                amazonmusic: userInfo.links.amazonmusic,
+                applemusic: userInfo.links.applemusic,
+                tiktok: userInfo.links.tiktok,
+                email: userInfo.links.email,
+                phone: userInfo.links.phone
+            });
+        }
+    }, [userInfo]);
+
     return (
         <div>
             <div className='w-full fixed top-0 left-0 z-10 px-5 py-5 flex items-center justify-between bg-white'>
                 <h1 className='text-xl font-medium text-dark-grey-base'>Aggiungi i tuoi link</h1>
-                <div onClick={() => navigate('/profile')}>
+                <div onClick={() => navigate(`/profile?user=${decoded.username}`)}>
                     <Cross dark />
                 </div>
             </div>
