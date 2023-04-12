@@ -22,7 +22,9 @@ const Textarea = ({ textareaProps }) => {
                     rows={30}
                     cols={30}
                     disabled={disabled}
-                    className={`peer ${val.length > 0 ? 'border-dark-grey-placeholder' : ''} ${
+                    className={`peer ${
+                        val && val.length > 0 ? 'border-dark-grey-placeholder' : ''
+                    } ${
                         error && !disabled ? 'border-error' : 'border-dark-grey-disabled'
                     } py-[10px] px-4 border-2 rounded-lg max-h-[135px]
                     placeholder:text-dark-grey-placeholder

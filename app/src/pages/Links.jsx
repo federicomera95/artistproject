@@ -10,8 +10,6 @@ import getUser from '../services/getUser';
 import putLinks from '../services/putLinks';
 import { toast } from 'react-toastify';
 import { find } from '../utility/storage';
-import axios from 'axios';
-import { API_URL } from '../hooks/useFetch';
 
 const Links = () => {
     const navigate = useNavigate();

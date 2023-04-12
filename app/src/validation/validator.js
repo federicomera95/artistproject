@@ -27,21 +27,47 @@ const PATTERN = {
     image: {
         type: 'file',
         func: [
-            ({ type }) => ['image/jpg', 'image/jpeg', 'image/png'].includes(type),
-            ({ size }) => size < 2000000
+            ({ type }) => {
+                if (!type) return true;
+
+                return ['image/jpg', 'image/jpeg', 'image/png'].includes(type);
+            },
+            ({ size }) => {
+                if (!size) return true;
+
+                return size < 2000000;
+            }
         ],
         error: ["L'estensione del file è errata", 'La dimensione del file è superiore ai 2MB']
     },
     video: {
         type: 'file',
-        func: [({ type }) => ['video/mp4'].includes(type), ({ size }) => size < 20000000],
+        func: [
+            ({ type }) => {
+                if (!type) return true;
+                return ['video/mp4'].includes(type);
+            },
+            ({ size }) => {
+                if (!size) return true;
+
+                return size < 20000000;
+            }
+        ],
         error: ["L'estensione del file è errata", 'La dimensione del file è superiore ai 20MB']
     },
     audio: {
         type: 'file',
         func: [
-            ({ type }) => ['audio/mpeg', 'audio/mp3'].includes(type),
-            ({ size }) => size < 10000000
+            ({ type }) => {
+                if (!type) return true;
+
+                return ['audio/mpeg', 'audio/mp3'].includes(type);
+            },
+            ({ size }) => {
+                if (!size) return true;
+
+                return size < 10000000;
+            }
         ],
         error: ["L'estensione del file è errata", 'La dimensione del file è superiore ai 10MB']
     },

@@ -11,6 +11,10 @@ import Button from '../components/atoms/Button';
 import Textarea from '../components/atoms/Textarea';
 import InputText from '../components/atoms/InputText';
 import InputFile from '../components/atoms/InputFile';
+import { toast } from 'react-toastify';
+import { find } from '../utility/storage';
+import decode from 'jwt-decode';
+import addContent from '../services/add-content';
 
 const initGenres = [
     { name: 'Pop', active: false },
@@ -52,24 +56,38 @@ const AddAudio = () => {
     const [genres, setGenre] = useState(initGenres);
     const [instruments, setInstrument] = useState(initInstruments);
 
+    const _token = find('token').token;
+    const _decoded = decode(_token);
+
     const handleSubmit = (values) => {
-        console.log(
-            JSON.stringify(
-                {
-                    ...values,
-                    genres: [...genres.filter((genre) => genre.active === true)].map((genre) => {
-                        return genre['name'];
-                    }),
-                    instruments: [
-                        ...instruments.filter((instrument) => instrument.active === true)
-                    ].map((instrument) => {
-                        return instrument['name'];
-                    })
-                },
-                null,
-                2
+        const data = {
+            ...values,
+            genres: [...genres.filter((genre) => genre.active === true)].map((genre) => {
+                return genre['name'];
+            }),
+            instruments: [...instruments.filter((instrument) => instrument.active === true)].map(
+                (instrument) => {
+                    return instrument['name'];
+                }
             )
-        );
+        };
+
+        toast.dismiss();
+
+        addContent(_token, data, 'add-audio')
+            .then(() => {
+                toast('Contenuto aggiunto correttamente!', {
+                    autoClose: 3000,
+                    type: 'success'
+                });
+                setTimeout(() => {
+                    navigate(`/profile?user=${_decoded.username}`);
+                }, 3000);
+            })
+            .catch((error) => {
+                console.log(error);
+                toast('Verificare che i campi siano corretti!', { type: 'error', autoClose: 3000 });
+            });
     };
 
     const { values, errors, dirty, touch, handleOnTouch, handleOnChange, handleOnSubmit, disable } =
@@ -125,7 +143,10 @@ const AddAudio = () => {
                 <p className='text-dark-grey-base font-medium text-xl tracking-wide py-2'>
                     Aggiungi audio
                 </p>
-                <a className='w-7 h-7' onClick={() => navigate('/profile')}>
+                <a
+                    className='w-7 h-7'
+                    onClick={() => navigate(`/profile?user=${_decoded.username}`)}
+                >
                     <Cross dark={true} />
                 </a>
             </div>

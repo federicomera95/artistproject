@@ -87,7 +87,13 @@ const Profile = () => {
                                     <Logout />
                                 </div>
                                 <div className='flex flex-col items-center gap-4'>
-                                    <img src='/logo-default.svg' />
+                                    <img
+                                        src={
+                                            userData && userData.info.avatar
+                                                ? `http://localhost:3001/avatar/${userData.info.avatar}`
+                                                : '/logo-default.svg'
+                                        }
+                                    />
                                     <p>{(userData && userData.username) || `Nome D'arte`}</p>
                                 </div>
                                 <div className='w-6' onClick={() => navigate('/profile/edit')}>

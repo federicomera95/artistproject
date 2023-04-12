@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { ArrowDown } from '../../assets/icons';
 
-const options = ['Seleziona dalla lista', 'Uomo', 'Donna', 'Altro'];
+const options = ['Seleziona dalla lista', 'uomo', 'donna', 'altro'];
 
 const GenderSelect = ({ selectProps }) => {
     const { id = 'gender-select', val, error = '', change } = selectProps;
@@ -23,7 +23,11 @@ const GenderSelect = ({ selectProps }) => {
                   border-dark-grey-disabled bg-transparent appearance-none outline-none'
                 >
                     {options.map((opt) => (
-                        <option key={options.indexOf(opt)} value={opt}>
+                        <option
+                            key={options.indexOf(opt)}
+                            value={opt}
+                            className='first-letter:capitalize'
+                        >
                             {opt}
                         </option>
                     ))}

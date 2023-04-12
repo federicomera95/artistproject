@@ -1,9 +1,13 @@
-import { Response, Router } from "express";
+import express, { Response, Router } from "express";
 import { RequestArtistAll } from "../types";
 import { User } from "../db";
 import { UserFields } from "../db/models/User";
 import Joi, { ValidationError } from "joi";
 import { email, handleErrors, phone } from "../utilities";
+import { initMulterMiddleware } from "../middleware/multer";
+
+const uploadPhoto = initMulterMiddleware("image");
+const uploadMultiAudio = initMulterMiddleware("audio", "image");
 
 const router = Router();
 
@@ -20,24 +24,43 @@ router.get("/:user", async (req: RequestArtistAll, res: Response) => {
   res.status(203).json(artist);
 });
 
-router.put("/", async (req: RequestArtistAll, res: Response) => {
-  try {
-    //get artist user from middleware
-    const artist = req.data!.artist as UserFields;
+router.put(
+  "/",
+  uploadPhoto.single("avatar"),
+  async (req: RequestArtistAll, res: Response) => {
+    try {
+      //get artist user from middleware
+      const artist = req.data!.artist as UserFields;
 
-    const JoiSchema = Joi.object().keys({
-      username: Joi.string().required(),
-      bio: Joi.string(),
-      city: Joi.string().required(),
-      age: Joi.number().required(),
-    });
+      const JoiSchema = Joi.object().keys({
+        username: Joi.string().required(),
+        bio: Joi.string().optional().allow(""),
+        avatar: Joi.object().optional().allow(""),
+        city: Joi.string().required(),
+        age: Joi.number().required(),
+        gender: Joi.string().required(),
+      });
 
-    // Validate request body
-    const data = await JoiSchema.validateAsync(req.body);
-  } catch (error) {
-    return res.sendStatus(404);
+      // Validate request body
+      const data = await JoiSchema.validateAsync(req.body);
+
+      artist.username = data.username;
+      artist.info.bio = data.bio;
+      artist.info.city = data.city;
+      artist.info.age = data.age;
+      artist.info.gender = data.gender;
+      if (req.file) {
+        artist.info.avatar = req.file.filename;
+      }
+
+      await artist.save();
+
+      res.status(200).json({ msg: "Profile modified" });
+    } catch (error) {
+      return res.sendStatus(404);
+    }
   }
-});
+);
 
 router.put("/links", async (req: RequestArtistAll, res: Response) => {
   try {
@@ -72,5 +95,99 @@ router.put("/links", async (req: RequestArtistAll, res: Response) => {
     handleErrors(error as ValidationError, res);
   }
 });
+
+router.post(
+  "/add-audio",
+  uploadMultiAudio.fields([
+    { name: "audio", maxCount: 1 },
+    { name: "thumbnail", maxCount: 1 },
+  ]),
+  async (req: RequestArtistAll, res: Response) => {
+    try {
+      //get artist user from middleware
+      const artist = req.data!.artist as UserFields;
+
+      const JoiSchema = Joi.object().keys({
+        title: Joi.string().required(),
+        description: Joi.string().required(),
+        instruments: Joi.array().optional().allow(""),
+        genres: Joi.array().optional().allow(""),
+      });
+
+      // // Validate request body
+      const data = await JoiSchema.validateAsync(req.body);
+
+      data.type = "audio";
+      data.file = req.files;
+
+      artist.contents.push(data);
+      await artist.save();
+      res.status(200).json({ msg: "Content audio created" });
+    } catch (error) {
+      res.status(404).json(error);
+    }
+  }
+);
+router.post(
+  "/add-video",
+  uploadMultiAudio.fields([
+    { name: "video", maxCount: 1 },
+    { name: "thumbnail", maxCount: 1 },
+  ]),
+  async (req: RequestArtistAll, res: Response) => {
+    try {
+      //get artist user from middleware
+      const artist = req.data!.artist as UserFields;
+
+      const JoiSchema = Joi.object().keys({
+        title: Joi.string().required(),
+        description: Joi.string().required(),
+        instruments: Joi.array().optional().allow(""),
+        genres: Joi.array().optional().allow(""),
+      });
+
+      // // Validate request body
+      const data = await JoiSchema.validateAsync(req.body);
+
+      data.type = "video";
+      data.file = req.files;
+
+      artist.contents.push(data);
+      await artist.save();
+      res.status(200).json({ msg: "Content audio created" });
+    } catch (error) {
+      res.status(404).json(error);
+    }
+  }
+);
+router.post(
+  "/add-photo",
+  uploadPhoto.single("photo"),
+  async (req: RequestArtistAll, res: Response) => {
+    try {
+      //get artist user from middleware
+      const artist = req.data!.artist as UserFields;
+
+      const JoiSchema = Joi.object().keys({
+        title: Joi.string().required(),
+        description: Joi.string().required(),
+        instruments: Joi.array().optional().allow(""),
+        genres: Joi.array().optional().allow(""),
+      });
+
+      // // Validate request body
+      const data = await JoiSchema.validateAsync(req.body);
+
+      data.type = "photo";
+      data.file = req.files;
+
+      artist.contents.push(data);
+      await artist.save();
+      res.status(200).json({ msg: "Content audio created" });
+    } catch (error) {
+      res.status(404).json(error);
+    }
+  }
+);
 
 export default router;
