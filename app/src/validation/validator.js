@@ -11,6 +11,14 @@ const PATTERN = {
         func: (value) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,})+$/.test(value),
         error: 'Formato email non valido.'
     },
+    optionalEmail: {
+        func: (value) => {
+            if (!value) return true;
+
+            return /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,})+$/.test(value);
+        },
+        error: 'Formato email non valido.'
+    },
     password: {
         func: (value) =>
             /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[.@$!%*?&])[A-Za-z\d.@$!%*?&]{8,20}$/.test(value),
@@ -50,7 +58,11 @@ const PATTERN = {
         error: 'Il link deve contenere il prefisso https:'
     },
     phone: {
-        func: (value) => /^[0-9]{8,10}$/.test(value),
+        func: (value) => {
+            if (!value) return true;
+
+            return /^[0-9]{8,10}$/.test(value);
+        },
         error: 'Inserire un numero di telefono valido'
     }
 };
