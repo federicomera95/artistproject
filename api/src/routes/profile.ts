@@ -118,7 +118,10 @@ router.post(
       const data = await JoiSchema.validateAsync(req.body);
 
       data.type = "audio";
-      data.file = req.files;
+      const files = req.files as any;
+
+      data.file = files.audio[0].filename;
+      data.thumbnail = files.thumbnail[0].filename;
 
       artist.contents.push(data);
       await artist.save();
@@ -150,8 +153,10 @@ router.post(
       const data = await JoiSchema.validateAsync(req.body);
 
       data.type = "video";
-      data.file = req.files; //capture file video and thumbnail
+      const files = req.files as any;
 
+      data.file = files.video[0].filename;
+      data.thumbnail = files.thumbnail[0].filename;
       artist.contents.push(data);
       await artist.save();
       res.status(200).json({ msg: "Content audio created" });
