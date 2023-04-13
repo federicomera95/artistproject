@@ -138,6 +138,7 @@ const EditProfile = () => {
                 console.log(data);
             })
             .catch(() => navigate('/home'));
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     useEffect(() => {
@@ -158,6 +159,7 @@ const EditProfile = () => {
                 gender: ''
             });
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [userData]);
 
     return (

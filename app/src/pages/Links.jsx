@@ -173,6 +173,7 @@ const Links = () => {
                 setUserInfo(data.info);
             })
             .catch(() => navigate('/home'));
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     useEffect(() => {
@@ -189,6 +190,7 @@ const Links = () => {
                 phone: userInfo.links.phone
             });
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [userInfo]);
 
     return (
