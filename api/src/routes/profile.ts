@@ -4,10 +4,10 @@ import { User } from "../db";
 import { UserFields } from "../db/models/User";
 import Joi, { ValidationError } from "joi";
 import { email, handleErrors, phone } from "../utilities";
-import { initMulterMiddleware } from "../middleware/multer";
+import { initMulter } from "../middleware/multer";
 
-const uploadPhoto = initMulterMiddleware("image");
-const uploadMultiAudio = initMulterMiddleware("audio", "image");
+const uploadPhoto = initMulter("image");
+const uploadMultiAudio = initMulter("audio", "image");
 
 const router = Router();
 
