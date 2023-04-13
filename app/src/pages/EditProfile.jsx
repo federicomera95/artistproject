@@ -54,9 +54,10 @@ const EditProfile = () => {
                     navigate(`/profile?user=${_decoded.username}`);
                 }, 3000);
             })
-            .catch(() =>
-                toast('Verificare che i campi siano corretti!', { type: 'error', autoClose: 3000 })
-            );
+            .catch((error) => {
+                console.log(error);
+                toast('Verificare che i campi siano corretti!', { type: 'error', autoClose: 3000 });
+            });
     };
 
     const {

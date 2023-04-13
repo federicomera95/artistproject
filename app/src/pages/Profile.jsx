@@ -88,9 +88,11 @@ const Profile = () => {
                                 </div>
                                 <div className='flex flex-col items-center gap-4'>
                                     <img
+                                        crossOrigin='anonymous'
+                                        className='w-[94px] h-[94px] rounded-full border-[2px]'
                                         src={
                                             userData && userData.info.avatar
-                                                ? `http://localhost:3001/avatar/${userData.info.avatar}`
+                                                ? `http://localhost:3001/files/${userData.info.avatar}`
                                                 : '/logo-default.svg'
                                         }
                                     />

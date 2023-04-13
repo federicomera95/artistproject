@@ -8,6 +8,7 @@ import helmet from "helmet";
 /* API routes */
 import apiRoute from "./routes";
 import { connect } from "./db";
+import path from "path";
 
 const app: Express = express();
 const PORT = process.env.PORT!;
