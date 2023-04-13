@@ -206,7 +206,7 @@ const AddAudio = () => {
                     </div>
                 </div>
             </div>
-            <div className='w-full fixed bottom-0 right-0 shadow-navbar py-[18px] px-5 bg-white z-10'>
+            <div className='w-full fixed bottom-[-1px] right-0 shadow-navbar py-[18px] px-5 bg-white z-10'>
                 <Button
                     id='upload-photo'
                     style='primary'

@@ -133,7 +133,10 @@ const AddPhoto = () => {
                 <p className='text-dark-grey-base font-medium text-xl tracking-wide py-2'>
                     Aggiungi foto
                 </p>
-                <a className='w-7 h-7' onClick={() => navigate('/profile')}>
+                <a
+                    className='w-7 h-7'
+                    onClick={() => navigate(`/profile?user=${_decoded.username}`)}
+                >
                     <Cross dark={true} />
                 </a>
             </div>
@@ -194,7 +197,7 @@ const AddPhoto = () => {
                     </div>
                 </div>
             </div>
-            <div className='w-full fixed bottom-0 right-0 shadow-navbar py-[18px] px-5 bg-white  z-10 '>
+            <div className='w-full fixed bottom-[-1px] right-0 shadow-navbar py-[18px] px-5 bg-white  z-10 '>
                 <Button
                     id='upload-photo'
                     style='primary'

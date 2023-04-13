@@ -13,7 +13,7 @@ const Navbar = () => {
 
     return (
         <nav>
-            <div className='w-full h-20 fixed bottom-0 left-0 flex justify-center gap-10 py-[14px] shadow-navbar bg-white z-30'>
+            <div className='w-full h-20 fixed bottom-[-1px] left-0 flex justify-center gap-10 py-[14px] shadow-navbar bg-white z-30'>
                 <div onClick={() => navigate('/home')} className='flex flex-col items-center gap-2'>
                     {(pathname === '/home' && <Home />) || <Home dark />}
                     <p
