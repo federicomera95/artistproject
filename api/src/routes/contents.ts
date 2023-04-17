@@ -46,10 +46,12 @@ const formatContentType = (type: boolean[]): string[] => {
 router.get('/home', async (req, res) => {
 	const users = await User.find({}, '-__v -_id -publicKey -password -email -type').lean();
 
-	const profiles = users.map((u) => ({
-		username: u.username,
-		avatar: u.info.avatar
-	}));
+	const profiles = users
+		.filter((u) => u.contents.length > 0)
+		.map((u) => ({
+			username: u.username,
+			avatar: u.info.avatar
+		}));
 
 	const contents = [];
 
