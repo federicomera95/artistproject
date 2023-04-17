@@ -8,7 +8,7 @@ const AudioCard = ({ props, callback }) => {
     const navigate = useNavigate();
 
     return (
-        <div className='flex flex-col text-dark-grey-base' onClick={() => callback(props)}>
+        <div className='flex flex-col gap-2 text-dark-grey-base' onClick={() => callback(props)}>
             <div className='relative flex justify-center items-center h-[90px] w-[90px] rounded-lg'>
                 <img
                     crossOrigin='anonymous'
