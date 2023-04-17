@@ -6,11 +6,14 @@ import getUserLinks from '../../services/getUserLinks';
 
 const PopupLink = ({ social, url }) => {
     return (
-        <Link href={url}>
+        <Link
+            to={social === 'email' ? `mailto:${url}` : social === 'phone' ? `tel:${url}` : url}
+            target='_blank'
+        >
             <div className='flex py-4 px-1 items-center justify-between shadow-card-bot'>
                 <div className='flex items-center gap-4'>
-                    <img className='w-8 h-8 bg-cover bg-center' src='/cover-default.png' />
-                    <p>{social}</p>
+                    <img className='w-8 h-8 bg-cover bg-center' src={`/social/${social}.png`} />
+                    <p className='first-letter:capitalize'>{social}</p>
                 </div>
                 <Share />
             </div>
@@ -29,13 +32,10 @@ const LinksPopup = ({ setOpen }) => {
 
         const token = find('token').token;
 
-        getUserLinks({
-            headers: { Authorization: `Bearer ${token}` },
-            body: {
-                user
-            }
+        getUserLinks(user, {
+            headers: { Authorization: `Bearer ${token}` }
         }).then(({ data }) => {
-            setUserLinks(data.info.links);
+            setUserLinks(data);
         });
     }, [user]);
 
@@ -51,7 +51,15 @@ const LinksPopup = ({ setOpen }) => {
                 </div>
                 <div className='flex flex-col'>
                     {userLinks.length &&
-                        userLinks.map((a, i) => <PopupLink key={i} social={'test'} url={'test'} />)}
+                        userLinks
+                            .filter((l) => l.split('||')[1] !== '' && l.split('||')[1] !== '#')
+                            .map((link, i) => (
+                                <PopupLink
+                                    key={i}
+                                    social={link.split('||')[0]}
+                                    url={link.split('||')[1]}
+                                />
+                            ))}
                 </div>
             </div>
         </>

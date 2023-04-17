@@ -7,6 +7,11 @@ const emptyString = {
 	default: ''
 };
 
+const defaultLink = {
+	type: String,
+	default: '#'
+};
+
 export enum AccountType {
 	User = 'user',
 	Artist = 'artist'
@@ -92,15 +97,15 @@ const UserSchema = new Schema<UserFields>(
 			gender: emptyString,
 			followers: [String],
 			links: {
-				spotify: emptyString,
-				instagram: emptyString,
-				facebook: emptyString,
-				tiktok: emptyString,
-				youtube: emptyString,
-				applemusic: emptyString,
-				amazonmusic: emptyString,
-				email: emptyString,
-				phone: emptyString
+				spotify: defaultLink,
+				instagram: defaultLink,
+				facebook: defaultLink,
+				tiktok: defaultLink,
+				youtube: defaultLink,
+				applemusic: defaultLink,
+				amazonmusic: defaultLink,
+				email: defaultLink,
+				phone: defaultLink
 			}
 		},
 		contents: [{}]

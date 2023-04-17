@@ -4,7 +4,7 @@ import ProfileCard from '../components/atoms/ProfileCard';
 import PhotoCard from '../components/molecules/PhotoCard';
 import VideoCard from '../components/molecules/VideoCard';
 import AudioCard from '../components/molecules/AudioCard';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import ContentAudio from '../components/molecules/ContentAudio';
 import ContentVideo from '../components/molecules/ContentVideo';
 import ContentPhoto from '../components/molecules/ContentPhoto';

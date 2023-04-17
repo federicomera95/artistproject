@@ -138,14 +138,20 @@ router.get('/explore', async (req, res) => {
 	res.status(200).json(shuffle(contents));
 });
 
-router.get('/links', async (req, res) => {
-	const { user: username } = req.body;
+router.get('/links/:user', async (req, res) => {
+	const { user: username } = req.params;
 
-	const user: UserFields | null = await User.findOne({ username });
+	const user: UserFields | null = await User.findOne({ username }).lean();
 
 	if (!user) return res.status(400).json({ msg: 'Invalid username' });
 
-	res.status(200).json(user.info.links);
+	const links = [];
+
+	for (const link in user.info.links) {
+		links.push(`${link}||${user.info.links[link]}`);
+	}
+
+	res.status(200).json(links);
 });
 
 export default router;
