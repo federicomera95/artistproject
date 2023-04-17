@@ -1,4 +1,5 @@
 import { createSearchParams, useNavigate } from 'react-router-dom';
+import STATIC_FILES from '../../utility/constants';
 
 const ProfileCard = ({ props }) => {
     const navigate = useNavigate();
@@ -18,8 +19,9 @@ const ProfileCard = ({ props }) => {
             }
         >
             <img
+                crossOrigin='anonymous'
                 className='w-[90px] h-[90px] rounded-[50%]'
-                src={avatar ? avatar : '/logo-default.svg'}
+                src={avatar ? `${STATIC_FILES}/${avatar}` : '/logo-default.svg'}
             />
             <p className='text-xs text-dark-grey-base'>{username}</p>
         </div>

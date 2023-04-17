@@ -10,6 +10,7 @@ import ExtendedPhotoCard from '../components/molecules/ExtendedPhotoCard';
 import LinksPopup from '../components/molecules/LinksPopup';
 import { find, remove } from '../utility/storage';
 import getUser from '../services/getUser';
+import STATIC_FILES from '../utility/constants';
 
 const navigation = ['Tutti', 'Foto', 'Audio', 'Video'];
 
@@ -255,7 +256,15 @@ const Profile = () => {
                                     </p>
                                 )}
                                 <div className='flex flex-col items-center gap-4'>
-                                    <img src='/logo-default.svg' />
+                                    <img
+                                        crossOrigin='anonymous'
+                                        className='w-[94px] h-[94px] rounded-full border-[2px]'
+                                        src={
+                                            userData && userData.info.avatar
+                                                ? `${STATIC_FILES}/${userData.info.avatar}`
+                                                : '/logo-default.svg'
+                                        }
+                                    />
                                     <p>{(userData && userData.username) || `Nome D'arte`}</p>
                                 </div>
                             </div>

@@ -1,8 +1,8 @@
 import decode from 'jwt-decode';
 import { useLocation, useNavigate, createSearchParams } from 'react-router-dom';
-import { find } from '../../utility/storage';
+import { find, remove } from '../../utility/storage';
 
-import { Explore, Home, Profile, Search } from '../../assets/icons';
+import { Explore, Home, Logout, Profile, Search } from '../../assets/icons';
 
 const Navbar = () => {
     const navigate = useNavigate();
@@ -56,7 +56,7 @@ const Navbar = () => {
                         Esplora
                     </p>
                 </div>
-                {decoded.type === 'artist' && (
+                {(decoded.type === 'artist' && (
                     <div
                         onClick={() =>
                             navigate({
@@ -77,6 +77,25 @@ const Navbar = () => {
                             }`}
                         >
                             Profilo
+                        </p>
+                    </div>
+                )) || (
+                    <div
+                        onClick={() => {
+                            remove('token');
+                            navigate('/login');
+                        }}
+                        className='flex flex-col items-center gap-2'
+                    >
+                        <Logout dark />
+                        <p
+                            className={`font-medium ${
+                                search.includes(decoded.username)
+                                    ? 'text-dark-grey-base'
+                                    : 'text-dark-grey-placeholder'
+                            }`}
+                        >
+                            Logout
                         </p>
                     </div>
                 )}

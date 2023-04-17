@@ -44,10 +44,10 @@ const formatContentType = (type: boolean[]): string[] => {
 };
 
 router.get('/home', async (req, res) => {
-	const users = await User.find({}, '-__v -_id -publicKey -password -email -type').lean();
+	const users = await User.find({}, '-__v -_id -publicKey -password -email').lean();
 
 	const profiles = users
-		.filter((u) => u.contents.length > 0)
+		.filter((u) => u.type === 'artist')
 		.map((u) => ({
 			username: u.username,
 			avatar: u.info.avatar
@@ -136,6 +136,16 @@ router.get('/explore', async (req, res) => {
 	}));
 
 	res.status(200).json(shuffle(contents));
+});
+
+router.get('/links', async (req, res) => {
+	const { user: username } = req.body;
+
+	const user: UserFields | null = await User.findOne({ username });
+
+	if (!user) return res.status(400).json({ msg: 'Invalid username' });
+
+	res.status(200).json(user.info.links);
 });
 
 export default router;

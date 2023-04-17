@@ -46,12 +46,12 @@ const Links = () => {
         putLinks(_token, values)
             .then(() => {
                 toast('Informazioni aggiornate!', {
-                    autoClose: 3000,
+                    autoClose: 2000,
                     type: 'success'
                 });
                 setTimeout(() => {
                     navigate(`/profile?user=${_decoded.username}`);
-                }, 3000);
+                });
             })
             .catch(() =>
                 toast('Verificare che i campi siano corretti!', { type: 'error', autoClose: 3000 })

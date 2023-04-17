@@ -8,9 +8,9 @@ const useFetch = (path, options = {}) => {
     const [data, setData] = useState(null);
     const [loading, setLoad] = useState(false);
 
-    const fetch = async () => {
-        const controller = new AbortController();
+    const controller = new AbortController();
 
+    const fetch = async () => {
         setError(null);
         setData(null);
         setLoad(true);
@@ -24,7 +24,6 @@ const useFetch = (path, options = {}) => {
             });
             setData(_data);
         } catch (err) {
-            controller.abort();
             console.error(err);
             setError(true);
         } finally {
@@ -34,6 +33,8 @@ const useFetch = (path, options = {}) => {
 
     useEffect(() => {
         fetch();
+
+        return () => controller.abort();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 

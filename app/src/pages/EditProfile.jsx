@@ -47,12 +47,12 @@ const EditProfile = () => {
         putProfile(_token, values)
             .then(() => {
                 toast('Profilo aggiornato!', {
-                    autoClose: 3000,
+                    autoClose: 2000,
                     type: 'success'
                 });
                 setTimeout(() => {
                     navigate(`/profile?user=${_decoded.username}`);
-                }, 3000);
+                });
             })
             .catch((error) => {
                 console.log(error);

@@ -1,44 +1,8 @@
+import { useEffect, useState } from 'react';
 import { Cross, Share } from '../../assets/icons';
-import { Link } from 'react-router-dom';
-
-const LINKS = [
-    {
-        social: 'Instagram',
-        url: ''
-    },
-    {
-        social: 'Facebook',
-        url: ''
-    },
-    {
-        social: 'Twitter',
-        url: ''
-    },
-    {
-        social: 'TikTok',
-        url: ''
-    },
-    {
-        social: 'YouTube',
-        url: ''
-    },
-    {
-        social: 'Apple Music',
-        url: ''
-    },
-    {
-        social: 'Amazon Music',
-        url: ''
-    },
-    {
-        social: 'Email',
-        url: ''
-    },
-    {
-        social: 'Telefono',
-        url: ''
-    }
-];
+import { Link, useLocation } from 'react-router-dom';
+import { find } from '../../utility/storage';
+import getUserLinks from '../../services/getUserLinks';
 
 const PopupLink = ({ social, url }) => {
     return (
@@ -55,6 +19,26 @@ const PopupLink = ({ social, url }) => {
 };
 
 const LinksPopup = ({ setOpen }) => {
+    const [userLinks, setUserLinks] = useState([]);
+
+    const { search } = useLocation();
+    const user = new URLSearchParams(search).get('user');
+
+    useEffect(() => {
+        if (!user) return;
+
+        const token = find('token').token;
+
+        getUserLinks(user, {
+            headers: { Authorization: `Bearer ${token}` },
+            body: {
+                user
+            }
+        }).then(({ data }) => {
+            setUserLinks(data.info.links);
+        });
+    }, [user]);
+
     return (
         <>
             <div className='w-screen h-screen fixed left-0 top-0 z-40 backdrop-blur-[4px]'></div>
@@ -66,10 +50,8 @@ const LinksPopup = ({ setOpen }) => {
                     </div>
                 </div>
                 <div className='flex flex-col'>
-                    {LINKS.length > 0 &&
-                        LINKS.map(({ social, url }, i) => (
-                            <PopupLink key={i} social={social} url={url} />
-                        ))}
+                    {userLinks.length &&
+                        userLinks.map((a, i) => <PopupLink key={i} social={'test'} url={'test'} />)}
                 </div>
             </div>
         </>
