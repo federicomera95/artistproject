@@ -15,6 +15,8 @@ const requireToken = async (req: RequestWithToken, res: Response, next: NextFunc
 		if (!isBearer) return res.status(400).json({ msg: 'Invalid credentials' });
 
 		req.token = token.split(' ')[1];
+
+		next();
 	} catch (err) {
 		res.status(400).json({ msg: 'Invalid credentials' });
 	}

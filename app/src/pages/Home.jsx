@@ -20,10 +20,6 @@ const Home = () => {
         }
     });
 
-    useEffect(() => {
-        if (data) console.log(data.data[0]);
-    }, [data]);
-
     const [prop, setProp] = useState({});
     const [open, setModal] = useState(false);
 

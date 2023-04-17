@@ -29,7 +29,7 @@ const LinksPopup = ({ setOpen }) => {
 
         const token = find('token').token;
 
-        getUserLinks(user, {
+        getUserLinks({
             headers: { Authorization: `Bearer ${token}` },
             body: {
                 user

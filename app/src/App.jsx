@@ -35,7 +35,9 @@ const ProtectedLayout = () => {
     useEffect(() => {
         if (error) {
             remove('token');
+            navigate('/login');
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [error]);
 
     useEffect(() => {
@@ -48,18 +50,15 @@ const ProtectedLayout = () => {
     return (
         <>
             <Suspense fallback={<Loading />}>
-                {(!loading && !error && !!data && (
+                {loading && <Loading />}
+                {!!data && (
                     <>
-                        {(data.status === 200 && (
-                            <>
-                                <Outlet />
-                                {!matchNav.some((path) => pathname.includes(path)) &&
-                                    pathname !== '/' && <Navbar />}
-                            </>
-                        )) || <Navigate to='/login' />}
+                        <Outlet />
+                        {!matchNav.some((path) => pathname.includes(path)) && pathname !== '/' && (
+                            <Navbar />
+                        )}
                     </>
-                )) ||
-                    (error && <Navigate to='/login' />)}
+                )}
             </Suspense>
         </>
     );
