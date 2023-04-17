@@ -2,13 +2,14 @@ import { Bookmark, Cross } from '../../assets/icons';
 import STATIC_FILES from '../../utility/constants';
 
 const ContentPhoto = ({ props, callback }) => {
-    const { avatar, thumbnail, title, username, description, tags = [] } = props;
+    const { avatar, file, title, username, description, tags = [] } = props;
 
     return (
         <div className='w-full flex flex-col gap-[19px]'>
             <div className='flex justify-between items-center'>
                 <div className='flex gap-[10px] justify-center items-center'>
                     <img
+                        crossOrigin='anonymous'
                         className='w-[30px] h-[30px] rounded-[50%] object-cover bg-cover bg-center bg-no-repeat'
                         src={avatar ? `${STATIC_FILES}/${avatar}` : '/logo-default.svg'}
                     />
@@ -23,8 +24,9 @@ const ContentPhoto = ({ props, callback }) => {
             <div className='flex flex-col gap-4'>
                 <div className='w-screen relative right-5'>
                     <img
-                        className='w-full h-[250px]'
-                        src={thumbnail ? `${STATIC_FILES}/${thumbnail}` : '/cover-default.png'}
+                        crossOrigin='anonymous'
+                        className='w-full h-[250px] object-contain'
+                        src={file ? `${STATIC_FILES}/${file}` : '/cover-default.png'}
                     />
                 </div>
                 <div className='flex justify-between items-center'>

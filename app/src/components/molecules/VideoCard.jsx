@@ -22,20 +22,23 @@ const VideoCard = ({ props, callback }) => {
                     }
                 >
                     <img
+                        crossOrigin='anonymous'
                         className='w-5 h-5'
                         src={avatar ? `${STATIC_FILES}/${avatar}` : '/logo-default.svg'}
+                        alt=''
                     />
                     <p className='text-[10px] font-normal text-dark-grey-base'>{username}</p>
                 </div>
                 <div
                     className={`relative w-[150px] h-[84px] rounded-lg border-[1px] border-primary-background object-cover bg-cover bg-center bg-no-repeat`}
-                    style={{
-                        backgroundImage: thumbnail
-                            ? `url(${thumbnail})`
-                            : `url('/photo-default.svg')`
-                    }}
                 >
                     <div className='flex absolute top-0 bottom-0 left-0 right-0 justify-center items-center'>
+                        <img
+                            crossOrigin='anonymous'
+                            className='w-[149px] h-[82px] rounded-lg absolute -z-10 object-contain'
+                            src={thumbnail ? `${STATIC_FILES}/${thumbnail}` : '/logo-default.svg'}
+                            alt=''
+                        />
                         <div
                             className='h-6 w-6 shadow-play-pause rounded-[50%] bg-white flex items-center justify-center cursor-pointer'
                             style={{ opacity: '1' }}

@@ -8,11 +8,12 @@ const AudioCard = ({ props, callback }) => {
     const navigate = useNavigate();
 
     return (
-        <div className='flex flex-col gap-2 text-dark-grey-base' onClick={() => callback(props)}>
+        <div className='flex flex-col text-dark-grey-base' onClick={() => callback(props)}>
             <div className='relative flex justify-center items-center h-[90px] w-[90px] rounded-lg'>
                 <img
+                    crossOrigin='anonymous'
+                    className='w-[90px] h-[90px] rounded-lg'
                     src={thumbnail ? `${STATIC_FILES}/${thumbnail}` : '/photo-default.svg'}
-                    className='rounded-lg'
                 />
                 <div className='flex absolute top-0 bottom-0 left-0 right-0 justify-center items-center'>
                     <div

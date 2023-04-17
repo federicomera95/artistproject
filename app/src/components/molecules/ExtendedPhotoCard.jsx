@@ -3,7 +3,6 @@ import STATIC_FILES from '../../utility/constants';
 
 const ExtendedPhotoCard = ({ avatar, username, image, title, description, tags = [] }) => {
     const navigate = useNavigate();
-
     return (
         <div className='flex flex-col w-full shadow-photoCard shadow-[#39537633]/20 rounded-lg'>
             <div className='flex justify-between items-center px-4 py-2'>
@@ -19,6 +18,7 @@ const ExtendedPhotoCard = ({ avatar, username, image, title, description, tags =
                     }
                 >
                     <img
+                        crossOrigin='anonymous'
                         className='w-6 h-6 rounded-[50%] bg-cover bg-center bg-no-repeat'
                         src={avatar ? `${STATIC_FILES}/${avatar}` : '/logo-default.svg'}
                     />
@@ -29,7 +29,12 @@ const ExtendedPhotoCard = ({ avatar, username, image, title, description, tags =
                 {/* <Bookmark /> */}
             </div>
             <div className='flex relative h-[250px]'>
-                <img className=' w-full h-full' src={image ? image : '/cover-default.png'} />
+                <img
+                    crossOrigin='anonymous'
+                    className=' w-full h-full object-contain'
+                    src={image ? `${STATIC_FILES}/${image}` : '/cover-default.png'}
+                    alt=''
+                />
                 <div className='px-4 py-2 bg-gradient-to-t from-dark-grey-base to-dark-grey-base/20  absolute bottom-0 right-0 w-full h-[64px] flex justify-start items-end z-10'>
                     <p className='text-white text-sm font-medium z-20'>{title}</p>
                 </div>

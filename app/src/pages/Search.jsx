@@ -135,7 +135,7 @@ const Search = () => {
                                         <ExtendedPhotoCard
                                             key={`${i}-${_i}`}
                                             avatar={user.avatar}
-                                            image={content.image}
+                                            image={content.file}
                                             title={content.title}
                                             username={user.username}
                                             description={content.description}
@@ -153,7 +153,7 @@ const Search = () => {
                                             title={content.title}
                                             thumbnail={content.thumbnail}
                                             description={content.description}
-                                            audio={content.audio}
+                                            audio={content.file}
                                             avatar={user.avatar}
                                             tags={[
                                                 ...(content.genres ? content.genres : []),
@@ -170,7 +170,7 @@ const Search = () => {
                                             title={content.title}
                                             description={content.description}
                                             avatar={user.avatar}
-                                            video={content.video}
+                                            video={content.file}
                                             tags={[
                                                 ...(content.genres ? content.genres : []),
                                                 ...(content.instruments ? content.instruments : [])

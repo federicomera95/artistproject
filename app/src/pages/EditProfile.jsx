@@ -136,7 +136,6 @@ const EditProfile = () => {
         })
             .then(({ data }) => {
                 setUserData(data);
-                console.log(data);
             })
             .catch(() => navigate('/home'));
         // eslint-disable-next-line react-hooks/exhaustive-deps

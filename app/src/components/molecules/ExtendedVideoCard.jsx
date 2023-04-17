@@ -40,7 +40,8 @@ const ExtendedVideoCard = ({
                     }
                 >
                     <img
-                        className='w-6 h-6'
+                        crossOrigin='anonymous'
+                        className='w-6 h-6 rounded-full'
                         src={avatar ? `${STATIC_FILES}/${avatar}` : '/logo-default.svg'}
                         alt=''
                     />
@@ -50,6 +51,7 @@ const ExtendedVideoCard = ({
             <div className='relative h-[188px] bg-black'>
                 {!!video && (
                     <video
+                        crossOrigin='anonymous'
                         ref={videoRef}
                         className='w-full h-full rounded-lg'
                         onEnded={() => setIsPlaying(false)}
@@ -77,7 +79,8 @@ const ExtendedVideoCard = ({
                     </div>
                 </div>
                 <img
-                    className='w-full h-full absolute top-0 bottom-0 left-0 right-0 bg-black'
+                    crossOrigin='anonymous'
+                    className='w-full h-full absolute top-0 bottom-0 left-0 right-0 bg-black object-contain'
                     style={{ opacity: !!video && isPlaying ? '0' : '1' }}
                     src={`${thumbnail ? `${STATIC_FILES}/${thumbnail}` : '/photo-default.svg'}`}
                     alt=''

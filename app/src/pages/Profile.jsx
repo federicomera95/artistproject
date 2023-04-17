@@ -12,14 +12,14 @@ import { find, remove } from '../utility/storage';
 import getUser from '../services/getUser';
 import STATIC_FILES from '../utility/constants';
 
-const navigation = ['Tutti', 'Foto', 'Audio', 'Video'];
+const navigation = ['Tutti', 'Photo', 'Audio', 'Video'];
 
 const getContent = (type, contents) => {
     switch (type) {
         case 'tutti':
             return contents;
 
-        case 'foto':
+        case 'photo':
             return contents.filter((c) => c.type === 'photo');
         case 'audio':
             return contents.filter((c) => c.type === 'audio');
@@ -147,8 +147,8 @@ const Profile = () => {
                                             return (
                                                 <ExtendedPhotoCard
                                                     key={`${content.title}-${i}`}
-                                                    avatar={content.avatar}
-                                                    image={content.image}
+                                                    avatar={userData.info.avatar}
+                                                    image={content.file}
                                                     title={content.title}
                                                     username={user}
                                                     description={content.description}
@@ -168,8 +168,8 @@ const Profile = () => {
                                                     title={content.title}
                                                     thumbnail={content.thumbnail}
                                                     description={content.description}
-                                                    audio={content.audio}
-                                                    avatar={content.avatar}
+                                                    audio={content.file}
+                                                    avatar={userData.info.avatar}
                                                     tags={[
                                                         ...(content.genres ? content.genres : []),
                                                         ...(content.instruments
@@ -186,8 +186,8 @@ const Profile = () => {
                                                     thumbnail={content.thumbnail}
                                                     title={content.title}
                                                     description={content.description}
-                                                    avatar={content.avatar}
-                                                    video={content.video}
+                                                    avatar={userData.info.avatar}
+                                                    video={content.file}
                                                     tags={[
                                                         ...(content.genres ? content.genres : []),
                                                         ...(content.instruments
@@ -312,12 +312,12 @@ const Profile = () => {
                             {userData &&
                                 getContent(currentPage, userData.contents).map((content, i) => {
                                     switch (content.type) {
-                                        case 'foto':
+                                        case 'photo':
                                             return (
                                                 <ExtendedPhotoCard
                                                     key={`${content.title}-${i}`}
-                                                    avatar={content.avatar}
-                                                    image={content.image}
+                                                    avatar={userData.info.avatar}
+                                                    image={content.file}
                                                     title={content.title}
                                                     username={user}
                                                     description={content.description}
@@ -334,10 +334,11 @@ const Profile = () => {
                                                 <ExtendedAudioCard
                                                     key={`${content.title}-${i}`}
                                                     username={user}
+                                                    avatar={userData.info.avatar}
                                                     title={content.title}
                                                     thumbnail={content.thumbnail}
                                                     description={content.description}
-                                                    audio={content.audio}
+                                                    audio={content.file}
                                                     tags={[
                                                         ...(content.genres ? content.genres : []),
                                                         ...(content.instruments
@@ -354,8 +355,8 @@ const Profile = () => {
                                                     thumbnail={content.thumbnail}
                                                     title={content.title}
                                                     description={content.description}
-                                                    avatar={content.avatar}
-                                                    video={content.video}
+                                                    avatar={userData.info.avatar}
+                                                    video={content.file}
                                                     tags={[
                                                         ...(content.genres ? content.genres : []),
                                                         ...(content.instruments

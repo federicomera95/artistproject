@@ -12,7 +12,12 @@ const PopupLink = ({ social, url }) => {
         >
             <div className='flex py-4 px-1 items-center justify-between shadow-card-bot'>
                 <div className='flex items-center gap-4'>
-                    <img className='w-8 h-8 bg-cover bg-center' src={`/social/${social}.png`} />
+                    <img
+                        crossOrigin='anonymous'
+                        className='w-8 h-8 bg-cover bg-center'
+                        src={`/social/${social}.png`}
+                        alt=''
+                    />
                     <p className='first-letter:capitalize'>{social}</p>
                 </div>
                 <Share />

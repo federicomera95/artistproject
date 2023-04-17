@@ -3,13 +3,13 @@ import { Bookmark, Cross, ToggleVideo } from '../../assets/icons';
 import STATIC_FILES from '../../utility/constants';
 
 const ContentVideo = ({ props, callback }) => {
-    const { avatar, image, video, title, username, description, tags = [] } = props;
+    const { avatar, file, title, username, description, tags = [], thumbnail } = props;
 
     const [isPlaying, setIsPlaying] = useState(false);
     const videoRef = useRef(null);
 
     const togglePlayPause = () => {
-        if (!video) return;
+        if (!file) return;
 
         setIsPlaying(!isPlaying);
 
@@ -21,6 +21,7 @@ const ContentVideo = ({ props, callback }) => {
             <div className='flex justify-between items-center'>
                 <div className='flex gap-[10px] justify-center items-center'>
                     <img
+                        crossOrigin='anonymous'
                         className='w-[30px] h-[30px] rounded-[50%] object-cover bg-cover bg-center bg-no-repeat'
                         src={avatar ? `${STATIC_FILES}/${avatar}` : '/logo-default.svg'}
                     />
@@ -35,18 +36,26 @@ const ContentVideo = ({ props, callback }) => {
             <div className='flex flex-col gap-4'>
                 <div className='w-screen relative right-5 h-[221px]'>
                     {!isPlaying && !videoRef.current && (
-                        <img
-                            className='w-full h-[222px] absolute top-[-1px] right-0'
-                            src={image ? `${STATIC_FILES}/${image}` : '/cover-default.png'}
-                        />
+                        <div className='bg-black absolute z-10  top-0 bottom-0 left-0 right-0 justify-center items-center'>
+                            <img
+                                crossOrigin='anonymous'
+                                className='w-full h-[222px] absolute top-[-1px] right-0 object-contain'
+                                src={
+                                    thumbnail
+                                        ? `${STATIC_FILES}/${thumbnail}`
+                                        : '/cover-default.png'
+                                }
+                            />
+                        </div>
                     )}
-                    {!!video && (
+                    {!!file && (
                         <video
+                            crossOrigin='anonymous'
                             ref={videoRef}
                             className='w-full h-full'
                             onEnded={() => setIsPlaying(false)}
                         >
-                            <source src={`${STATIC_FILES}/${video}`} type='video/mp4' />
+                            <source src={`${STATIC_FILES}/${file}`} type='video/mp4' />
                         </video>
                     )}
                     <div
@@ -55,14 +64,14 @@ const ContentVideo = ({ props, callback }) => {
                     >
                         <div
                             className='h-[42px] w-[42px] rounded-[50%] bg-white flex items-center justify-center cursor-pointer'
-                            style={{ opacity: !!video && isPlaying ? '0' : '1' }}
+                            style={{ opacity: !!file && isPlaying ? '0' : '1' }}
                         >
                             <ToggleVideo w={21} h={21} />
                         </div>
                     </div>
                     <div
                         className='w-full absolute top-0 bottom-0 left-0 right-0'
-                        style={{ opacity: !!video && isPlaying ? '0' : '1' }}
+                        style={{ opacity: !!file && isPlaying ? '0' : '1' }}
                     ></div>
                 </div>
                 <div className='flex justify-between items-center'>

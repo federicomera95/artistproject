@@ -9,6 +9,7 @@ const DisplayTrack = ({ audio, audioRef, setDuration, progressBarRef, handleAudi
 
     return (
         <audio
+            crossOrigin='anonymous'
             src={`${STATIC_FILES}/${audio}`}
             ref={audioRef}
             onLoadedMetadata={onLoadedMetadata}

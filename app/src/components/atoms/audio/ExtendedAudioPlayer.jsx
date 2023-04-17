@@ -33,6 +33,7 @@ const ExtendedAudioPlayer = ({ audio, thumbnail, title }) => {
             <div className='flex items-center justify-between'>
                 <div className='flex items-center gap-4'>
                     <img
+                        crossOrigin='anonymous'
                         className='w-12 h-12 rounded-lg'
                         src={thumbnail ? `${STATIC_FILES}/${thumbnail}` : '/photo-default.svg'}
                     />

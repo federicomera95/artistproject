@@ -28,6 +28,7 @@ const ExtendedAudioCard = ({
                     }
                 >
                     <img
+                        crossOrigin='anonymous'
                         className='w-6 h-6'
                         src={avatar ? `${STATIC_FILES}/${avatar}` : '/logo-default.svg'}
                         alt=''

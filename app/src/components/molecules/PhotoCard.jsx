@@ -2,7 +2,7 @@ import { createSearchParams, useNavigate } from 'react-router-dom';
 import STATIC_FILES from '../../utility/constants';
 
 const PhotoCard = ({ props, callback }) => {
-    const { username, title, avatar, thumbnail } = props;
+    const { username, title, avatar, file } = props;
 
     const navigate = useNavigate();
 
@@ -21,15 +21,19 @@ const PhotoCard = ({ props, callback }) => {
                     }
                 >
                     <img
+                        crossOrigin='anonymous'
                         className='w-5 h-5 rounded-[50%]'
                         src={avatar ? `${STATIC_FILES}/${avatar}` : '/logo-default.svg'}
+                        alt=''
                     />
                     <p className='text-[10px]'>{username}</p>
                 </div>
                 <div className='flex gap-4'>
                     <img
-                        className='w-[150px] h-[150px] rounded-lg'
-                        src={thumbnail ? `${STATIC_FILES}/${thumbnail}` : '/photo-default.svg'}
+                        crossOrigin='anonymous'
+                        className='w-[150px] h-[150px] rounded-lg object-contain'
+                        src={file ? `${STATIC_FILES}/${file}` : '/photo-default.svg'}
+                        alt=''
                     />
                 </div>
             </div>
