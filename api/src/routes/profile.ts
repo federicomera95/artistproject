@@ -31,22 +31,22 @@ router.put('/', uploadPhoto.single('avatar'), async (req: RequestArtistAll, res:
 		const artist = req.data!.artist as UserFields;
 
 		const JoiSchema = Joi.object().keys({
-			username: Joi.string().required(),
+			username: Joi.string(),
 			bio: Joi.string().optional().allow(''),
 			avatar: Joi.object().optional().allow(''),
-			city: Joi.string().required(),
-			age: Joi.number().required(),
-			gender: Joi.string().required()
+			city: Joi.string().optional().allow(''),
+			age: Joi.number().optional().allow(''),
+			gender: Joi.string().optional().allow('')
 		});
 
 		// Validate request body
 		const data = await JoiSchema.validateAsync(req.body);
 
-		artist.username = data.username;
-		artist.info.bio = data.bio;
-		artist.info.city = data.city;
-		artist.info.age = data.age;
-		artist.info.gender = data.gender;
+		artist.username = data.username ? data.username : artist.username;
+		artist.info.bio = data.bio ? data.bio : artist.info.bio;
+		artist.info.city = data.city ? data.city : artist.info.city;
+		artist.info.age = data.age ? data.age : artist.info.age;
+		artist.info.gender = data.gender ? data.gender : artist.info.gender;
 		if (req.file) {
 			artist.info.avatar = req.file.filename;
 		}

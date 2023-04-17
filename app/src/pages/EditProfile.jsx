@@ -143,7 +143,6 @@ const EditProfile = () => {
 
     useEffect(() => {
         if (userData) {
-            console.log(userData);
             setValues({
                 username: userData.username,
                 bio: userData.info.bio,
