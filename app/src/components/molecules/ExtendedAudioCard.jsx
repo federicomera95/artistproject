@@ -1,5 +1,6 @@
 import { createSearchParams, useNavigate } from 'react-router-dom';
 import ExtendedAudioPlayer from '../atoms/audio/ExtendedAudioPlayer';
+import STATIC_FILES from '../../utility/constants';
 
 const ExtendedAudioCard = ({
     title,
@@ -26,7 +27,11 @@ const ExtendedAudioCard = ({
                         })
                     }
                 >
-                    <img className='w-6 h-6' src={avatar ? avatar : '/logo-default.svg'} alt='' />
+                    <img
+                        className='w-6 h-6'
+                        src={avatar ? `${STATIC_FILES}/${avatar}` : '/logo-default.svg'}
+                        alt=''
+                    />
                     <h3 className='text-[10px] text-dark-grey-base'>{username}</h3>
                 </div>
             </div>

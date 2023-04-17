@@ -1,4 +1,5 @@
 import { createSearchParams, useNavigate } from 'react-router-dom';
+import STATIC_FILES from '../../utility/constants';
 
 const ExtendedPhotoCard = ({ avatar, username, image, title, description, tags = [] }) => {
     const navigate = useNavigate();
@@ -19,7 +20,7 @@ const ExtendedPhotoCard = ({ avatar, username, image, title, description, tags =
                 >
                     <img
                         className='w-6 h-6 rounded-[50%] bg-cover bg-center bg-no-repeat'
-                        src={avatar ? avatar : '/logo-default.svg'}
+                        src={avatar ? `${STATIC_FILES}/${avatar}` : '/logo-default.svg'}
                     />
                     <p className='first-letter:capitalize text-[10px] text-dark-grey-base'>
                         {username}
@@ -28,7 +29,10 @@ const ExtendedPhotoCard = ({ avatar, username, image, title, description, tags =
                 {/* <Bookmark /> */}
             </div>
             <div className='flex relative h-[250px]'>
-                <img className=' w-full h-full' src={image ? image : '/cover-default.png'} />
+                <img
+                    className=' w-full h-full'
+                    src={image ? `${STATIC_FILES}/${image}` : '/cover-default.png'}
+                />
                 <div className='px-4 py-2 bg-gradient-to-t from-dark-grey-base to-dark-grey-base/20  absolute bottom-0 right-0 w-full h-[64px] flex justify-start items-end z-10'>
                     <p className='text-white text-sm font-medium z-20'>{title}</p>
                 </div>

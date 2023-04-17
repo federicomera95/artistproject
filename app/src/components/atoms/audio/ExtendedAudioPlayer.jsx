@@ -3,6 +3,7 @@ import { useState } from 'react';
 import ProgressBar from './ProgressBar';
 import DisplayTrack from './DisplayTrack';
 import Controls from './Controls';
+import STATIC_FILES from '../../../utility/constants';
 
 const ExtendedAudioPlayer = ({ audio, thumbnail, title }) => {
     const [timeProgress, setTimeProgress] = useState(0);
@@ -33,7 +34,7 @@ const ExtendedAudioPlayer = ({ audio, thumbnail, title }) => {
                 <div className='flex items-center gap-4'>
                     <img
                         className='w-12 h-12 rounded-lg'
-                        src={thumbnail ? thumbnail : '/photo-default.svg'}
+                        src={thumbnail ? `${STATIC_FILES}/${thumbnail}` : '/photo-default.svg'}
                     />
                     <div className='text-dark-grey-base text-xs'>
                         <h4 className='font-medium'>{title}</h4>

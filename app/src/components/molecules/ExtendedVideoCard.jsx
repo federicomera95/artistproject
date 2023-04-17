@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react';
 import { ToggleVideo } from '../../assets/icons';
 import { createSearchParams, useNavigate } from 'react-router-dom';
+import STATIC_FILES from '../../utility/constants';
 
 const ExtendedVideoCard = ({
     avatar,
@@ -38,7 +39,11 @@ const ExtendedVideoCard = ({
                         })
                     }
                 >
-                    <img className='w-6 h-6' src='/logo-default.svg' alt='' />
+                    <img
+                        className='w-6 h-6'
+                        src={avatar ? `${STATIC_FILES}/${avatar}` : '/logo-default.svg'}
+                        alt=''
+                    />
                     <h3 className='text-[10px] text-dark-grey-base'>{username}</h3>
                 </div>
             </div>
@@ -49,7 +54,7 @@ const ExtendedVideoCard = ({
                         className='w-full h-full rounded-lg'
                         onEnded={() => setIsPlaying(false)}
                     >
-                        <source src={video} type='video/mp4' />
+                        <source src={`${STATIC_FILES}/${video}`} type='video/mp4' />
                     </video>
                 )}
                 <h4
@@ -74,7 +79,7 @@ const ExtendedVideoCard = ({
                 <img
                     className='w-full h-full absolute top-0 bottom-0 left-0 right-0 bg-black'
                     style={{ opacity: !!video && isPlaying ? '0' : '1' }}
-                    src={`${thumbnail ? thumbnail : '/photo-default.svg'}`}
+                    src={`${thumbnail ? `${STATIC_FILES}/${thumbnail}` : '/photo-default.svg'}`}
                     alt=''
                 />
                 <div

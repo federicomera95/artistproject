@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react';
 import { Bookmark, Cross, ToggleVideo } from '../../assets/icons';
+import STATIC_FILES from '../../utility/constants';
 
 const ContentVideo = ({ props, callback }) => {
     const { avatar, image, video, title, username, description, tags = [] } = props;
@@ -21,7 +22,7 @@ const ContentVideo = ({ props, callback }) => {
                 <div className='flex gap-[10px] justify-center items-center'>
                     <img
                         className='w-[30px] h-[30px] rounded-[50%] object-cover bg-cover bg-center bg-no-repeat'
-                        src={avatar ? avatar : '/logo-default.svg'}
+                        src={avatar ? `${STATIC_FILES}/${avatar}` : '/logo-default.svg'}
                     />
                     <p className='first-letter:capitalize text-[14px] text-dark-grey-base'>
                         {username}
@@ -36,7 +37,7 @@ const ContentVideo = ({ props, callback }) => {
                     {!isPlaying && !videoRef.current && (
                         <img
                             className='w-full h-[222px] absolute top-[-1px] right-0'
-                            src={image ? image : '/cover-default.png'}
+                            src={image ? `${STATIC_FILES}/${image}` : '/cover-default.png'}
                         />
                     )}
                     {!!video && (
@@ -45,7 +46,7 @@ const ContentVideo = ({ props, callback }) => {
                             className='w-full h-full'
                             onEnded={() => setIsPlaying(false)}
                         >
-                            <source src={video} type='video/mp4' />
+                            <source src={`${STATIC_FILES}/${video}`} type='video/mp4' />
                         </video>
                     )}
                     <div

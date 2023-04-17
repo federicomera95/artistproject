@@ -1,5 +1,6 @@
 import { createSearchParams, useNavigate } from 'react-router-dom';
 import { ToggleVideo } from '../../assets/icons';
+import STATIC_FILES from '../../utility/constants';
 
 const VideoCard = ({ props, callback }) => {
     const { avatar, username, title, thumbnail } = props;
@@ -20,7 +21,10 @@ const VideoCard = ({ props, callback }) => {
                         })
                     }
                 >
-                    <img className='w-5 h-5' src={avatar ? avatar : '/logo-default.svg'} />
+                    <img
+                        className='w-5 h-5'
+                        src={avatar ? `${STATIC_FILES}/${avatar}` : '/logo-default.svg'}
+                    />
                     <p className='text-[10px] font-normal text-dark-grey-base'>{username}</p>
                 </div>
                 <div

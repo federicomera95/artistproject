@@ -1,4 +1,5 @@
 import { Bookmark, Cross } from '../../assets/icons';
+import STATIC_FILES from '../../utility/constants';
 import AudioPlayer from '../atoms/audio/AudioPlayer';
 
 const ContentAudio = ({ props, callback }) => {
@@ -10,7 +11,7 @@ const ContentAudio = ({ props, callback }) => {
                 <div className='flex gap-[10px] justify-center items-center'>
                     <img
                         className='w-[30px] h-[30px] rounded-[50%] object-cover bg-cover bg-center bg-no-repeat'
-                        src={avatar ? avatar : '/logo-default.svg'}
+                        src={avatar ? `${STATIC_FILES}/${avatar}` : '/logo-default.svg'}
                     />
                     <p className='first-letter:capitalize text-[14px] text-dark-grey-base'>
                         {username}
@@ -24,7 +25,7 @@ const ContentAudio = ({ props, callback }) => {
                 <div className='flex flex-col justify-center items-center pt-4 pb-2 gap-6'>
                     <img
                         className='w-[106px] h-[106px] object-cover rounded-lg'
-                        src={thumbnail ? thumbnail : '/cover-default.png'}
+                        src={thumbnail ? `${STATIC_FILES}/${thumbnail}` : '/cover-default.png'}
                     />
                     <div className='flex flex-col gap-8 w-[100%] items-center'>
                         <AudioPlayer audio={audio} />

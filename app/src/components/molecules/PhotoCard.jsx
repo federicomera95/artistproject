@@ -1,4 +1,5 @@
 import { createSearchParams, useNavigate } from 'react-router-dom';
+import STATIC_FILES from '../../utility/constants';
 
 const PhotoCard = ({ props, callback }) => {
     const { username, title, avatar, thumbnail } = props;
@@ -21,14 +22,14 @@ const PhotoCard = ({ props, callback }) => {
                 >
                     <img
                         className='w-5 h-5 rounded-[50%]'
-                        src={avatar ? avatar : '/logo-default.svg'}
+                        src={avatar ? `${STATIC_FILES}/${avatar}` : '/logo-default.svg'}
                     />
                     <p className='text-[10px]'>{username}</p>
                 </div>
                 <div className='flex gap-4'>
                     <img
                         className='w-[150px] h-[150px] rounded-lg'
-                        src={thumbnail ? thumbnail : '/photo-default.svg'}
+                        src={thumbnail ? `${STATIC_FILES}/${thumbnail}` : '/photo-default.svg'}
                     />
                 </div>
             </div>

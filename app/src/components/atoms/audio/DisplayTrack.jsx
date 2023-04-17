@@ -1,3 +1,5 @@
+import STATIC_FILES from '../../../utility/constants';
+
 const DisplayTrack = ({ audio, audioRef, setDuration, progressBarRef, handleAudioEnded }) => {
     const onLoadedMetadata = () => {
         const seconds = audioRef.current.duration;
@@ -7,7 +9,7 @@ const DisplayTrack = ({ audio, audioRef, setDuration, progressBarRef, handleAudi
 
     return (
         <audio
-            src={audio}
+            src={`${STATIC_FILES}/${audio}`}
             ref={audioRef}
             onLoadedMetadata={onLoadedMetadata}
             onEnded={handleAudioEnded}

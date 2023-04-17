@@ -93,7 +93,7 @@ const Profile = () => {
                                         className='w-[94px] h-[94px] rounded-full border-[2px]'
                                         src={
                                             userData && userData.info.avatar
-                                                ? `http://localhost:3001/files/${userData.info.avatar}`
+                                                ? `${STATIC_FILES}/${userData.info.avatar}`
                                                 : '/logo-default.svg'
                                         }
                                     />
