@@ -192,4 +192,26 @@ router.post(
 	}
 );
 
+router.put('/toggle-follow', async (req: RequestArtistAll, res) => {
+	const { isFollowing, username } = req.body;
+
+	const artist: UserFields | null = await User.findOne({ username });
+	if (!artist) return res.status(400).json({ msg: 'Invalid username' });
+
+	let account = null;
+
+	if (req.data?.user) account = req.data.user;
+	else if (req.data?.artist) account = req.data.artist;
+
+	if (isFollowing) {
+		artist.info.followers.push(account!.email);
+	} else {
+		artist.info.followers.splice(artist.info.followers.indexOf(account!.email), 1);
+	}
+
+	await artist.save();
+
+	res.status(200).json({ msg: isFollowing ? 'Followed' : 'Unfollowed' });
+});
+
 export default router;

@@ -11,6 +11,7 @@ import LinksPopup from '../components/molecules/LinksPopup';
 import { find, remove } from '../utility/storage';
 import getUser from '../services/getUser';
 import STATIC_FILES from '../utility/constants';
+import putToggleFOllow from '../services/putToggleFollow';
 
 const navigation = ['Tutti', 'Photo', 'Audio', 'Video'];
 
@@ -44,6 +45,15 @@ const Profile = () => {
     const { search } = useLocation();
     const user = new URLSearchParams(search).get('user');
 
+    const onToggleFollow = () => {
+        const token = find('token').token;
+
+        toggleFollow((f) => !f);
+        putToggleFOllow(token, { isFollowing: !follow, username: user })
+            .then(({ data }) => console.log(data))
+            .catch((err) => console.log(err));
+    };
+
     useEffect(() => {
         if (!user) return navigate('/home');
 
@@ -55,6 +65,7 @@ const Profile = () => {
         })
             .then(({ data }) => {
                 setUserData(data);
+                toggleFollow(data.info.followers.includes(decoded.email));
             })
             .catch(() => navigate('/home'));
 
@@ -269,11 +280,15 @@ const Profile = () => {
                                 </div>
                             </div>
                             <p className='text-sm font-normal'>{userData && userData.info.bio}</p>
-                            <Button
-                                text='Segui artista'
-                                size='large'
-                                callback={() => toggleFollow((f) => !f)}
-                            />
+                            {(!follow && (
+                                <Button text='Segui' size='large' callback={onToggleFollow} />
+                            )) || (
+                                <Button
+                                    text='Smetti di seguire'
+                                    size='large'
+                                    callback={onToggleFollow}
+                                />
+                            )}
                             <Button
                                 text='Social links'
                                 style='secondary'
