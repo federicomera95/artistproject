@@ -1,13 +1,26 @@
+import { createSearchParams, useNavigate } from 'react-router-dom';
 import { Bookmark, Cross } from '../../assets/icons';
 import STATIC_FILES from '../../utility/constants';
 
 const ContentPhoto = ({ props, callback }) => {
     const { avatar, file, title, username, description, tags = [] } = props;
 
+    const navigate = useNavigate();
+
     return (
         <div className='w-full flex flex-col gap-[19px]'>
             <div className='flex justify-between items-center'>
-                <div className='flex gap-[10px] justify-center items-center'>
+                <div
+                    className='flex gap-[10px] justify-center items-center'
+                    onClick={() =>
+                        navigate({
+                            pathname: '/profile',
+                            search: `?${createSearchParams({
+                                user: username
+                            })}`
+                        })
+                    }
+                >
                     <img
                         crossOrigin='anonymous'
                         className='w-[30px] h-[30px] rounded-[50%] object-cover bg-cover bg-center bg-no-repeat'

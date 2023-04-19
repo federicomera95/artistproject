@@ -1,12 +1,14 @@
 import { useRef, useState } from 'react';
 import { Bookmark, Cross, ToggleVideo } from '../../assets/icons';
 import STATIC_FILES from '../../utility/constants';
+import { createSearchParams, useNavigate } from 'react-router-dom';
 
 const ContentVideo = ({ props, callback }) => {
     const { avatar, file, title, username, description, tags = [], thumbnail } = props;
 
     const [isPlaying, setIsPlaying] = useState(false);
     const videoRef = useRef(null);
+    const navigate = useNavigate();
 
     const togglePlayPause = () => {
         if (!file) return;
@@ -19,7 +21,17 @@ const ContentVideo = ({ props, callback }) => {
     return (
         <div className='w-full flex flex-col gap-[19px]'>
             <div className='flex justify-between items-center'>
-                <div className='flex gap-[10px] justify-center items-center'>
+                <div
+                    className='flex gap-[10px] justify-center items-center'
+                    onClick={() =>
+                        navigate({
+                            pathname: '/profile',
+                            search: `?${createSearchParams({
+                                user: username
+                            })}`
+                        })
+                    }
+                >
                     <img
                         crossOrigin='anonymous'
                         className='w-[30px] h-[30px] rounded-[50%] object-cover bg-cover bg-center bg-no-repeat'

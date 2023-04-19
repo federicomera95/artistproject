@@ -49,9 +49,9 @@ const Profile = () => {
         const token = find('token').token;
 
         toggleFollow((f) => !f);
-        putToggleFOllow(token, { isFollowing: !follow, username: user })
-            .then(({ data }) => console.log(data))
-            .catch((err) => console.log(err));
+        putToggleFOllow(token, { isFollowing: !follow, username: user }).catch((err) =>
+            console.log(err)
+        );
     };
 
     useEffect(() => {

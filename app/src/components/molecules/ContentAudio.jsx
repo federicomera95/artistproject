@@ -1,3 +1,4 @@
+import { createSearchParams, useNavigate } from 'react-router-dom';
 import { Bookmark, Cross } from '../../assets/icons';
 import STATIC_FILES from '../../utility/constants';
 import AudioPlayer from '../atoms/audio/AudioPlayer';
@@ -5,10 +6,22 @@ import AudioPlayer from '../atoms/audio/AudioPlayer';
 const ContentAudio = ({ props, callback }) => {
     const { avatar, thumbnail, file, title, username, description, tags = [] } = props;
 
+    const navigate = useNavigate();
+
     return (
         <div className='w-full h-[100%] fixed p-5 flex flex-col gap-[19px] bg-white z-[9999] inset-0'>
             <div className='flex justify-between items-center'>
-                <div className='flex gap-[10px] justify-center items-center'>
+                <div
+                    className='flex gap-[10px] justify-center items-center'
+                    onClick={() =>
+                        navigate({
+                            pathname: '/profile',
+                            search: `?${createSearchParams({
+                                user: username
+                            })}`
+                        })
+                    }
+                >
                     <img
                         crossOrigin='anonymous'
                         className='w-[30px] h-[30px] rounded-[50%] object-cover bg-cover bg-center bg-no-repeat'
